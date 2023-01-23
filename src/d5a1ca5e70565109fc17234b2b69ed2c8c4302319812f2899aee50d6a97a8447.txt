@@ -74,7 +74,7 @@
         
 
 
-    <script type="application/json" data-role="module-args" data-module-name="Shared/options.mod">{"options":{"locale":"en","serverTime":1674433039,"routeName":"Questions/Show","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","site":{"name":"Stack Overflow","description":"Q\u0026A for professional and enthusiast programmers","isNoticesTabEnabled":true,"enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"cookieDomain":".stackoverflow.com","childUrl":"https://meta.stackoverflow.com","negativeVoteScoreFloor":null,"enableSocialMediaInSharePopup":true,"protocol":"https"},"user":{"fkey":"03ddf5d8c2848954b8de591d96a29e4ddd726096cf4c7cbfa03e92bb59c6551a","tid":"6ed8ecbd-6b49-4545-ce75-b2c80576e83f","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}},"svgIconPath":"https://cdn.sstatic.net/Img/stacks-icons","svgIconHash":"152dfe64472f"}}</script>
+    <script type="application/json" data-role="module-args" data-module-name="Shared/options.mod">{"options":{"locale":"en","serverTime":1674436257,"routeName":"Questions/Show","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","site":{"name":"Stack Overflow","description":"Q\u0026A for professional and enthusiast programmers","isNoticesTabEnabled":true,"enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"cookieDomain":".stackoverflow.com","childUrl":"https://meta.stackoverflow.com","negativeVoteScoreFloor":null,"enableSocialMediaInSharePopup":true,"protocol":"https"},"user":{"fkey":"03ddf5d8c2848954b8de591d96a29e4ddd726096cf4c7cbfa03e92bb59c6551a","tid":"46bbdeb1-da6f-da30-c2f5-72c874d91d4b","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}},"svgIconPath":"https://cdn.sstatic.net/Img/stacks-icons","svgIconHash":"152dfe64472f"}}</script>
 <script type="application/json" data-role="module-args" data-module-name="Shared/settings.mod">{"settings":{"userMessaging":{"showNewFeatureNotice":true},"tags":{},"subscriptions":{"defaultBasicMaxTrueUpSeats":250,"defaultFreemiumMaxTrueUpSeats":50,"defaultMaxTrueUpSeats":1000},"snippets":{"renderDomain":"stacksnippets.net","snippetsEnabled":true},"site":{"allowImageUploads":true,"enableImgurHttps":true,"enableUserHovercards":true,"forceHttpsImages":true,"stacksEditorPreviewEnabled":true,"styleCode":true},"questions":{"enableQuestionTitleLengthLiveWarning":true,"enableSavesFeature":true,"maxTitleSize":150,"questionTitleLengthStartLiveWarningChars":50},"intercom":{"appId":"inf0secd","hostBaseUrl":"https://stacksnippets.net"},"paths":{"jQueryUICSSPath":"https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css","jQueryUIJSPath":"https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"},"monitoring":{"clientTimingsAbsoluteTimeout":30000,"clientTimingsDebounceTimeout":1000},"mentions":{"maxNumUsersInDropdown":50},"markdown":{"enableTables":true},"legal":{"oneTrustConfigId":"c3d9f1e3-55f3-4eba-b268-46cee4c6789c"},"flags":{"allowRetractingCommentFlags":true,"allowRetractingFlags":true},"elections":{"opaVoteResultsBaseUrl":"https://www.opavote.com/results/"},"comments":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true}}}</script>
 <script>StackExchange.init();</script>
 
@@ -1879,31 +1879,7 @@ Not the answer you&#x27;re looking for? Browse other questions tagged <ul class=
     <div id="dfp-msb" class="everyonelovesstackoverflow everyoneloves__mid-sidebar"></div>
 		<div class="js-report-ad-button-container " style="width: 300px"></div>
 </div>
-<div id="hireme"></div>    
-<div class="s-sidebarwidget mb16 module">
-    <div class="s-sidebarwidget--header d-flex ai-center">
-        <a href="https://chat.stackoverflow.com/" class="js-chat-ad-link">Visit chat</a>
-    </div>
-        <div class="s-sidebarwidget--content s-sidebarwidget__items d-none js-chat-ad-rooms"></div>
-</div>
-
-
-    <script>
-    // <!--
-        StackExchange.ready(function () {
-            var options = {
-                chatUrl: 'https://chat.stackoverflow.com/',
-                reloadUrl: '/api/recent-chat',
-                preloadedData: null,
-                tagBased: true,
-            };
-
-            StackExchange.chatAd.init(options);
-        });
-    // -->
-    </script>
-
-        <div class="module sidebar-linked">
+<div id="hireme"></div>        <div class="module sidebar-linked">
 	<h4 id="h-linked">Linked</h4>
 	<div class="linked" data-tracker="lq=1">
             <div class="spacer js-gps-track" data-gps-track="linkedquestion.click({ source_post_id: 58146520, target_question_id: 48317725, position: 0 })">
@@ -1971,8 +1947,26 @@ Not the answer you&#x27;re looking for? Browse other questions tagged <ul class=
     </h4>
     <ul>
             <li >
-                <div class="favicon favicon-superuser" title="Super User"></div><a href="https://superuser.com/questions/1764288/how-to-assign-a-keyboard-shortcut-to-increase-decrease-the-brightness-of-both-my" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    How to assign a keyboard shortcut to increase/decrease the brightness of both my monitors?
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="https://electronics.stackexchange.com/questions/651024/how-is-fpga-mcu-configuration-firmware-data-protected-from-readout" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How is FPGA/MCU configuration/firmware data protected from readout
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="https://tex.stackexchange.com/questions/672543/how-to-get-rid-of-vertical-spaces-around-multicols-environment-in-acmart-cla" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to get rid of vertical spaces around &quot;multicols&quot; environment in &quot;acmart&quot; class?
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="https://worldbuilding.stackexchange.com/questions/240943/half-man-half-bicycle" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Half man half bicycle
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-writing" title="Writing Stack Exchange"></div><a href="https://writing.stackexchange.com/questions/64266/when-your-main-character-is-a-misogynist-or-a-racist-how-do-you-tell-your-reade" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:166 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When your main character is a misogynist or a racist, how do you tell your readers that you don&#x27;t subscribe to his racist views by merely showing?
                 </a>
 
             </li>
@@ -1982,99 +1976,51 @@ Not the answer you&#x27;re looking for? Browse other questions tagged <ul class=
                 </a>
 
             </li>
-            <li >
-                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a href="https://physics.stackexchange.com/questions/746444/fourier-vs-laplace-transforms" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    Fourier vs Laplace transforms
-                </a>
-
-            </li>
-            <li >
-                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a href="https://mathematica.stackexchange.com/questions/278907/2d-wave-equation-solve-using-laplace-transformation-mathematica" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    2D wave equation solve using laplace transformation mathematica
-                </a>
-
-            </li>
-            <li >
-                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="https://tex.stackexchange.com/questions/672546/how-can-i-align-decimal-in-tabularray-package" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    How can I align decimal in tabularray package?
+            <li class="dno js-hidden">
+                <div class="favicon favicon-raspberrypi" title="Raspberry Pi Stack Exchange"></div><a href="https://raspberrypi.stackexchange.com/questions/140762/boot-from-usb-with-a-raspberry-pi-4b-that-apparently-has-a-broken-sd-card-reader" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:447 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Boot from USB with a Raspberry Pi 4B that apparently has a broken SD card reader
                 </a>
 
             </li>
             <li class="dno js-hidden">
-                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="https://academia.stackexchange.com/questions/192721/is-it-common-for-the-head-of-a-department-to-be-able-to-reduce-a-tenured-profess" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    Is it common for the head of a department to be able to reduce a tenured professors&#x27; salary to 0?
+                <div class="favicon favicon-retrocomputing" title="Retrocomputing Stack Exchange"></div><a href="https://retrocomputing.stackexchange.com/questions/26214/has-there-ever-been-a-pressed-optical-disc-containing-a-computer-virus" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:648 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Has there ever been a pressed optical disc containing a computer virus?
                 </a>
 
             </li>
             <li class="dno js-hidden">
-                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="https://ell.stackexchange.com/questions/331421/why-there-is-a-laugh-in-a-tv-series-scene-for-this-sentence-apparently-the-ph-b" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    Why there is a laugh in a TV series scene for this sentence: Apparently the pH balance in the pool is perfect
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="https://travel.stackexchange.com/questions/178929/on-flights-across-time-zones-why-is-the-serving-of-meals-and-cabin-lighting-not" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    On flights across time zones, why is the serving of meals and cabin lighting not synchronized to the time zone of the destination?
                 </a>
 
             </li>
             <li class="dno js-hidden">
-                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="https://english.stackexchange.com/questions/601910/what-does-it-mean-when-a-restaurant-is-called-an-institution" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    What does it mean when a restaurant is called an institution?
+                <div class="favicon favicon-philosophy" title="Philosophy Stack Exchange"></div><a href="https://philosophy.stackexchange.com/questions/96281/is-andalusis-proof-for-the-existence-of-god-correct" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:265 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is Andalusi&#x27;s proof for the existence of God correct?
                 </a>
 
             </li>
             <li class="dno js-hidden">
-                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="https://math.stackexchange.com/questions/4623641/existance-of-product-measure-contradiction" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    Existance of product measure contradiction
+                <div class="favicon favicon-salesforce" title="Salesforce Stack Exchange"></div><a href="https://salesforce.stackexchange.com/questions/394359/lwc-linting-error-on-template-in-new-js-file" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:459 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    LWC linting error on &lt;template&gt; in new JS file
                 </a>
 
             </li>
             <li class="dno js-hidden">
-                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="https://tex.stackexchange.com/questions/672543/how-to-get-rid-of-vertical-spaces-around-multicols-environment-in-acmart-cla" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    How to get rid of vertical spaces around &quot;multicols&quot; environment in &quot;acmart&quot; class?
+                <div class="favicon favicon-codegolf" title="Code Golf Stack Exchange"></div><a href="https://codegolf.stackexchange.com/questions/256920/simplify-a-cycle" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Simplify a Cycle
                 </a>
 
             </li>
             <li class="dno js-hidden">
-                <div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div><a href="https://puzzling.stackexchange.com/questions/119460/guessing-two-secret-numbers" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    Guessing two secret numbers
+                <div class="favicon favicon-politics" title="Politics Stack Exchange"></div><a href="https://politics.stackexchange.com/questions/77836/did-the-fbi-seize-former-us-presidents-current-passport-in-the-mar-a-lago-raid" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:475 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Did the FBI seize former US president&#x27;s current passport in the Mar-a-Lago raid? If so, did they return it? If so, when?
                 </a>
 
             </li>
             <li class="dno js-hidden">
-                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="https://tex.stackexchange.com/questions/672495/how-to-add-a-curly-brace-to-label-meb" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    How to add a curly brace to label $MEB$?
-                </a>
-
-            </li>
-            <li class="dno js-hidden">
-                <div class="favicon favicon-codegolf" title="Code Golf Stack Exchange"></div><a href="https://codegolf.stackexchange.com/questions/256978/painting-with-line-filler" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    Painting with Line Filler
-                </a>
-
-            </li>
-            <li class="dno js-hidden">
-                <div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div><a href="https://puzzling.stackexchange.com/questions/119459/trust-me-you-do-not-want-to-go-down-this-road-with-me" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    Trust me: you do not want to go down this road with me
-                </a>
-
-            </li>
-            <li class="dno js-hidden">
-                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="https://english.stackexchange.com/questions/601894/how-is-the-stars-my-destination-a-grammatically-correct-title-sentence" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    How is &#x201C;The Stars My Destination&#x201D; a grammatically correct title/sentence?
-                </a>
-
-            </li>
-            <li class="dno js-hidden">
-                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="https://english.stackexchange.com/questions/601919/my-american-friend-contradicts-my-british-friend-regarding-the-use-of-the" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    My American friend contradicts my British friend regarding the use of &quot;the&quot;
-                </a>
-
-            </li>
-            <li class="dno js-hidden">
-                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="https://rpg.stackexchange.com/questions/204157/why-record-number-of-hit-dice" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    Why record number of Hit Dice?
-                </a>
-
-            </li>
-            <li class="dno js-hidden">
-                <div class="favicon favicon-politics" title="Politics Stack Exchange"></div><a href="https://politics.stackexchange.com/questions/77819/why-is-the-us-government-not-worried-about-high-deficit" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:475 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    Why is the US government not worried about high deficit?
+                <div class="favicon favicon-stats" title="Cross Validated"></div><a href="https://stats.stackexchange.com/questions/602785/should-rmse-compared-to-the-magnitude-of-response-variable" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:65 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    should RMSE compared to the magnitude of response variable?
                 </a>
 
             </li>
@@ -2085,32 +2031,62 @@ Not the answer you&#x27;re looking for? Browse other questions tagged <ul class=
 
             </li>
             <li class="dno js-hidden">
-                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="https://academia.stackexchange.com/questions/192731/i-feel-like-i-didnt-deserve-to-pass-an-exam" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    I feel like I didn&#x27;t deserve to pass an exam
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="https://travel.stackexchange.com/questions/178954/bahn-de-how-to-remove-un-necessary-connections" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    bahn.de, how to remove un-necessary connections?
                 </a>
 
             </li>
             <li class="dno js-hidden">
-                <div class="favicon favicon-mechanics" title="Motor Vehicle Maintenance &amp; Repair Stack Exchange"></div><a href="https://mechanics.stackexchange.com/questions/90886/2007-dodge-charger-3-5l-v6-wont-turn-over-but-starter-and-relay-appear-to-be-w" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:224 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    2007 Dodge Charger 3.5L V6 won&#x27;t turn over, but starter and relay appear to be working
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a href="https://mathematica.stackexchange.com/questions/278907/2d-wave-equation-solve-using-laplace-transformation-mathematica" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    2D wave equation solve using laplace transformation mathematica
                 </a>
 
             </li>
             <li class="dno js-hidden">
-                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="https://tex.stackexchange.com/questions/672516/cannot-convert-greek-lowercase-to-uppercase-without-accents-in-lualatex-how-can" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    Cannot convert Greek lowercase to uppercase without accents in LuaLaTeX. How can I?
+                <div class="favicon favicon-french" title="French Language Stack Exchange"></div><a href="https://french.stackexchange.com/questions/52203/why-treize-is-not-pronounced-as-written" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:299 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why treize is not pronounced as written?
                 </a>
 
             </li>
             <li class="dno js-hidden">
-                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="https://english.stackexchange.com/questions/601872/is-there-a-non-technical-word-in-english-that-means-to-add-one" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    Is there a non-technical word in English that means &quot;to add one&quot;?
+                <div class="favicon favicon-money" title="Personal Finance &amp; Money Stack Exchange"></div><a href="https://money.stackexchange.com/questions/154824/can-i-reduce-my-state-income-tax-deduction-to-avoid-taxes-on-the-refund" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:93 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can I reduce my state income tax deduction, to avoid taxes on the refund?
                 </a>
 
             </li>
             <li class="dno js-hidden">
-                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="https://math.stackexchange.com/questions/4623606/how-is-rational-number-a-group-under-addition-if-some-non-rational-numbers-can-b" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
-                    How is rational number a group under addition if some non-rational numbers can be represented as a sum of rational numbers?
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="https://academia.stackexchange.com/questions/192721/is-it-common-for-the-head-of-a-department-to-be-able-to-reduce-a-tenured-profess" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it common for the head of a department to be able to reduce a tenured professors&#x27; salary to 0?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="https://tex.stackexchange.com/questions/672546/how-can-i-align-decimal-in-tabularray-package" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can I align decimal in tabularray package?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="https://tex.stackexchange.com/questions/672495/how-to-add-a-curly-brace-to-label-meb" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to add a curly brace to label $MEB$?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="https://scifi.stackexchange.com/questions/271392/is-cockfighting-between-larvae-of-prawns" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is &quot;cockfighting&quot; between larvae of Prawns?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-diy" title="Home Improvement Stack Exchange"></div><a href="https://diy.stackexchange.com/questions/265186/earthing-grounding-wrong-multimeter-measures-120v-between-phase-neutral-and-gro" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:73 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Earthing/grounding wrong, multimeter measures 120V between phase/neutral and ground
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="https://academia.stackexchange.com/questions/192682/is-it-cheating-if-i-get-paid-to-write-simulation-code-for-a-grad-students-thesi" class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it cheating if I get paid to write simulation code for a grad student&#x27;s thesis?
                 </a>
 
             </li>
@@ -2155,8 +2131,8 @@ Not the answer you&#x27;re looking for? Browse other questions tagged <ul class=
 </div>
 
     </div>
-<script>StackExchange.ready(function(){$.get('/posts/58146520/ivc/356a');});</script>
-<noscript><div><img src="/posts/58146520/ivc/356a" class="dno" alt="" width="0" height="0"></div></noscript><div style="display:none" id="js-codeblock-lang"></div></div>
+<script>StackExchange.ready(function(){$.get('/posts/58146520/ivc/a2eb');});</script>
+<noscript><div><img src="/posts/58146520/ivc/a2eb" class="dno" alt="" width="0" height="0"></div></noscript><div style="display:none" id="js-codeblock-lang"></div></div>
 
 
         </div>
@@ -2169,7 +2145,7 @@ Not the answer you&#x27;re looking for? Browse other questions tagged <ul class=
     var clcGamLoaderOptions = cam || { opt: {} };
     var opt = clcGamLoaderOptions.opt;
 
-    opt.omni = 'BV4QoDDX_NoIAAAAANg-dwMCAAAAAgAAAAAAAh8AAAB8cmVxdWVzdHx3ZWItY3Jhd2xlcnxwdXBwZXRlZXJ8AK-65OY1IHzB8OU';
+    opt.omni = 'BQOKRa_e_NoIAAAAANg-dwMCAAAAAgAAAAAAAh8AAAB8cmVxdWVzdHx3ZWItY3Jhd2xlcnxwdXBwZXRlZXJ8ABJpwkSUncPXpTk';
 
     opt.sf = !0;
     opt.hb = !1;
@@ -2351,7 +2327,7 @@ Site design / logo &#169; 2023 Stack Exchange Inc; user contributions licensed u
                 StackExchange.ga.setDimension('dimension3', 'Questions/Show');
 
 
-                StackExchange.ga.setDimension('dimension7', "1674433039.867984584");
+                StackExchange.ga.setDimension('dimension7', "1674436257.941291161");
 
                 StackExchange.ga.trackPageView();
             });

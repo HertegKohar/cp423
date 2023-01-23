@@ -51,7 +51,6 @@ def hash_and_save(url, status_code, content, rewrite):
     log(f"{hex_dig} {url} {datetime.datetime.now()} {status_code}\n")
     if not rewrite and hex_dig in FILES:
         return
-    print("Rewriting", filename)
     with open(filename, "w", encoding="utf-8") as f:
         f.write(content)
     FILES.add(hex_dig)
