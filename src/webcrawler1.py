@@ -17,6 +17,8 @@ URL_REGEX = url_regex = re.compile(
 # Path to the log file
 LOGGER_PATH = "crawler1.log"
 
+COOLDOWN = 429
+
 # Set of files already seen
 FILES = set()
 
@@ -71,11 +73,16 @@ def crawl(url, maxdepth, verbose, rewrite):
         return
     r = requests.get(url)
     hash_and_save(url, r.status_code, r.text, rewrite)
+    if r.status_code == COOLDOWN:
+        print("Too many requests")
+        return
     soup = BeautifulSoup(r.text, "html.parser")
     for link in soup.find_all("a"):
         href = link.get("href")
         if href is not None and URL_REGEX.match(href):
             crawl(href, maxdepth - 1, verbose, rewrite)
+        elif href is not None:
+            crawl(url + href, maxdepth - 1, verbose, rewrite)
 
 
 if __name__ == "__main__":
