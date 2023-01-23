@@ -20,11 +20,25 @@ for file in os.listdir("."):
 
 
 def log(message):
+    """Log the download of a URL to a file.
+
+    Args:
+        message (str): A message which follows the assignment format of <H,URL,Download
+        DateTime, HTTP Response Code>
+    """
     with open(LOGGER_PATH, "a", encoding="utf-8") as f:
         f.write(message)
 
 
 def hash_and_save(url, status_code, content, rewrite):
+    """Use hashlib to hash the URL and save the content to a file.
+
+    Args:
+        url (str): Current URL being crawled
+        status_code (int): HTTP response code from GET request
+        content (str): HTML content of the URL
+        rewrite (bool): The rewrite flag from the command line to rewrite the HTML content within the .txt if already seen
+    """
     hash_object = hashlib.sha256(url.encode())
     hex_dig = hash_object.hexdigest()
     filename = hex_dig + ".txt"
@@ -38,6 +52,14 @@ def hash_and_save(url, status_code, content, rewrite):
 
 
 def crawl(url, maxdepth, verbose, rewrite):
+    """Crawl the URLs recursively from each page explored.
+
+    Args:
+        url (str): The current URL being crawled
+        maxdepth (int): The maximum depth of the crawling (how many links deep)
+        verbose (bool): Flag to output the URL and current depth
+        rewrite (bool): Flag to rewrite the content files for the URL if recorded
+    """
     if verbose:
         print(url, maxdepth)
     if maxdepth == 0:
