@@ -1,3 +1,6 @@
+"""
+Author: Herteg Kohar
+"""
 import requests
 import argparse
 from bs4 import BeautifulSoup
@@ -6,12 +9,15 @@ import datetime
 import re
 import os
 
+# Regex to match URLs
 URL_REGEX = url_regex = re.compile(
     r"https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*\.com)"
 )
 
+# Path to the log file
 LOGGER_PATH = "crawler1.log"
 
+# Set of files already seen
 FILES = set()
 
 for file in os.listdir("."):
