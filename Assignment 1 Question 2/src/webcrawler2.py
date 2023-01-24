@@ -37,7 +37,7 @@ def parse_page(content):
     coauthors = soup.find_all("span", class_="gsc_rsb_a_desc")
     for span in coauthors:
         coauthorJson = {}
-        coauthorJson["coauthor_name"] = span.find("a")
+        coauthorJson["coauthor_name"] = span.find("a").get_text()
         page_info["researcher_coauthors"].append(coauthorJson)
     
     return page_info
