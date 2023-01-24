@@ -33,12 +33,21 @@ def parse_page(content):
         "all": citations[4].text,
         "since2018": citations[5].text,
     }
+    page_info["researcher_coauthors"] = []
+    coauthors = soup.find_all("span", class_="gsc_rsb_a_desc")
+    for span in coauthors:
+        coauthorJson = {}
+        coauthorJson["coauthor_name"] = span.find("a").get_text()
+        coauthorJson["coauthor_title"] = span.find("span", class_="gsc_rsb_a_ext").get_text()
+        coauthorJson["coauthor_link"] = span.find("a").get("href")
+        page_info["researcher_coauthors"].append(coauthorJson)
+    
     return page_info
 
 
 if __name__ == "__main__":
     with open(
-        "Assignment 1 Question 2/Sample/_Herbert A Simon_ - _Google Scholar_.html"
+        "Sample\_Guillermo Campitelli_ - _Google Scholar_.html"
     ) as file:
         content = file.read()
     page_info = parse_page(content)
