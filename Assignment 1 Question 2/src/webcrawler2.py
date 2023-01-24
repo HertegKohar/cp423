@@ -38,6 +38,8 @@ def parse_page(content):
     for span in coauthors:
         coauthorJson = {}
         coauthorJson["coauthor_name"] = span.find("a").get_text()
+        coauthorJson["coauthor_title"] = span.find("span", class_="gsc_rsb_a_ext").get_text()
+        coauthorJson["coauthor_link"] = span.find("a").get("href")
         page_info["researcher_coauthors"].append(coauthorJson)
     
     return page_info
