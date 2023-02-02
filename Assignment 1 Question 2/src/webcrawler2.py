@@ -1,14 +1,60 @@
 """
 Author: Herteg Kohar 
 """
-import requests
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import hashlib
 import argparse
 import json
+from time import sleep
+
+PREFIX_URL = "https://scholar.google.ca"
+
+
+def hash_and_save_html_content(
+    url,
+    content,
+):
+    """Use hashlib to hash the URL and save the content to a file.
+
+    Args:
+        url (str): Current URL being crawled
+        content (str): HTML content of the URL
+    """
+    hash_object = hashlib.sha256(url.encode())
+    hex_dig = hash_object.hexdigest()
+    filename = hex_dig + ".txt"
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(content)
+
+
+def hash_and_save_json(url, dictionary):
+    """Saves the dictionary to a JSON file as well as naming the file by the hash of the URL.
+
+    Args:
+        url (str): Current URL of Google Scholar being crawled
+        dictionary (dict): Python dictionary containing the information of the researcher
+    """
+    hash_object = hashlib.sha256(url.encode())
+    hex_dig = hash_object.hexdigest()
+    filename = hex_dig + ".json"
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(dictionary, f)
 
 
 def parse_page(content):
+    """Parses the page content into a python dictionary in order to store the information.
+
+    Args:
+        content (str): The HTML content of the page
+
+    Returns:
+        dict: The dictionary containing the information of the researcher to be stored in a JSON file
+    """
     page_info = {}
     soup = BeautifulSoup(content, "html.parser")
     name = soup.find("div", id="gsc_prf_in").text
@@ -33,22 +79,65 @@ def parse_page(content):
         "all": citations[4].text,
         "since2018": citations[5].text,
     }
+    page_info["researcher_papers"] = []
+    papers_table = soup.find("table", id="gsc_a_t")
+    for row in papers_table.find_all("tr"):
+        paper = {}
+        cells = row.find_all("td")
+        if cells == []:
+            continue
+        paper["paper_title"] = cells[0].find("a", class_="gsc_a_at").text.strip()
+        authors_and_journal = cells[0].find_all("div", class_="gs_gray")
+        paper["paper_authors"] = authors_and_journal[0].text.strip()
+        paper["paper_journal"] = authors_and_journal[1].text.strip()
+        try:
+            paper["paper_citedby"] = (
+                cells[1].find("a", class_="gsc_a_ac gs_ibl").text.strip()
+            )
+        except AttributeError:
+            paper["paper_citedby"] = ""
+        paper["paper_year"] = (
+            cells[2].find("span", class_="gsc_a_h gsc_a_hc gs_ibl").text.strip()
+        )
+        page_info["researcher_papers"].append(paper)
     page_info["researcher_coauthors"] = []
     coauthors = soup.find_all("span", class_="gsc_rsb_a_desc")
     for span in coauthors:
         coauthorJson = {}
         coauthorJson["coauthor_name"] = span.find("a").get_text()
-        coauthorJson["coauthor_title"] = span.find("span", class_="gsc_rsb_a_ext").get_text()
-        coauthorJson["coauthor_link"] = span.find("a").get("href")
+        coauthorJson["coauthor_title"] = span.find(
+            "span", class_="gsc_rsb_a_ext"
+        ).get_text()
+        coauthorJson["coauthor_link"] = PREFIX_URL + span.find("a").get("href")
         page_info["researcher_coauthors"].append(coauthorJson)
-    
     return page_info
 
 
+def parse_page_show_more(url):
+    """Uses selenium in order to navigate through the show more button if applicable. Then
+    saves the page content to a file and calls the parse_page function to parse the page content and store
+    the information in a JSON file.
+
+    Args:
+        url (str): The researcher's Google Scholar URL
+    """
+    chrome_options = Options()
+    chrome_options.add_experimental_option("detach", True)
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    driver.get(url)
+    show_more_button = driver.find_element(by=By.ID, value="gsc_bpf_more")
+    while show_more_button.is_enabled():
+        show_more_button.click()
+        sleep(1)
+    hash_and_save_html_content(url, driver.page_source)
+    page_info = parse_page(driver.page_source)
+    hash_and_save_json(url, page_info)
+    # driver.quit()
+
+
 if __name__ == "__main__":
-    with open(
-        "Sample\_Guillermo Campitelli_ - _Google Scholar_.html"
-    ) as file:
-        content = file.read()
-    page_info = parse_page(content)
-    print(page_info)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("researcherURL", type=str, help="The initial URL to crawl")
+    args = parser.parse_args()
+    parse_page_show_more(args.researcherURL)
