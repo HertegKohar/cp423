@@ -45,6 +45,24 @@ def log(message):
     with open(LOGGER_PATH, "a", encoding="utf-8") as f:
         f.write(message)
 
+def hash_and_save(url, status_code, content, rewrite):
+    """Use hashlib to hash the URL and save the content to a file.
+
+    Args:
+        url (str): Current URL being crawled
+        status_code (int): HTTP response code from GET request
+        content (str): HTML content of the URL
+        rewrite (bool): The rewrite flag from the command line to rewrite the HTML content within the .txt if already seen
+    """
+    hash_object = hashlib.sha256(url.encode())
+    hex_dig = hash_object.hexdigest()
+    filename = hex_dig + ".txt"
+    log(f"{hex_dig} {url} {datetime.datetime.now()} {status_code}\n")
+    if not rewrite and hex_dig in FILES:
+        return
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(content)
+    FILES.add(hex_dig)
 
 def generate_content_block_sequence(document):
     """
@@ -83,9 +101,10 @@ def generate_content_block_sequence(document):
             index_token += 1
     # TODO: add remaining tokens and tags to sequence (if any)
     print(f'\nSEQUENCE WITH SPANS\n\n{sequence_span[0:100]}\n...\n')
-    sequence = ''.join([str(item[0]) for item in sequence_span])
-    print(f'\nSEQUENCE AS STRING\n\n{sequence}\n')
-    return sequence, sequence_span
+    sequence_as_list = [item[0] for item in sequence_span]
+    sequence_as_string = ''.join([str(item[0]) for item in sequence_span])
+    print(f'\nSEQUENCE AS STRING\n\n{sequence_as_string}\n')
+    return sequence_span, sequence_as_list, sequence_as_string
 
     
     # TODO: delete excess comments when deemed safe to do so :)
@@ -107,24 +126,30 @@ def generate_content_block_sequence(document):
     #     elif href is not None:
     #         crawl(url + href, maxdepth - 1, verbose, rewrite)
 
-def hash_and_save(url, status_code, content, rewrite):
-    """Use hashlib to hash the URL and save the content to a file.
+def objective_function(sequence_as_list, i, j):
+    # TODO: docstring :)
+    return sum(sequence_as_list[0:i]) + \
+        sum((1 - bit) for bit in sequence_as_list[i:j+1]) + \
+        sum(sequence_as_list[j+1:])
 
-    Args:
-        url (str): Current URL being crawled
-        status_code (int): HTTP response code from GET request
-        content (str): HTML content of the URL
-        rewrite (bool): The rewrite flag from the command line to rewrite the HTML content within the .txt if already seen
-    """
-    hash_object = hashlib.sha256(url.encode())
-    hex_dig = hash_object.hexdigest()
-    filename = hex_dig + ".txt"
-    log(f"{hex_dig} {url} {datetime.datetime.now()} {status_code}\n")
-    if not rewrite and hex_dig in FILES:
-        return
-    with open(filename, "w", encoding="utf-8") as f:
-        f.write(content)
-    FILES.add(hex_dig)
+        
+
+
+def optimize_content_block(sequence_span, sequence_as_list):
+    # TODO: docstring :)
+    # TODO: check parameters & call to see if all is necessary
+    max_score = 0
+    max_span = (None, None)
+    n = len(sequence_span)
+    for i in range(0, n):
+        for j in range(i, n):
+            score = objective_function(sequence_as_list, i, j)
+            if score > max_score: # TODO: confirm whether to use > or >=
+                max_score = score
+                max_span = (i, j)
+    print(max_score, max_span)
+    return max_span
+
 
 
 def crawl(url, rewrite=False):
@@ -139,8 +164,12 @@ def crawl(url, rewrite=False):
     if r.status_code == COOLDOWN:
         print("Too many requests")
         return
-    sequence, sequence_span = generate_content_block_sequence(r.text)
-    # optimize_sequence(sequence)
+    sequence_span, sequence_as_list, sequence_as_string = generate_content_block_sequence(r.text)
+    content_block_span = optimize_content_block(sequence_span, sequence_as_list)
+
+
+    # TODO: consider moving some calls to the "main" and re-organizing program flow
+    # TODO: delete excess comments when deemed safe to do so :)
     # soup = BeautifulSoup(r.text, "html.parser")
     # for link in soup.find_all("a"):
     #     href = link.get("href")
