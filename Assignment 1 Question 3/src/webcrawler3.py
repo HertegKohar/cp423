@@ -128,6 +128,7 @@ def generate_content_block_sequence(document):
 
 def objective_function(sequence_as_list, i, j):
     # TODO: docstring :)
+    # sum(0, i) + (j-i) - sum(1-)
     return sum(sequence_as_list[0:i]) + \
         sum((1 - bit) for bit in sequence_as_list[i:j+1]) + \
         sum(sequence_as_list[j+1:])
@@ -138,17 +139,44 @@ def objective_function(sequence_as_list, i, j):
 def optimize_content_block(sequence_span, sequence_as_list):
     # TODO: docstring :)
     # TODO: check parameters & call to see if all is necessary
-    max_score = 0
-    max_span = (None, None)
+
+    # method 2: much faster, gotta confirm it works :)
     n = len(sequence_span)
+    print(f'\nN: {n}\n')
+    i_change_score = sum(sequence_as_list)
+    max_score = i_change_score
+    max_span = (0,0)
     for i in range(0, n):
-        for j in range(i, n):
-            score = objective_function(sequence_as_list, i, j)
-            if score > max_score: # TODO: confirm whether to use > or >=
-                max_score = score
+        curr_score = i_change_score
+        for j in range(i+1, n):
+            # if the 'consumed' bit: is 0 -> score += 1, if 1 -> score -= 1
+            if sequence_as_list[j-1] == 0:
+                curr_score += 1
+            else:
+                curr_score -= 1
+            if curr_score > max_score:
+                max_score = curr_score
                 max_span = (i, j)
-    print(max_score, max_span)
+    print(f'\nMAX_SCORE: {max_score}, MAX_SPAN: {max_span}')
     return max_span
+
+
+
+
+
+    # method 1: too slow
+    # max_score = 0
+    # max_span = (None, None)
+    # n = len(sequence_span)
+    # print(f'\nN: {n}\n')
+    # for i in range(0, n):
+    #     for j in range(i, n):
+    #         score = objective_function(sequence_as_list, i, j)
+    #         if score > max_score: # TODO: confirm whether to use > or >=
+    #             max_score = score
+    #             max_span = (i, j)
+    # print(f'\nMAX_SCORE: {max_score}, MAX_SPAN: {max_span}')
+    # return max_span
 
 
 
