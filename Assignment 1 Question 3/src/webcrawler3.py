@@ -46,21 +46,60 @@ def log(message):
         f.write(message)
 
 
-def binary_sequence_from_contents(document):
+def generate_content_block_sequence(document):
     """
     TODO: write docstring
     """
-    print("A")
-    print(document)
-    codified_content = re.sub(HTML_TAG_REGEX, "1", document)
-    print("B")
-    print(codified_content)
-    codified_content = re.sub(TOKEN_REGEX, "0", codified_content)
-    print("C")
-    print(codified_content)
-    codified_content = re.sub(NON_NUMERIC_REGEX, "", codified_content)
-    print("D")
-    print(codified_content)
+    # TODO: confirm no tag filtering is needed
+    # produce a list of all spanning positions of HTML tags
+    tag_span = []
+    for result in HTML_TAG_REGEX.finditer(document):
+        tag_span.append(result.span())
+    print(f'\TAGS\n\n{tag_span[0:100]}\n...\n')
+    # produce a list of all spanning positions of non-HTML-tag tokens
+    token_span = []
+    for result in TOKEN_REGEX.finditer(document):
+        token_span.append(result.span())
+    print(f'\nTOKENS\n\n{token_span[0:100]}\n...\n')
+    # generate 'smart sequence' of 1s and 0s using spans and document
+    sequence_span = []
+    index_tag = 0
+    index_token = 0
+    while index_token < len(token_span) and index_tag < len(tag_span):
+        tag = tag_span[index_tag]
+        token = token_span[index_token]
+        current_token_is_a_tag = False
+        while token[0] > tag[0] and token[1] < tag[1]: # TODO: check for appropriate combination of inequalities (<, >, <=, >=)
+            current_token_is_a_tag = True
+            index_token += 1
+            if index_token >= len(token_span):
+                break
+            token = token_span[index_token]
+        if current_token_is_a_tag:
+            sequence_span.append((1, tag[0], tag[1]))
+            index_tag += 1
+        else:
+            sequence_span.append((0, token[0], token[1]))
+            index_token += 1
+    # TODO: add remaining tokens and tags to sequence (if any)
+    print(f'\nSEQUENCE WITH SPANS\n\n{sequence_span[0:100]}\n...\n')
+    sequence = ''.join([str(item[0]) for item in sequence_span])
+    print(f'\nSEQUENCE AS STRING\n\n{sequence}\n')
+    return sequence, sequence_span
+
+    
+    # TODO: delete excess comments when deemed safe to do so :)
+    # print("A")
+    # print(document)
+    # codified_content = re.sub(HTML_TAG_REGEX, "1", document)
+    # print("B")
+    # print(codified_content)
+    # codified_content = re.sub(TOKEN_REGEX, "0", codified_content)
+    # print("C")
+    # print(codified_content)
+    # codified_content = re.sub(NON_NUMERIC_REGEX, "", codified_content)
+    # print("D")
+    # print(codified_content)
     # for link in soup.find_all("a"):
     #     href = link.get("href")
     #     if href is not None and URL_REGEX.match(href):
@@ -100,7 +139,8 @@ def crawl(url, rewrite=False):
     if r.status_code == COOLDOWN:
         print("Too many requests")
         return
-    binary_sequence_from_contents(r.text)
+    sequence, sequence_span = generate_content_block_sequence(r.text)
+    # optimize_sequence(sequence)
     # soup = BeautifulSoup(r.text, "html.parser")
     # for link in soup.find_all("a"):
     #     href = link.get("href")
