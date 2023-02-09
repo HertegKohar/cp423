@@ -7,5 +7,5 @@ python webcrawler3.py initialURL
 
 Example Execution
 ```Bash
-python webcrawler3.py https://thecord.ca/a-better-school-life-balance/
+python webcrawler3.py https://uwaterloo.ca/canadian-index-wellbeing/
 ```
