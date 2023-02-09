@@ -8,6 +8,9 @@ import argparse
 from bs4 import BeautifulSoup
 import hashlib
 import datetime
+import matplotlib.pyplot as plt
+import numpy as np
+import pprint
 import re
 import os
 
@@ -87,16 +90,15 @@ def generate_content_block_sequence(document):
         tag = tag_span[index_tag]
         token = token_span[index_token]
         current_token_is_a_tag = False
-        while token[0] > tag[0] and token[1] < tag[1]: # TODO: check for appropriate combination of inequalities (<, >, <=, >=)
+        while token[0] >= tag[0] and token[1] <= tag[1]: # TODO: check for appropriate combination of inequalities (<, >, <=, >=)
             current_token_is_a_tag = True
+            sequence_span.append((1, token[0], token[1]))
+            index_tag += 1
             index_token += 1
             if index_token >= len(token_span):
                 break
             token = token_span[index_token]
-        if current_token_is_a_tag:
-            sequence_span.append((1, tag[0], tag[1]))
-            index_tag += 1
-        else:
+        if not current_token_is_a_tag:
             sequence_span.append((0, token[0], token[1]))
             index_token += 1
     # TODO: add remaining tokens and tags to sequence (if any)
@@ -133,6 +135,26 @@ def objective_function(sequence_as_list, i, j):
         sum((1 - bit) for bit in sequence_as_list[i:j+1]) + \
         sum(sequence_as_list[j+1:])
 
+def plot_function(function_values, max_score):
+    n = len(function_values)
+    # generate 2 2d grids for the x & y bounds
+    y, x = np.array(range(n)), np.array(range(n))
+    z = function_values
+
+    # x and y are bounds, so z should be the value *inside* those bounds.
+    # Therefore, remove the last value from the z array.
+    # z = z[:-1, :-1]
+    z_min, z_max = 0, max_score
+
+    fig, ax = plt.subplots()
+
+    c = ax.pcolormesh(x, y, z, cmap='RdBu', vmin=z_min, vmax=z_max)
+    ax.set_title('pcolormesh')
+    # set the limits of the plot to the limits of the data
+    ax.axis([x.min(), x.max(), y.min(), y.max()])
+    fig.colorbar(c, ax=ax)
+
+    plt.show()
         
 
 
@@ -143,6 +165,7 @@ def optimize_content_block(sequence_span, sequence_as_list):
     # method 2: much faster, gotta confirm it works :)
     n = len(sequence_span)
     print(f'\nN: {n}\n')
+    function_values = [[0 for j in range(n)] for i in range(n)]
     i_change_score = sum(sequence_as_list)
     max_score = i_change_score
     max_span = (0,0)
@@ -157,11 +180,14 @@ def optimize_content_block(sequence_span, sequence_as_list):
             if curr_score > max_score:
                 max_score = curr_score
                 max_span = (i, j)
+            function_values[i][j] = curr_score
+    
     print(f'\nMAX_SCORE: {max_score}, MAX_SPAN: {max_span}')
+
+    plot_function(function_values, max_score)
     return max_span
 
-
-
+    # TODO: track all (i, j, score) so we can plot the function :)
 
 
     # method 1: too slow
