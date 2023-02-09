@@ -5,12 +5,12 @@ Authors:
 """
 import requests
 import argparse
-from bs4 import BeautifulSoup
 import hashlib
 import datetime
 import matplotlib.pyplot as plt
+from matplotlib import cm
+from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
-import pprint
 import re
 import os
 
@@ -135,7 +135,7 @@ def objective_function(sequence_as_list, i, j):
         sum((1 - bit) for bit in sequence_as_list[i:j+1]) + \
         sum(sequence_as_list[j+1:])
 
-def plot_function(function_values, max_score):
+def plot_function_2d(function_values, max_score):
     n = len(function_values)
     # generate 2 2d grids for the x & y bounds
     y, x = np.array(range(n)), np.array(range(n))
@@ -154,6 +154,30 @@ def plot_function(function_values, max_score):
     # set the limits of the plot to the limits of the data
     ax.axis([x.min(), x.max(), y.min(), y.max()])
     fig.colorbar(c, ax=ax)
+
+    plt.show()
+
+def plot_function_3d(function_values, max_scores):
+
+    n = len(function_values)
+
+    fig = plt.figure()
+    ax = fig.add_subplot(projection='3d')
+
+    # as plot_surface needs 2D arrays as input
+    y, x = np.array(range(n)), np.array(range(n))
+    # we make a meshgrid from the x,y data
+    X, Y = np.meshgrid(x, y)
+    Z = np.array(function_values)
+
+    # data_value shall be represented by color
+    # data_value = np.random.rand(len(y), len(x))
+    # map the data to rgba values from a colormap
+    colors = cm.ScalarMappable(cmap = "viridis").to_rgba(Z)
+
+
+    # plot_surface with points X,Y,Z and data_value as colors
+    surf = ax.plot_surface(X, Y, Z, rstride=1, cstride=1, facecolors=colors, linewidth=0, antialiased=True)
 
     plt.show()
         
@@ -185,7 +209,8 @@ def optimize_content_block(sequence_span, sequence_as_list):
     
     print(f'\nMAX_SCORE: {max_score}, MAX_SPAN: {max_span}')
 
-    plot_function(function_values, max_score)
+    # plot_function_2d(function_values, max_score)
+    plot_function_3d(function_values, max_score)
     return max_span
 
     # TODO: track all (i, j, score) so we can plot the function :)
@@ -221,6 +246,7 @@ def crawl(url, rewrite=False):
         return
     sequence_span, sequence_as_list, sequence_as_string = generate_content_block_sequence(r.text)
     content_block_span = optimize_content_block(sequence_span, sequence_as_list)
+    print(f'\nCONTENT_BLOCK_SPAN: {r.text[content_block_span[0]:content_block_span[1]]}\n')
 
 
     # TODO: consider moving some calls to the "main" and re-organizing program flow
