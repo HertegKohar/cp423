@@ -147,9 +147,10 @@ def plot_function(function_values, max_score):
     z_min, z_max = 0, max_score
 
     fig, ax = plt.subplots()
-
     c = ax.pcolormesh(x, y, z, cmap='RdBu', vmin=z_min, vmax=z_max)
-    ax.set_title('pcolormesh')
+    ax.set_xlabel('j')
+    ax.set_ylabel('i')
+    ax.set_title('Content Block Scores')
     # set the limits of the plot to the limits of the data
     ax.axis([x.min(), x.max(), y.min(), y.max()])
     fig.colorbar(c, ax=ax)
