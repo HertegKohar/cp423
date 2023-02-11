@@ -1,11 +1,13 @@
 """
-Author: Herteg Kohar 
+Authors: 
+    Herteg Kohar 
+    Bryan Gadd
 """
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.edge.service import Service
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
+from selenium.webdriver.edge.options import Options
 from bs4 import BeautifulSoup
 import hashlib
 import argparse
@@ -121,10 +123,10 @@ def parse_page_show_more(url):
     Args:
         url (str): The researcher's Google Scholar URL
     """
-    chrome_options = Options()
-    chrome_options.add_experimental_option("detach", True)
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+    edge_options = Options()
+    edge_options.add_experimental_option("detach", True)
+    service = Service(EdgeChromiumDriverManager().install())
+    driver = webdriver.Edge(service=service, options=edge_options)
     driver.get(url)
     show_more_button = driver.find_element(by=By.ID, value="gsc_bpf_more")
     while show_more_button.is_enabled():
