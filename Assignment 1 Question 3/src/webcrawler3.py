@@ -112,13 +112,13 @@ def optimize_sequence_mapping(sequence_mapping):
     #
     # Brute forcing all combinations of i and j is too slow.
     #
-    # Algorithm works based on the following pattern:
+    # Algorithm works based on the following observation:
     # each time i == j the score is the sum of the sequence
     # each time j moves forward a bit, the score is:
     #   the previous score + 1 if the token is 0, or the previous score -1 if the token is 1
-    # So, we can calculate the score for each i and j combination by iterating through the sequence
-    # and adding or subtracting 1 for each token, and resetting the score each time i moves forward a bit.
-    # We keep track of the max score and the optimal span along the way to get the correct answer in the end.
+    # So, we can calculate the score for each i and j combination by iterating through the sequence and
+    # adding or subtracting 1 for each token, and resetting the score each time i moves forward a bit.
+    # We keep track of the max score and optimal span along the way to get the correct answer in the end.
     #
     n_tokens = len(sequence_mapping)
     function_outputs = [[0 for _ in range(n_tokens)] for _ in range(n_tokens)]
