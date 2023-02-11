@@ -21,8 +21,9 @@ URL_REGEX = url_regex = re.compile(
 # Regex to match HTML tag
 HTML_TAG_REGEX = re.compile(r"<[^>]*>")
 # Regex to match any word except for "1"
-TOKEN_REGEX = re.compile(r"(?:(?!\b1\b)\w+)")
+TOKEN_REGEX = re.compile(r"\S+") # old regex: re.compile(r"(?:(?!\b1\b)\w+)")
 NON_NUMERIC_REGEX = re.compile(r"[^0-9]")
+DOC_REGEX = re.compile(r".*")
 
 # Path to the log file
 LOGGER_PATH = "crawler3.log"
@@ -74,66 +75,64 @@ def generate_content_block_sequence(document):
     # TODO: confirm no tag filtering is needed
     # produce a list of all spanning positions of HTML tags
     tag_span = []
+    fv = open('./tags-processed.txt', 'w')
     for result in HTML_TAG_REGEX.finditer(document):
         tag_span.append(result.span())
+        try:
+            fv.write(document[tag_span[-1][0]:tag_span[-1][1]])
+        except:
+            pass
+        fv.write('\n')
+    fv.close()
+    # merge neighbouring spans into conglomerates
+    i = 0
+    while i+1 < len(tag_span):
+        # if current end == next start
+        if tag_span[i][1] == tag_span[i+1][0]:
+            tag_span[i] = (tag_span[i][0], tag_span[i+1][1])
+            tag_span.pop(i+1)
+        else:
+            i+=1
     print(f'\TAGS\n\n{tag_span[0:100]}\n...\n')
     # produce a list of all spanning positions of non-HTML-tag tokens
     token_span = []
+    fv = open('./tokens-processed.txt', 'w')
     for result in TOKEN_REGEX.finditer(document):
         token_span.append(result.span())
+        try:
+            fv.write(document[token_span[-1][0]:token_span[-1][1]])
+        except:
+            pass
+        fv.write('\n')
+    fv.close()
+    print(token_span[-1])
     print(f'\nTOKENS\n\n{token_span[0:100]}\n...\n')
     # generate 'smart sequence' of 1s and 0s using spans and document
     sequence_span = []
     index_tag = 0
     index_token = 0
-    while index_token < len(token_span) and index_tag < len(tag_span):
-        tag = tag_span[index_tag]
-        token = token_span[index_token]
+    while index_token < len(token_span):
         current_token_is_a_tag = False
-        while token[0] >= tag[0] and token[1] <= tag[1]: # TODO: check for appropriate combination of inequalities (<, >, <=, >=)
-            current_token_is_a_tag = True
-            sequence_span.append((1, token[0], token[1]))
+        # if all tags have already been processed
+        if index_tag >= len(tag_span):
+            sequence_span.append((0, token_span[index_token][0], token_span[index_token][1]))
+            index_token += 1
+            continue
+        # if current token is past current tag, update tag
+        if token_span[index_token][0] > tag_span[index_tag][1]:
             index_tag += 1
-            index_token += 1
-            if index_token >= len(token_span):
-                break
-            token = token_span[index_token]
-        if not current_token_is_a_tag:
-            sequence_span.append((0, token[0], token[1]))
-            index_token += 1
-    # TODO: add remaining tokens and tags to sequence (if any)
+            continue
+        # if current token's span collides with current tag
+        if (token_span[index_token][1] >= tag_span[index_tag][0] and token_span[index_token][1] <= tag_span[index_tag][1]) \
+            or (token_span[index_token][0] <= tag_span[index_tag][1] and token_span[index_token][0] >= tag_span[index_tag][0]):
+            current_token_is_a_tag = True
+        sequence_span.append((1 if current_token_is_a_tag else 0, token_span[index_token][0], token_span[index_token][1]))
+        index_token += 1
     print(f'\nSEQUENCE WITH SPANS\n\n{sequence_span[0:100]}\n...\n')
     sequence_as_list = [item[0] for item in sequence_span]
     sequence_as_string = ''.join([str(item[0]) for item in sequence_span])
     print(f'\nSEQUENCE AS STRING\n\n{sequence_as_string}\n')
     return sequence_span, sequence_as_list, sequence_as_string
-
-    
-    # TODO: delete excess comments when deemed safe to do so :)
-    # print("A")
-    # print(document)
-    # codified_content = re.sub(HTML_TAG_REGEX, "1", document)
-    # print("B")
-    # print(codified_content)
-    # codified_content = re.sub(TOKEN_REGEX, "0", codified_content)
-    # print("C")
-    # print(codified_content)
-    # codified_content = re.sub(NON_NUMERIC_REGEX, "", codified_content)
-    # print("D")
-    # print(codified_content)
-    # for link in soup.find_all("a"):
-    #     href = link.get("href")
-    #     if href is not None and URL_REGEX.match(href):
-    #         crawl(href, maxdepth - 1, verbose, rewrite)
-    #     elif href is not None:
-    #         crawl(url + href, maxdepth - 1, verbose, rewrite)
-
-def objective_function(sequence_as_list, i, j):
-    # TODO: docstring :)
-    # sum(0, i) + (j-i) - sum(1-)
-    return sum(sequence_as_list[0:i]) + \
-        sum((1 - bit) for bit in sequence_as_list[i:j+1]) + \
-        sum(sequence_as_list[j+1:])
 
 def plot_function_2d(function_values, max_score):
     n = len(function_values)
@@ -144,7 +143,7 @@ def plot_function_2d(function_values, max_score):
     # x and y are bounds, so z should be the value *inside* those bounds.
     # Therefore, remove the last value from the z array.
     # z = z[:-1, :-1]
-    z_min, z_max = 0, max_score
+    z_min, z_max = 0, max_score[1]
 
     fig, ax = plt.subplots()
     c = ax.pcolormesh(x, y, z, cmap='RdBu', vmin=z_min, vmax=z_max)
@@ -189,7 +188,7 @@ def optimize_content_block(sequence_span, sequence_as_list):
 
     # method 2: much faster, gotta confirm it works :)
     n = len(sequence_span)
-    print(f'\nN: {n}\n')
+    print(f'\nN_words: {n}, N_chars: {sequence_span[-1][1]}\n')
     function_values = [[0 for j in range(n)] for i in range(n)]
     i_change_score = sum(sequence_as_list)
     max_score = i_change_score
@@ -206,12 +205,9 @@ def optimize_content_block(sequence_span, sequence_as_list):
                 max_score = curr_score
                 max_span = (i, j)
             function_values[i][j] = curr_score
-    
-    print(f'\nMAX_SCORE: {max_score}, MAX_SPAN: {max_span}')
-
-    # plot_function_2d(function_values, max_score)
-    plot_function_3d(function_values, max_score)
-    return max_span
+    char_span = (sequence_span[max_span[0]][1], sequence_span[max_span[1]][2])
+    print(f'\nMAX_SCORE: {max_score}, MAX_SPAN: {max_span}, CHAR_SPAN: {char_span}')
+    return function_values, max_span, char_span
 
     # TODO: track all (i, j, score) so we can plot the function :)
 
@@ -245,19 +241,16 @@ def crawl(url, rewrite=False):
         print("Too many requests")
         return
     sequence_span, sequence_as_list, sequence_as_string = generate_content_block_sequence(r.text)
-    content_block_span = optimize_content_block(sequence_span, sequence_as_list)
-    print(f'\nCONTENT_BLOCK_SPAN: {r.text[content_block_span[0]:content_block_span[1]]}\n')
+    optimization_values, max_span, content_block_span = optimize_content_block(sequence_span, sequence_as_list)
 
+    content_block = r.text[content_block_span[0]:content_block_span[1]]
+    print(f'\nCONTENT_BLOCK:\n{content_block}\n')
+    print('\nPlotting optimization scores, please wait...')
+    plot_function_2d(optimization_values, max_span)
+    # plot_function_3d(optimization_values, content_block_span)
+    print('\nDone!')
 
     # TODO: consider moving some calls to the "main" and re-organizing program flow
-    # TODO: delete excess comments when deemed safe to do so :)
-    # soup = BeautifulSoup(r.text, "html.parser")
-    # for link in soup.find_all("a"):
-    #     href = link.get("href")
-    #     if href is not None and URL_REGEX.match(href):
-    #         crawl(href, maxdepth - 1, verbose, rewrite)
-    #     elif href is not None:
-    #         crawl(url + href, maxdepth - 1, verbose, rewrite)
 
 
 if __name__ == "__main__":
@@ -268,3 +261,4 @@ if __name__ == "__main__":
     with open(LOGGER_PATH, "w", encoding="utf-8") as f:
         pass
     crawl(args.initialURL)
+    # TODO: output results to file
