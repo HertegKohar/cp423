@@ -90,11 +90,11 @@ def parse_page(content):
         authors_and_journal = cells[0].find_all("div", class_="gs_gray")
         paper["paper_authors"] = authors_and_journal[0].text.strip()
         paper["paper_journal"] = authors_and_journal[1].text.strip()
-        try:
+        if cells[1].find("a", class_="gsc_a_ac gs_ibl") is not None:
             paper["paper_citedby"] = (
                 cells[1].find("a", class_="gsc_a_ac gs_ibl").text.strip()
             )
-        except AttributeError:
+        else:
             paper["paper_citedby"] = ""
         paper["paper_year"] = (
             cells[2].find("span", class_="gsc_a_h gsc_a_hc gs_ibl").text.strip()
