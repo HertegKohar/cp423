@@ -143,3 +143,4 @@ if __name__ == "__main__":
     parser.add_argument("researcherURL", type=str, help="The initial URL to crawl")
     args = parser.parse_args()
     parse_page_show_more(args.researcherURL)
+    print("Done!")
