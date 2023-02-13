@@ -84,9 +84,9 @@ def plot_function_2d(function_outputs, max_score):
     z_min, z_max = 0, max_score
     # set up appearance of the plot
     fig, ax = plt.subplots()
-    c = ax.pcolormesh(x, y, z, cmap='RdBu', vmin=z_min, vmax=z_max)
-    ax.set_xlabel('j')
-    ax.set_ylabel('i')
+    c = ax.pcolormesh(x, y, z, cmap='YlOrRd', vmin=z_min, vmax=z_max)
+    ax.set_xlabel('i')
+    ax.set_ylabel('j')
     ax.set_title('Content Block Scores')
     # set the limits of the plot to the limits of the data
     ax.axis([x.min(), x.max(), y.min(), y.max()])
@@ -134,7 +134,7 @@ def optimize_sequence_mapping(sequence_mapping):
             if current_score > max_score:
                 max_score = current_score
                 optimal_tokens_span = (i, j)
-            function_outputs[i][j] = current_score
+            function_outputs[j][i] = current_score
     return optimal_tokens_span, function_outputs, max_score
 
 def generate_binary_sequence_mapping(token_spans, tag_spans):
