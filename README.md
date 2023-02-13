@@ -4,7 +4,8 @@ Install Dependencies
 ```Bash
 pip install -r requirements.txt
 ```
-Each question has its own README.md file with instructions on how to run the program in its directory.
+Each question has its own README.md file with instructions on how to run the program in its directory.  
+**Put all URLs in quotes to avoid OS errors**
 
 To run Question 1 
 ```Bash
