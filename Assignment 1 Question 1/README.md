@@ -7,5 +7,5 @@ python webcrawler1.py [-h] [--maxdepth MAXDEPTH] [--rewrite] [--verbose] initial
 
 Example Execution
 ```Bash
-python webcrawler1.py --maxdepth 3 --rewrite --verbose https://stackoverflow.com/questions/58146520/crawling-and-scraping-random-websites
+python webcrawler1.py --maxdepth 3 --rewrite --verbose "https://stackoverflow.com/questions/58146520/crawling-and-scraping-random-websites"
 ```
