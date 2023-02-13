@@ -125,6 +125,7 @@ def parse_page_show_more(url):
     """
     edge_options = Options()
     edge_options.add_experimental_option("detach", True)
+    edge_options.add_experimental_option("excludeSwitches", ["enable-logging"])
     service = Service(EdgeChromiumDriverManager().install())
     driver = webdriver.Edge(service=service, options=edge_options)
     driver.get(url)
