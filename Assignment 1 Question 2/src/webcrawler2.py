@@ -1,5 +1,7 @@
 """
-Author: Herteg Kohar 
+Authors:
+    Bryan Gadd
+    Herteg Kohar
 """
 from selenium import webdriver
 from selenium.webdriver.common.by import By
