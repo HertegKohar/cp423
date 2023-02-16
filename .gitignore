@@ -1,3 +1,4 @@
 *.txt
 !requirements.txt
 A2/Assignment 2 Question 1/src/wikipedia_data
+A2/Assignment 2 Question 1/src/wikipedia.token*
