@@ -1,7 +1,9 @@
 import argparse
 
 def page_rank(maxiteration, lamb, thr/*, nodes*/):
+#ignore any lines that start with # (few before you reach the actual nodes).
 
+#need to perform pagerank on nodes...
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
