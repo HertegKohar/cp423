@@ -6,6 +6,7 @@ Author: Bryan Gadd
 """
 
 def page_rank(maxiteration, lambda_, thr, nodes):
+    #test output to make sure variables are good
     print("maxiteration= " + str(maxiteration) + ", lambda_= " + str(lambda_) + ", thr= " + str(thr) + ", nodes= " + str(nodes))
     
     file = open("Web-Stanford.txt", "r")
