@@ -77,19 +77,38 @@ def page_rank(maxiteration, lambda_, thr, nodes):
         else:
             #if node was already added then just add to linked nodes
             if (node_exists(nodeList, nodeId)):
-                print("Node '" + str(nodeId) +"' exists. Adding '" + str(linkedNode) + "' to it's list...")
+                #print("Node '" + str(nodeId) +"' exists. Adding '" + str(linkedNode) + "' to it's list...")
                 node = node_in_list(nodeList, nodeId)
                 node.add_linked_node(linkedNode)
-                #add to connected list of node this one links to
-            
+                connectedNode = node_in_list(nodeList, linkedNode)
+                
+                #if node doesn't exist yet we need to add it
+                if (connectedNode == None):
+                    #print("Node '" + str(nodeId) +"' exists. Adding '" + str(linkedNode) + "' to it's list...")
+                    node = Node(linkedNode)
+                    node.add_connected_node(nodeId)
+                    nodeList.append(node)
+                else:
+                    connectedNode.add_connected_node(nodeId)
             #add new node
             else:
                 print("Node '" + str(nodeId) +"' doesn't exist. Adding it to the list with '" + str(linkedNode) + "' for the first linked node")
                 node = Node(nodeId)
                 node.add_linked_node(linkedNode)
                 nodeList.append(node)
+                connectedNode = node_in_list(nodeList, linkedNode)
+
+                #if node doesn't exist yet we need to add it
+                if (connectedNode == None):
+                    #print("Node '" + str(nodeId) +"' exists. Adding '" + str(linkedNode) + "' to it's list...")
+                    node = Node(linkedNode)
+                    node.add_connected_node(nodeId)
+                    nodeList.append(node)
+                else:
+                    connectedNode.add_connected_node(nodeId)
         
         print("Node '" + str(node.nodeId) + "' nodesPointTo is now: " + str(node.nodesPointTo))
+        
         # next line
         line = file.readline()
 
@@ -98,11 +117,7 @@ def page_rank(maxiteration, lambda_, thr, nodes):
     for node in nodeList:
         print("Id= " + str(node.nodeId))
         print("nodesPointTo: " + str(node.nodesPointTo))
-        # for linkedNode in node.nodesPointTo:
-        #     print("Linked Node= " + str(linkedNode))
-        # for connectedNodes in node.nodesPointFrom:
-        #     print("Connected Node= " + str(connectedNodes))
-        
+        print("nodesPointFrom: " + str(node.nodesPointFrom))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
