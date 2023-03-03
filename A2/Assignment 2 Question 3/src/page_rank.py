@@ -13,10 +13,10 @@ Notes/thoughts:
 """
 class Node:
     nodeId: int # id of the node
-    nodesPointTo: list[int] #nodes that this node points to
-    nodesPointFrom: list[int] # nodes that point to this node
+    nodesPointTo: list[int] = [] #nodes that this node points to
+    nodesPointFrom: list[int] = [] # nodes that point to this node
 
-    def _init_(self, id):
+    def __init__(self, id):
         self.nodeId = id
 
     # adds nodeId to list of nodes that this node is linked to (points to)
@@ -76,7 +76,6 @@ def page_rank(maxiteration, lambda_, thr, nodes):
         line = file.readline()
 
     file.close()
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
