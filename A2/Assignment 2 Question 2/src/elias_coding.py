@@ -1,3 +1,6 @@
+"""
+Author: Herteg Kohar
+"""
 import argparse
 import ast
 
