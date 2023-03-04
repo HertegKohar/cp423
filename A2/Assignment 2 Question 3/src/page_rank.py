@@ -1,69 +1,45 @@
 import argparse
-import ast
 
 """
 Author: Bryan Gadd
-66MB
 """
 
 """
-Notes/thoughts:
- - Only loop through the txt file once
- - Store and update the nodes (store id, PR, nodes it points to, etc.)
- - For each iteration is just re-loops through the existing stored nodes
+Clean-up needed:
+- Remove type hinting on varaibles.
+- Remove any un-needed code.
 """
 class Node:
     nodeId: int # id of the node
-    
-    #TODO- COnvert these to dictionaries (can do index finding much faster)
-    nodesPointTo: list[int] #nodes that this node points to
-    nodesPointFrom: list[int] # nodes that point to this node
+    nodesPointTo: set[int] #nodes that this node points to
+    nodesPointFrom: set[int] # nodes that point to this node
 
     def __init__(self, id):
         self.nodeId = id
-        self.nodesPointTo = []
-        self.nodesPointFrom = []
+        self.nodesPointTo = set()
+        self.nodesPointFrom = set()
 
     # adds nodeId to list of nodes that this node is linked to (points to)
     def add_linked_node(self, nodeId):
-        if (nodeId not in self.nodesPointTo):
-            self.nodesPointTo.append(nodeId)
+        self.nodesPointTo.add(nodeId)
     
     # adds nodeId to list of nodes that this node is linked to (points to)
     def add_connected_node(self, nodeId):
-        if (nodeId not in self.nodesPointFrom):
-            self.nodesPointFrom.append(nodeId)
+        self.nodesPointFrom.add(nodeId)
 
-#determine if node is in list
-def node_exists(nodeList:list[Node], nodeId):
-        for node in nodeList:
-            if (node.nodeId == nodeId):
-                return True
-        return False
 
-#find index
-def node_in_list(nodeList:list[Node], nodeId):
-        for node in nodeList:
-            if (node.nodeId == nodeId):
-                return node
-        return None
+def page_rank(maxiteration, lambda_, thr, nodes, nodeList):
+    print("page_rank() called")
 
-def page_rank(maxiteration, lambda_, thr, nodes):
-    nodeList:list[Node] = []
+def graph_retrieval(maxiteration, lambda_, thr, nodes):
+    nodeList:dict[int, Node] = {}
 
     # test output to make sure variables are good
     #print("maxiteration= " + str(maxiteration) + ", lambda_= " + str(lambda_) + ", thr= " + str(thr) + ", nodes= " + str(nodes))
-
-    file = open("Web-Stanford.txt", "r")
-    line = file.readline()
-
-    count = 0
-
-    # get to actual nodes
+    # read file
     with open("Web-Stanford.txt") as f:
         for line in f:
-            print (count)
-            count += 1
+            # skips lines that aren't nodes
             if (line[0].isdigit() == False):
                 continue
 
@@ -75,53 +51,66 @@ def page_rank(maxiteration, lambda_, thr, nodes):
             # verifying I can get the numbers
             print(str(nodeId) + " --> " + str(linkedNode))
 
-            #add first node to list
-            if (nodeList.count == 0):
+            # add first node to list
+            if (len(nodeList) == 0):
                 node = Node(nodeId)
                 node.add_linked_node(linkedNode)
-                nodeList.append(node)
+                nodeList[nodeId] = node
 
+                # Connected
+                # if node exists then add to connected list
+                if (linkedNode in nodeList):
+                    nodeList[linkedNode].add_connected_node(nodeId)
+                
+                # if node doesn't exist yet we need to add it + update connected list
+                else:
+                    node = Node(linkedNode)
+                    node.add_connected_node(nodeId)
+                    nodeList[linkedNode] = node
+
+            # not first node
             else:
-                #if node was already added then just add to linked nodes
-                if (node_exists(nodeList, nodeId)):
+                #if node already exists then just add to linked nodes
+                if (nodeId in nodeList):
                     #print("Node '" + str(nodeId) +"' exists. Adding '" + str(linkedNode) + "' to it's list...")
-                    node = node_in_list(nodeList, nodeId)
+                    node = nodeList[nodeId]
                     node.add_linked_node(linkedNode)
-                    connectedNode = node_in_list(nodeList, linkedNode)
                     
-                    #if node doesn't exist yet we need to add it
-                    if (connectedNode == None):
-                        #print("Node '" + str(nodeId) +"' exists. Adding '" + str(linkedNode) + "' to it's list...")
+                    # Connected
+                    # if node exists then add to connected list
+                    if (linkedNode in nodeList):
+                        nodeList[linkedNode].add_connected_node(nodeId)
+                    
+                    # if node doesn't exist yet we need to add it + update connected list
+                    else:
                         node = Node(linkedNode)
                         node.add_connected_node(nodeId)
-                        nodeList.append(node)
-                    else:
-                        connectedNode.add_connected_node(nodeId)
-                #add new node
+                        nodeList[linkedNode] = node
+                        
+                # add new node
                 else:
                     #print("Node '" + str(nodeId) +"' doesn't exist. Adding it to the list with '" + str(linkedNode) + "' for the first linked node")
                     node = Node(nodeId)
                     node.add_linked_node(linkedNode)
-                    nodeList.append(node)
-                    connectedNode = node_in_list(nodeList, linkedNode)
+                    nodeList[nodeId] = node
 
-                    #if node doesn't exist yet we need to add it
-                    if (connectedNode == None):
-                        #print("Node '" + str(nodeId) +"' exists. Adding '" + str(linkedNode) + "' to it's list...")
+                    # Connected
+                    #if node exists then update connected list
+                    if (linkedNode in nodeList):
+                        nodeList[linkedNode].add_connected_node(nodeId)
+                    
+                    #if node doesn't exist yet we need to add it + update connected list
+                    else:
                         node = Node(linkedNode)
                         node.add_connected_node(nodeId)
-                        nodeList.append(node)
-                    else:
-                        connectedNode.add_connected_node(nodeId)
+                        nodeList[linkedNode] = node
             
             #print("Node '" + str(node.nodeId) + "' nodesPointTo is now: " + str(node.nodesPointTo))
 
-    file.close()
-
     for node in nodeList:
-        print("Id= " + str(node.nodeId))
-        print("nodesPointTo: " + str(node.nodesPointTo))
-        print("nodesPointFrom: " + str(node.nodesPointFrom))
+        print("Id= " + str(node))
+        print("nodesPointTo: " + str(nodeList[node].nodesPointTo))
+        print("nodesPointFrom: " + str(nodeList[node].nodesPointFrom))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -153,4 +142,4 @@ if __name__ == "__main__":
         required=True,
     )
     args = parser.parse_args()
-    page_rank(args.maxiteration, args.lambda_, args.thr, args.nodes)
+    graph_retrieval(args.maxiteration, args.lambda_, args.thr, args.nodes)
