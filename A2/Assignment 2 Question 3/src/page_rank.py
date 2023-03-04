@@ -1,7 +1,7 @@
 import argparse
 
 """
-Author: Bryan Gadd
+Author: Bryan Gadd (with help from Herteg)
 """
 
 """
@@ -13,11 +13,13 @@ class Node:
     nodeId: int # id of the node
     nodesPointTo: set[int] #nodes that this node points to
     nodesPointFrom: set[int] # nodes that point to this node
+    pageRank: float
 
     def __init__(self, id):
         self.nodeId = id
         self.nodesPointTo = set()
         self.nodesPointFrom = set()
+        self.pageRank = 0
 
     # adds nodeId to list of nodes that this node is linked to (points to)
     def add_linked_node(self, nodeId):
@@ -28,8 +30,44 @@ class Node:
         self.nodesPointFrom.add(nodeId)
 
 
-def page_rank(maxiteration, lambda_, thr, nodes, nodeList):
+def page_rank(maxiteration, lambda_, thr, nodes, nodeList:dict[int, Node]):
     print("page_rank() called")
+
+    # verify nodes
+    # for node in nodeList:
+    #     print("Id= " + str(node))
+    #     print("nodesPointTo: " + str(nodeList[node].nodesPointTo))
+    #     print("nodesPointFrom: " + str(nodeList[node].nodesPointFrom))
+
+    totalNumNodes = len(nodeList)
+    #print("Total number of nodes= " + str(totalNumNodes))
+
+    initialPageRank = 1/totalNumNodes
+    calc = (lambda_/totalNumNodes) + (1 - lambda_)
+    previousPageRanks:dict[int, float] = {}
+
+    for node in nodeList:
+        nodeList[node].pageRank = initialPageRank
+
+    for i in range(maxiteration):
+
+        #store previous pageranks for calculation
+        for n in nodeList:
+            previousPageRanks[n] = nodeList[n].pageRank
+
+        for node in nodeList:
+            #print("Calculating PR for node '" + str(node) + "'")
+            sum = 0
+
+            for j in nodeList[node].nodesPointFrom:
+
+                #add to the sum
+                sum += previousPageRanks[j]/len(nodeList[j].nodesPointTo)
+                #print("Sum is now= " + str(sum))
+        
+            #calculate pagerank for the node
+            nodeList[node].pageRank = calc * sum
+            print("Node '" + str(node) + "' pagerank is now= " + str(nodeList[node].pageRank))
 
 def graph_retrieval(maxiteration, lambda_, thr, nodes):
     nodeList:dict[int, Node] = {}
@@ -107,10 +145,14 @@ def graph_retrieval(maxiteration, lambda_, thr, nodes):
             
             #print("Node '" + str(node.nodeId) + "' nodesPointTo is now: " + str(node.nodesPointTo))
 
-    for node in nodeList:
-        print("Id= " + str(node))
-        print("nodesPointTo: " + str(nodeList[node].nodesPointTo))
-        print("nodesPointFrom: " + str(nodeList[node].nodesPointFrom))
+    # verify nodes
+    # for node in nodeList:
+    #     print("Id= " + str(node))
+    #     print("nodesPointTo: " + str(nodeList[node].nodesPointTo))
+    #     print("nodesPointFrom: " + str(nodeList[node].nodesPointFrom))
+
+    #calculate page rank
+    page_rank(maxiteration, lambda_, thr, nodes, nodeList)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
