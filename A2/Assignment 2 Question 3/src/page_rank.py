@@ -31,10 +31,10 @@ class Node:
 
 
 def page_rank(maxiteration, lambda_, thr, nodes, nodeList:dict[int, Node]):
-    print("page_rank() called")
+    #print("page_rank() called")
 
-    # verify nodes
-    # for node in nodeList:
+    #verify nodes
+    # for node in nodes:
     #     print("Id= " + str(node))
     #     print("nodesPointTo: " + str(nodeList[node].nodesPointTo))
     #     print("nodesPointFrom: " + str(nodeList[node].nodesPointFrom))
@@ -67,14 +67,18 @@ def page_rank(maxiteration, lambda_, thr, nodes, nodeList:dict[int, Node]):
         
             #calculate pagerank for the node
             nodeList[node].pageRank = calc * sum
-            print("Node '" + str(node) + "' pagerank is now= " + str(nodeList[node].pageRank))
+            #print("Node '" + str(node) + "' pagerank is now= " + str(nodeList[node].pageRank))
+    
+    #print the nodes specified at launch
+    print("\nPageRank of requested Nodes:")
+    for node in nodes:
+        nodePagerank = nodeList[int(node)].pageRank
+        print("Node (" + str(node) + ") pagerank= " + str(nodePagerank))
 
-def graph_retrieval(maxiteration, lambda_, thr, nodes):
+def graph_retrieval():
     nodeList:dict[int, Node] = {}
 
-    # test output to make sure variables are good
-    #print("maxiteration= " + str(maxiteration) + ", lambda_= " + str(lambda_) + ", thr= " + str(thr) + ", nodes= " + str(nodes))
-    # read file
+    # read file (Web-Stanford.txt)
     with open("Web-Stanford.txt") as f:
         for line in f:
             # skips lines that aren't nodes
@@ -152,7 +156,7 @@ def graph_retrieval(maxiteration, lambda_, thr, nodes):
     #     print("nodesPointFrom: " + str(nodeList[node].nodesPointFrom))
 
     #calculate page rank
-    page_rank(maxiteration, lambda_, thr, nodes, nodeList)
+    return nodeList
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -184,4 +188,17 @@ if __name__ == "__main__":
         required=True,
     )
     args = parser.parse_args()
-    graph_retrieval(args.maxiteration, args.lambda_, args.thr, args.nodes)
+
+    #TODO- Should be able to do this in a single or 2 steps...
+    sptringEdit = args.nodes.replace('[', '')
+    sptringEdit = sptringEdit.replace(']', '')
+    nodes: list = sptringEdit.split(",")
+
+    # test output to make sure variables are good
+    #print("maxiteration= " + str(args.maxiteration) + ", lambda_= " + str(args.lambda_) + ", thr= " + str(args.thr) + ", nodes= " + str(nodes))
+
+    #parse the graph
+    nodeList = graph_retrieval()
+
+    # calculate page rank + output selected nodes
+    page_rank(args.maxiteration, args.lambda_, args.thr, nodes, nodeList)
