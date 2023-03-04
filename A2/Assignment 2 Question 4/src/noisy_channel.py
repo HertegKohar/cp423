@@ -22,10 +22,6 @@ def tokenize(text):
     "Return a list of all words from the text file."
     return re.findall(r'\w+', text.lower())
 
-# term frequency vector for all words in the corpus
-# [(word: string, count: int), ...]
-WORD_FREQ_VECTOR = Counter(tokenize(open(FILENAME, encoding="utf-8").read()))
-
 def P(word): 
     "Probability of 'word' occurring in the corpus."
     N_TOKENS = sum(WORD_FREQ_VECTOR.values())
@@ -91,32 +87,40 @@ def process_and_save_corpus(tokens):
     Args:
         tokens (list[str]): List of tokens from the corpus
     """
-    # stop_words = set(stopwords.words("english")) # TODO: see if stop word removal is needed
+    # TODO: see if stop word removal is needed
+    # stop_words = set(stopwords.words("english"))
+    # filtered_tokens = [token for token in tokens if not token.lower() in stop_words]
     stop_words = set()
-    filtered_tokens = [token for token in tokens if not token.lower() in stop_words]
+    filtered_tokens = tokens
     with open(FILENAME, "a", encoding="utf-8") as f:
         f.write(" ".join(filtered_tokens))
         f.write("\n")
+    print(f"Processed {len(filtered_tokens)} tokens and saved to {FILENAME}")
     return
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Noisy Channel Mode Spell-Checking Script")
+    parser.add_argument('--overwrite', action='store_true', help='Overwrite the existing corpus file')
     options = parser.add_mutually_exclusive_group(required=True)
     options.add_argument('--correct', nargs="+", help="List of Words to spell-correct")
     options.add_argument('--proba', nargs="+", help="List of Words to show proportion of occurrences in the corpus for")
     args = parser.parse_args()
 
-    # 1. Load the corpus
-    os.path.exists(FILENAME)
-    overwrite_file = input(f'''\nThe corpus has already been processed and stored in '{FILENAME}'.
-Would you like to overwrite the existing file and process it again? (approx. 2-5 mins - y/n): ''')
-    if overwrite_file.lower() == "y" or overwrite_file.lower() == "yes":
+    # 1. Process and load the corpus
+    exists = os.path.exists(FILENAME)
+    overwrite_file = args.overwrite
+    if not exists or overwrite_file:
+        print(f"\nCorpus text file not found.\nProcessing and saving corpus to '{FILENAME}'...")
         with open(FILENAME, "w", encoding="utf-8") as f:
             pass
         corpus, all_articles = load_articles(DATA_FOLDER)
         tokens = RegexpTokenizer(r"\w+").tokenize(corpus)
         process_and_save_corpus(tokens)
+        print()
+    # term frequency vector for all words in the corpus
+    # [(word: string, count: int), ...]
+    WORD_FREQ_VECTOR = Counter(tokenize(open(FILENAME, encoding="utf-8").read()))
 
     # 2. Output the correction or probability of the given words as needed
     mode = "correct" if args.correct is not None else "proba"
@@ -129,5 +133,3 @@ Would you like to overwrite the existing file and process it again? (approx. 2-5
             print(f"P({word}) = {P(word)}")
     
     # All done :)
-    print('\nProgram completed successfully.\n')
-    
