@@ -3,7 +3,6 @@ import argparse
 """
 Author: 
 - Bryan Gadd
-- With help from Herteg)
 """
 
 """
@@ -12,7 +11,9 @@ TODO:
 - Clean-up:
    - Remove type hinting on varaibles.
    - Remove any un-needed code.
+   - Update argparser description.
 """
+
 class Node:
     nodeId: int # id of the node
     nodesPointTo: set[int] #nodes that this node points to
@@ -33,8 +34,9 @@ class Node:
     def add_connected_node(self, nodeId):
         self.nodesPointFrom.add(nodeId)
 
+nodeList:dict[int, Node] = {}
 
-def page_rank(maxiteration, lambda_, thr, nodes, nodeList:dict[int, Node]):
+def page_rank(maxiteration, lambda_, thr, nodes):
     totalNumNodes = len(nodeList)
 
     #set up initial values and formula's
@@ -63,7 +65,17 @@ def page_rank(maxiteration, lambda_, thr, nodes, nodeList:dict[int, Node]):
                 #print("Sum is now= " + str(sum))
         
             #calculate pagerank for the node
-            nodeList[node].pageRank = calc * sum
+            newPagerank = calc * sum
+
+            #TODO- Not sure about threshold so will just update PR for now...
+            #nodeList[node].pageRank = newPagerank
+
+            # should this be checked for each node or it is the entire list?
+            # if (abs(newPagerank - previousPageRanks[node])/totalNumNodes < thr):
+            #     print("Convergence detected, don't update pagerank...")
+            # else:
+            #     print("Convergence not detected, updating pagerank...")
+            #     nodeList[node].pageRank = newPagerank
             #print("Node '" + str(node) + "' pagerank is now= " + str(nodeList[node].pageRank))
 
     #print the nodes specified at launch
@@ -78,8 +90,20 @@ def page_rank(maxiteration, lambda_, thr, nodes, nodeList:dict[int, Node]):
         totalPagerank += nodeList[node].pageRank
     print("Total Pagerank= " + str(totalPagerank))
 
+""""
+Add's the connected node to the list or updates if it already exists
+"""
+def connected_node(nodeId, linkedNode):
+    if (linkedNode in nodeList):
+        nodeList[linkedNode].add_connected_node(nodeId)
+    # if node doesn't exist yet we need to add it + update connected list
+    else:
+        node = Node(linkedNode)
+        node.add_connected_node(nodeId)
+        nodeList[linkedNode] = node
+    return
+
 def graph_retrieval():
-    nodeList:dict[int, Node] = {}
 
     # read file (Web-Stanford.txt)
     with open("Web-Stanford.txt") as f:
@@ -93,25 +117,14 @@ def graph_retrieval():
             nodeId = int(extractedString[0])
             linkedNode = int(extractedString[1])
 
-            # verifying I can get the numbers
-            print(str(nodeId) + " --> " + str(linkedNode))
-
             # add first node to list
             if (len(nodeList) == 0):
                 node = Node(nodeId)
                 node.add_linked_node(linkedNode)
                 nodeList[nodeId] = node
 
-                # Connected
-                # if node exists then add to connected list
-                if (linkedNode in nodeList):
-                    nodeList[linkedNode].add_connected_node(nodeId)
-                
-                # if node doesn't exist yet we need to add it + update connected list
-                else:
-                    node = Node(linkedNode)
-                    node.add_connected_node(nodeId)
-                    nodeList[linkedNode] = node
+                # Update or add the the connected node
+                connected_node(nodeId, linkedNode)
 
             # not first node
             else:
@@ -121,16 +134,8 @@ def graph_retrieval():
                     node = nodeList[nodeId]
                     node.add_linked_node(linkedNode)
                     
-                    # Connected
-                    # if node exists then add to connected list
-                    if (linkedNode in nodeList):
-                        nodeList[linkedNode].add_connected_node(nodeId)
-                    
-                    # if node doesn't exist yet we need to add it + update connected list
-                    else:
-                        node = Node(linkedNode)
-                        node.add_connected_node(nodeId)
-                        nodeList[linkedNode] = node
+                    # Update or add the the connected node
+                    connected_node(nodeId, linkedNode)
                         
                 # add new node
                 else:
@@ -139,31 +144,12 @@ def graph_retrieval():
                     node.add_linked_node(linkedNode)
                     nodeList[nodeId] = node
 
-                    # Connected
-                    #if node exists then update connected list
-                    if (linkedNode in nodeList):
-                        nodeList[linkedNode].add_connected_node(nodeId)
-                    
-                    #if node doesn't exist yet we need to add it + update connected list
-                    else:
-                        node = Node(linkedNode)
-                        node.add_connected_node(nodeId)
-                        nodeList[linkedNode] = node
-            
-            #print("Node '" + str(node.nodeId) + "' nodesPointTo is now: " + str(node.nodesPointTo))
-
-    # verify nodes
-    # for node in nodeList:
-    #     print("Id= " + str(node))
-    #     print("nodesPointTo: " + str(nodeList[node].nodesPointTo))
-    #     print("nodesPointFrom: " + str(nodeList[node].nodesPointFrom))
-
-    #calculate page rank
-    return nodeList
+                    # Update or add the the connected node
+                    connected_node(nodeId, linkedNode)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Command Line Interface for Wikipedia Processing"
+        description="Command Line Interface for PageRank"
     )
     parser.add_argument(
         "--maxiteration",
@@ -201,7 +187,7 @@ if __name__ == "__main__":
     #print("maxiteration= " + str(args.maxiteration) + ", lambda_= " + str(args.lambda_) + ", thr= " + str(args.thr) + ", nodes= " + str(nodes))
 
     #parse the graph
-    nodeList = graph_retrieval()
+    graph_retrieval()
 
     # calculate page rank + output selected nodes
-    page_rank(args.maxiteration, args.lambda_, args.thr, nodes, nodeList)
+    page_rank(args.maxiteration, args.lambda_, args.thr, nodes)
