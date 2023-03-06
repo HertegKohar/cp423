@@ -1,13 +1,17 @@
 import argparse
 
 """
-Author: Bryan Gadd (with help from Herteg)
+Author: 
+- Bryan Gadd
+- With help from Herteg)
 """
 
 """
-Clean-up needed:
-- Remove type hinting on varaibles.
-- Remove any un-needed code.
+TODO:
+- Implement threshold (when do you check and what happens if the difference is below threashold? Does it not update that Pagerank?)
+- Clean-up:
+   - Remove type hinting on varaibles.
+   - Remove any un-needed code.
 """
 class Node:
     nodeId: int # id of the node
@@ -31,30 +35,23 @@ class Node:
 
 
 def page_rank(maxiteration, lambda_, thr, nodes, nodeList:dict[int, Node]):
-    #print("page_rank() called")
-
-    #verify nodes
-    # for node in nodes:
-    #     print("Id= " + str(node))
-    #     print("nodesPointTo: " + str(nodeList[node].nodesPointTo))
-    #     print("nodesPointFrom: " + str(nodeList[node].nodesPointFrom))
-
     totalNumNodes = len(nodeList)
-    #print("Total number of nodes= " + str(totalNumNodes))
 
+    #set up initial values and formula's
     initialPageRank = 1/totalNumNodes
     calc = (lambda_/totalNumNodes) + (1 - lambda_)
     previousPageRanks:dict[int, float] = {}
 
+    # set initial Pagerank for each node
     for node in nodeList:
         nodeList[node].pageRank = initialPageRank
 
     for i in range(maxiteration):
-
         #store previous pageranks for calculation
         for n in nodeList:
             previousPageRanks[n] = nodeList[n].pageRank
 
+        #calculate PageRank for each node
         for node in nodeList:
             #print("Calculating PR for node '" + str(node) + "'")
             sum = 0
@@ -68,12 +65,18 @@ def page_rank(maxiteration, lambda_, thr, nodes, nodeList:dict[int, Node]):
             #calculate pagerank for the node
             nodeList[node].pageRank = calc * sum
             #print("Node '" + str(node) + "' pagerank is now= " + str(nodeList[node].pageRank))
-    
+
     #print the nodes specified at launch
     print("\nPageRank of requested Nodes:")
     for node in nodes:
         nodePagerank = nodeList[int(node)].pageRank
         print("Node (" + str(node) + ") pagerank= " + str(nodePagerank))
+
+    #TODO- Debug: Without threshold the total is 0.003... (way too small) | With treashold is 1.0000000000028555 (to much)
+    totalPagerank = 0
+    for node in nodeList:
+        totalPagerank += nodeList[node].pageRank
+    print("Total Pagerank= " + str(totalPagerank))
 
 def graph_retrieval():
     nodeList:dict[int, Node] = {}
