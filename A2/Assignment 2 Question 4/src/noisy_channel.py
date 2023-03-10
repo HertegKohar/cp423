@@ -14,7 +14,7 @@ import os
 import re
 import string
 
-#TODO: confirm file name
+#TODO: confirm file name and path
 FILENAME = "wikipedia.token"
 DATA_FOLDER = "data_wikipedia"
 
@@ -122,7 +122,7 @@ if __name__ == "__main__":
     # [(word: string, count: int), ...]
     WORD_FREQ_VECTOR = Counter(tokenize(open(FILENAME, encoding="utf-8").read()))
 
-    # 2. Output the correction or probability of the given words as needed
+    # 2. Output the corrections or probabilities of the given words as needed
     mode = "correct" if args.correct is not None else "proba"
     words = args.correct if args.correct is not None else args.proba
     if mode == "correct":
