@@ -4,8 +4,18 @@ Install Dependencies
 ```Bash
 pip install -r requirements.txt
 ```
-Each question has its own README.md file with instructions on how to run the program in its directory.  
+
+Each question has its own README.md file with instructions on how to run the program in its directory.
+
 **Put all URLs in quotes to avoid OS errors**
+
+For boolean flags, use --flagname to set to True and exclude flag altogether to set to False:
+```Bash
+python program.py --flagname "https://www.example.com"  # "flagname" is true
+python program.py "https://www.example.com"             # "flagname" is false
+```
+
+---
 
 To run Question 1 
 ```Bash
