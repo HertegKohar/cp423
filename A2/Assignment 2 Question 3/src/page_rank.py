@@ -65,18 +65,17 @@ def page_rank(maxiteration, lambda_, thr, nodes):
                 #print("Sum is now= " + str(sum))
         
             #calculate pagerank for the node
-            newPagerank = calc * sum
+            nodeList[node].pageRank = calc * sum
 
-            #TODO- Not sure about threshold so will just update PR for now...
-            #nodeList[node].pageRank = newPagerank
-
-            # should this be checked for each node or it is the entire list?
-            # if (abs(newPagerank - previousPageRanks[node])/totalNumNodes < thr):
-            #     print("Convergence detected, don't update pagerank...")
-            # else:
-            #     print("Convergence not detected, updating pagerank...")
-            #     nodeList[node].pageRank = newPagerank
-            #print("Node '" + str(node) + "' pagerank is now= " + str(nodeList[node].pageRank))
+        # should this be checked for entire list (vector is how it's normally done)
+        errSum = 0
+        for n in nodeList:
+            errSum += abs(nodeList[n].pageRank - previousPageRanks[n])
+        if (errSum/totalNumNodes < thr):
+            print("Convergence not detected")
+        else:
+            print("Convergence detected")
+        #print("Node '" + str(node) + "' pagerank is now= " + str(nodeList[node].pageRank))
 
     #print the nodes specified at launch
     print("\nPageRank of requested Nodes:")
