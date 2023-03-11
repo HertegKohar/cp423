@@ -237,7 +237,7 @@ def create_inverted_index(articles):
     """
     inverted_index = defaultdict(list)
     for article in articles:
-        tokens = word_tokenize(article["text"])
+        tokens = RegexpTokenizer(r"\w+").tokenize(article["text"])
         counter = Counter(tokens)
         for token, count in counter.items():
             inverted_index[token].append((article["id"], count))
