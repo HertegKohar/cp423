@@ -7,7 +7,6 @@ Author:
 """
 
 
-
 class Node:
     # nodeId: int # id of the node
     # nodesPointTo: set[int] #nodes that this node points to
@@ -33,6 +32,7 @@ nodeList: dict[int, Node] = {}
 
 
 def page_rank(maxiteration, lambda_, thr, nodes):
+    """Calculates the PageRank for each node in the graph"""
     totalNumNodes = len(nodeList)
 
     # set up initial values and formula's
@@ -93,6 +93,12 @@ Add's the connected node to the list or updates if it already exists
 
 
 def connected_node(nodeId, linkedNode):
+    """Adds the connected node to the list or updates if it already exists
+
+    Args:
+        nodeId (int): The node that is connected to the linkedNode
+        linkedNode (Node): The node that is connected to the nodeId
+    """
     if linkedNode in nodeList:
         nodeList[linkedNode].add_connected_node(nodeId)
     # if node doesn't exist yet we need to add it + update connected list
@@ -104,7 +110,7 @@ def connected_node(nodeId, linkedNode):
 
 
 def graph_retrieval():
-
+    """Reads the Web-Stanford.txt containing the graph and stores the information to compute the PageRank"""
     # read file (Web-Stanford.txt)
     with open("Web-Stanford.txt") as f:
         for line in f:

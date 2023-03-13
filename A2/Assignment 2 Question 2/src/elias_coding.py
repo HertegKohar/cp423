@@ -10,10 +10,27 @@ valid_binary = re.compile(r"^[01]+$")
 
 
 def unary_encode(n):
+    """Creates a unary encoded string of length n.
+
+    Args:
+        n (int): The length of the unary encoded string.
+
+    Returns:
+        str: The unary encoded string.
+    """
     return "1" * n + "0"
 
 
 def binary_encode(n, width):
+    """Creates a binary encoded string of length width.
+
+    Args:
+        n (int): The number to be encoded.
+        width (int): The length of the binary encoded string.
+
+    Returns:
+        str: The binary encoded string.
+    """
     r = ""
     for i in range(width):
         if ((1 << i) & n) > 0:
@@ -24,12 +41,21 @@ def binary_encode(n, width):
 
 
 def gamma_decode_leading_0s(n):
+    """Decodes a gamma encoded string with leading zeros.
+
+    Args:
+        n (str): The gamma encoded string.
+
+    Returns:
+        int: The decoded number.
+    """
     n = n.lstrip("0")  # remove leading zeros
     i = len(n)
     return int(math.pow(2, i) + int(n[1:], 2))
 
 
 def gamma_encode(n):
+    """Encodes a number using gamma encoding."""
     if n < 1:
         return "ERROR"
     logn = int(math.log(n, 2))
@@ -37,6 +63,7 @@ def gamma_encode(n):
 
 
 def delta_decode_leading_0s(n):
+    """Decodes a delta encoded string with leading zeros."""
     if not valid_binary.match(n):
         return "ERROR"
     n = n.lstrip("0")  # remove leading zeros
@@ -51,6 +78,7 @@ def delta_decode_leading_0s(n):
 
 
 def delta_encode(n):
+    """Encodes a number using delta encoding."""
     if n < 1:
         return "ERROR"
     logn = int(math.log(n, 2))
@@ -64,6 +92,7 @@ def delta_encode(n):
 
 
 def gamma_decode(n):
+    """Decode a gamma encoded string."""
     if not valid_binary.match(n):
         return "ERROR"
     try:
@@ -80,6 +109,7 @@ def gamma_decode(n):
 
 
 def delta_decode(n):
+    """Decode a delta encoded string."""
     if not valid_binary.match(n):
         return "ERROR"
     try:
