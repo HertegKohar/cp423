@@ -28,7 +28,7 @@ class Node:
         self.nodesPointFrom.add(nodeId)
 
 
-nodeList: dict[int, Node] = {}
+nodeList = {}
 
 
 def page_rank(maxiteration, lambda_, thr, nodes):
