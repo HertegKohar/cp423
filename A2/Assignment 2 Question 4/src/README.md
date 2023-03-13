@@ -1,10 +1,9 @@
 **Program Instructions**  
 Sample Command Line Use
 ```Bash
-python noisy_channel.py [--correct] [values]
-python noisy_channel.py [--proba] [values]
+python noisy_channel.py [-h] [--correct] words
+python noisy_channel.py [-h] [--proba] words
 ```
-Use quotations to spell-check simple multi-word phrases such as "golf curse"
 **Exactly one Argument is required, either --correct or --proba**  
 Example Execution
 ```Bash
