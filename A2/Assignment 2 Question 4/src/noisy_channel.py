@@ -39,7 +39,7 @@ def P(word):
                              (proportion of corpus tokens that are 'word')
     """
     N_TOKENS = sum(WORD_FREQ_VECTOR.values())
-    return WORD_FREQ_VECTOR[word] / N_TOKENS
+    return 0 if N_TOKENS == 0 else WORD_FREQ_VECTOR[word] / N_TOKENS 
 
 
 def correction(word): 
@@ -136,6 +136,7 @@ def tokenize_corpus(path):
                 if i % 1000 == 0:
                     print(f"Processed {i} articles")
             all_articles.extend(articles)
+        # Break if here to prevent memory error
         break
     tokens = RegexpTokenizer(r"\w+").tokenize(corpus)
     with open(FILENAME, "a", encoding="utf-8") as f:
@@ -156,15 +157,17 @@ if __name__ == "__main__":
     # 1. Process and load the corpus
     exists = os.path.exists(FILENAME)
     overwrite_file = args.overwrite
-    if not exists or overwrite_file:
-        print(f"\nTokenized corpus text file not found.\nProcessing and saving corpus to '{FILENAME}'...")
+    file_is_empty = os.stat(FILENAME).st_size == 0
+    if not exists or overwrite_file or file_is_empty:
+        print(f"\nTokenized corpus text file is empty or not found.\nProcessing and saving corpus to '{FILENAME}'...")
         with open(FILENAME, "w", encoding="utf-8") as f:
             pass
-        tokens = tokenize_corpus(DATA_FOLDER, FILENAME)
+        tokens = tokenize_corpus(DATA_FOLDER)
         print()
     # term frequency vector for all words in the corpus
     # [(word: string, count: int), ...]
-    WORD_FREQ_VECTOR = Counter(tokenize(open(FILENAME, encoding="utf-8").read()))
+    with open(FILENAME, encoding="utf-8") as f:
+        WORD_FREQ_VECTOR = Counter(tokenize(f.read()))
 
     # 2. Output the corrections or probabilities of the given words as needed
     mode = "correct" if args.correct is not None else "proba"
