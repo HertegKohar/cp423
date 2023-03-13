@@ -12,7 +12,6 @@ import os
 import re
 import string
 
-#TODO: confirm file name and path
 FILENAME = "wikipedia.token"
 DATA_FOLDER = "data_wikipedia"
 
@@ -137,7 +136,7 @@ def tokenize_corpus(path):
                 if i % 1000 == 0:
                     print(f"Processed {i} articles")
             all_articles.extend(articles)
-        break # TODO: remove break to process all files
+        break
     tokens = RegexpTokenizer(r"\w+").tokenize(corpus)
     with open(FILENAME, "a", encoding="utf-8") as f:
         f.write(" ".join(tokens))
