@@ -33,6 +33,7 @@ def load_articles(path):
                 if i % 1000 == 0:
                     print(f"Processed {i} articles")
             all_articles.extend(articles)
+        # Break if here to prevent memory error
         break
     return corpus, all_articles
 
