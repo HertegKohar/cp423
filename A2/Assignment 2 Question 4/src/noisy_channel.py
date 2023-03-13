@@ -146,7 +146,7 @@ def tokenize_corpus(path):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Noisy Channel Mode Spell-Checking Script")
+    parser = argparse.ArgumentParser(description="(Noisy Channel Model) Spell-Checking Script")
     parser.add_argument('--overwrite', action='store_true', help='Force program to overwrite the existing tokenized corpus file')
     options = parser.add_mutually_exclusive_group(required=True)
     options.add_argument('--correct', nargs="+", help="List of Words to spell-correct")
