@@ -1,14 +1,19 @@
 import argparse
 
 """
-Author: Bryan Gadd (with help from Herteg)
+Author: 
+- Bryan Gadd
 """
 
 """
-Clean-up needed:
-- Remove type hinting on varaibles.
-- Remove any un-needed code.
+TODO:
+- Implement threshold (when do you check and what happens if the difference is below threashold? Does it not update that Pagerank?)
+- Clean-up:
+   - Remove type hinting on varaibles.
+   - Remove any un-needed code.
+   - Update argparser description.
 """
+
 class Node:
     nodeId: int # id of the node
     nodesPointTo: set[int] #nodes that this node points to
@@ -29,32 +34,26 @@ class Node:
     def add_connected_node(self, nodeId):
         self.nodesPointFrom.add(nodeId)
 
+nodeList:dict[int, Node] = {}
 
-def page_rank(maxiteration, lambda_, thr, nodes, nodeList:dict[int, Node]):
-    #print("page_rank() called")
-
-    #verify nodes
-    # for node in nodes:
-    #     print("Id= " + str(node))
-    #     print("nodesPointTo: " + str(nodeList[node].nodesPointTo))
-    #     print("nodesPointFrom: " + str(nodeList[node].nodesPointFrom))
-
+def page_rank(maxiteration, lambda_, thr, nodes):
     totalNumNodes = len(nodeList)
-    #print("Total number of nodes= " + str(totalNumNodes))
 
+    #set up initial values and formula's
     initialPageRank = 1/totalNumNodes
     calc = (lambda_/totalNumNodes) + (1 - lambda_)
     previousPageRanks:dict[int, float] = {}
 
+    # set initial Pagerank for each node
     for node in nodeList:
         nodeList[node].pageRank = initialPageRank
 
     for i in range(maxiteration):
-
         #store previous pageranks for calculation
         for n in nodeList:
             previousPageRanks[n] = nodeList[n].pageRank
 
+        #calculate PageRank for each node
         for node in nodeList:
             #print("Calculating PR for node '" + str(node) + "'")
             sum = 0
@@ -67,16 +66,43 @@ def page_rank(maxiteration, lambda_, thr, nodes, nodeList:dict[int, Node]):
         
             #calculate pagerank for the node
             nodeList[node].pageRank = calc * sum
-            #print("Node '" + str(node) + "' pagerank is now= " + str(nodeList[node].pageRank))
-    
+
+        # should this be checked for entire list (vector is how it's normally done)
+        errSum = 0
+        for n in nodeList:
+            errSum += abs(nodeList[n].pageRank - previousPageRanks[n])
+        if (errSum/totalNumNodes < thr):
+            print("Convergence not detected")
+        else:
+            print("Convergence detected")
+        #print("Node '" + str(node) + "' pagerank is now= " + str(nodeList[node].pageRank))
+
     #print the nodes specified at launch
     print("\nPageRank of requested Nodes:")
     for node in nodes:
         nodePagerank = nodeList[int(node)].pageRank
         print("Node (" + str(node) + ") pagerank= " + str(nodePagerank))
 
+    #TODO- Debug: Without threshold the total is 0.003... (way too small) | With treashold is 1.0000000000028555 (to much)
+    totalPagerank = 0
+    for node in nodeList:
+        totalPagerank += nodeList[node].pageRank
+    print("Total Pagerank= " + str(totalPagerank))
+
+""""
+Add's the connected node to the list or updates if it already exists
+"""
+def connected_node(nodeId, linkedNode):
+    if (linkedNode in nodeList):
+        nodeList[linkedNode].add_connected_node(nodeId)
+    # if node doesn't exist yet we need to add it + update connected list
+    else:
+        node = Node(linkedNode)
+        node.add_connected_node(nodeId)
+        nodeList[linkedNode] = node
+    return
+
 def graph_retrieval():
-    nodeList:dict[int, Node] = {}
 
     # read file (Web-Stanford.txt)
     with open("Web-Stanford.txt") as f:
@@ -90,25 +116,14 @@ def graph_retrieval():
             nodeId = int(extractedString[0])
             linkedNode = int(extractedString[1])
 
-            # verifying I can get the numbers
-            print(str(nodeId) + " --> " + str(linkedNode))
-
             # add first node to list
             if (len(nodeList) == 0):
                 node = Node(nodeId)
                 node.add_linked_node(linkedNode)
                 nodeList[nodeId] = node
 
-                # Connected
-                # if node exists then add to connected list
-                if (linkedNode in nodeList):
-                    nodeList[linkedNode].add_connected_node(nodeId)
-                
-                # if node doesn't exist yet we need to add it + update connected list
-                else:
-                    node = Node(linkedNode)
-                    node.add_connected_node(nodeId)
-                    nodeList[linkedNode] = node
+                # Update or add the the connected node
+                connected_node(nodeId, linkedNode)
 
             # not first node
             else:
@@ -118,16 +133,8 @@ def graph_retrieval():
                     node = nodeList[nodeId]
                     node.add_linked_node(linkedNode)
                     
-                    # Connected
-                    # if node exists then add to connected list
-                    if (linkedNode in nodeList):
-                        nodeList[linkedNode].add_connected_node(nodeId)
-                    
-                    # if node doesn't exist yet we need to add it + update connected list
-                    else:
-                        node = Node(linkedNode)
-                        node.add_connected_node(nodeId)
-                        nodeList[linkedNode] = node
+                    # Update or add the the connected node
+                    connected_node(nodeId, linkedNode)
                         
                 # add new node
                 else:
@@ -136,31 +143,12 @@ def graph_retrieval():
                     node.add_linked_node(linkedNode)
                     nodeList[nodeId] = node
 
-                    # Connected
-                    #if node exists then update connected list
-                    if (linkedNode in nodeList):
-                        nodeList[linkedNode].add_connected_node(nodeId)
-                    
-                    #if node doesn't exist yet we need to add it + update connected list
-                    else:
-                        node = Node(linkedNode)
-                        node.add_connected_node(nodeId)
-                        nodeList[linkedNode] = node
-            
-            #print("Node '" + str(node.nodeId) + "' nodesPointTo is now: " + str(node.nodesPointTo))
-
-    # verify nodes
-    # for node in nodeList:
-    #     print("Id= " + str(node))
-    #     print("nodesPointTo: " + str(nodeList[node].nodesPointTo))
-    #     print("nodesPointFrom: " + str(nodeList[node].nodesPointFrom))
-
-    #calculate page rank
-    return nodeList
+                    # Update or add the the connected node
+                    connected_node(nodeId, linkedNode)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Command Line Interface for Wikipedia Processing"
+        description="Command Line Interface for PageRank"
     )
     parser.add_argument(
         "--maxiteration",
@@ -198,7 +186,7 @@ if __name__ == "__main__":
     #print("maxiteration= " + str(args.maxiteration) + ", lambda_= " + str(args.lambda_) + ", thr= " + str(args.thr) + ", nodes= " + str(nodes))
 
     #parse the graph
-    nodeList = graph_retrieval()
+    graph_retrieval()
 
     # calculate page rank + output selected nodes
-    page_rank(args.maxiteration, args.lambda_, args.thr, nodes, nodeList)
+    page_rank(args.maxiteration, args.lambda_, args.thr, nodes)
