@@ -6,6 +6,7 @@ from nltk.corpus import stopwords
 import numpy as np
 import os
 import joblib
+import json
 from sklearn.model_selection import train_test_split, cross_validate
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import SVC
@@ -25,6 +26,9 @@ from sklearn.metrics import (
     RocCurveDisplay,
 )
 import argparse
+
+MODEL_PATH = "sentiment_model.joblib"
+SETTINGS_PATH = "settings.json"
 
 
 def concatenate_data(imdb, amazon, yelp):
@@ -165,30 +169,33 @@ if __name__ == "__main__":
     if args.knn and not args.k_value:
         parser.error("KNN requires a K value")
 
+    settings = {"imdb": args.imdb, "amazon": args.amazon, "yelp": args.yelp}
+
+    with open(SETTINGS_PATH, "w") as f:
+        json.dump(settings, f)
+
     data = concatenate_data(args.imdb, args.amazon, args.yelp)
-    nltk.download("stopwords")
+    nltk.download("stopwords", quiet=True)
     X_train, X_test, y_train, y_test = preprocess(data)
     X_train_tfidf, X_test_tfidf = create_bag_of_words(X_train, X_test)
+    print("Included data sets:", ", ".join([k for k, v in settings.items() if v]))
     if args.knn:
         print(f"Training KNN with K={args.k_value}")
         clf = KNeighborsClassifier(n_neighbors=args.k_value)
-        output_path = f"knn_model_{args.k_value}.joblib"
     elif args.naive:
         print("Training Naive Bayes")
         clf = GaussianNB()
         X_train_tfidf = X_train_tfidf.toarray()
         X_test_tfidf = X_test_tfidf.toarray()
-        output_path = "naive_model.joblib"
     elif args.svm:
         print("Training SVM")
         clf = SVC(kernel="linear")
-        output_path = "svm_model.joblib"
     elif args.decisiontree:
         print("Training Decision Tree")
         clf = DecisionTreeClassifier()
-        output_path = "decision_tree_model.joblib"
 
     model = cross_validate_and_train(clf, X_train_tfidf, y_train)
     test_model(model, X_test_tfidf, y_test)
-    joblib.dump(model, output_path)
-    print(f"Model saved to {output_path}")
+    joblib.dump(model, MODEL_PATH)
+    print(f"Model saved to {MODEL_PATH}")
+    print(f"Settings saved to {SETTINGS_PATH}")

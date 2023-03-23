@@ -1,4 +1,9 @@
-**Program Instructions**  
+**Program Instructions**
+
+
+**This section goes over training scroll down to see how to predict**
+
+
 Sample Command Line Use
 ```Bash
 python training_sentiment.py [-h] [--imdb] [--amazon] [--yelp] (--naive | --knn | --svm | --decisiontree) [k_value]
@@ -34,3 +39,22 @@ Example Execution of Decision Tree Classifier:
 ```Bash
 python training_sentiment.py --imdb --amazon --decisiontree
 ```
+
+**Predicting Program Instructions**
+
+You must execute the training program first before executing the predicting program. It generates the model file as well as the settings in order to predict new text
+
+**Text must be in quotes**
+
+Sample Command Line Use
+```Bash
+python predict_sentiment.py [-h] text
+```
+
+Example Execution of Predicting Program:
+
+```Bash
+python predict_sentiment.py "I love this movie"
+```
+
+
