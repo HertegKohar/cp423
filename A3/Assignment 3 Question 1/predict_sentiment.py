@@ -60,7 +60,7 @@ def preprocess(text_data):
     return X_train, X_test, y_train, y_test
 
 
-def preprocess_test_data(test_sentence, imdb, amazon, yelp):
+def preprocess_test_data(test_sentence, imdb, amazon, yelp, dense):
     test_df = pd.DataFrame({"sentence": [test_sentence]})
     data = concatenate_data(imdb, amazon, yelp)
     X_train, _, _, _ = preprocess(data)
@@ -76,11 +76,16 @@ def preprocess_test_data(test_sentence, imdb, amazon, yelp):
     )
     test_df["sentence"] = test_df["sentence"].apply(lambda x: " ".join(x))
     test_df_tfid = vectorizer.transform(test_df["sentence"])
+    if dense:
+        test_df_tfid = test_df_tfid.toarray()
     return test_df_tfid
 
 
-def predict_sentiment(model, test_sentence, imdb, amazon, yelp):
-    test_df_tfid = preprocess_test_data(test_sentence, imdb, amazon, yelp)
+def predict_sentiment(model, model_name, test_sentence, imdb, amazon, yelp):
+    dense = False
+    if model_name == "naive":
+        dense = True
+    test_df_tfid = preprocess_test_data(test_sentence, imdb, amazon, yelp, dense)
     prediction = model.predict(test_df_tfid)
     return prediction
 
@@ -102,7 +107,12 @@ if __name__ == "__main__":
         nltk.download("stopwords", quiet=True)
 
         prediction = predict_sentiment(
-            model, args.text, settings["imdb"], settings["amazon"], settings["yelp"]
+            model,
+            settings["model"],
+            args.text,
+            settings["imdb"],
+            settings["amazon"],
+            settings["yelp"],
         )
 
         if prediction == 1:

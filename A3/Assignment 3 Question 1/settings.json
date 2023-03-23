@@ -1,1 +1,1 @@
-{"imdb": true, "amazon": true, "yelp": true}
+{"imdb": true, "amazon": false, "yelp": true, "model": "decisiontree"}
