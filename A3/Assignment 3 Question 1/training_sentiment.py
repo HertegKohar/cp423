@@ -171,9 +171,6 @@ if __name__ == "__main__":
 
     settings = {"imdb": args.imdb, "amazon": args.amazon, "yelp": args.yelp}
 
-    with open(SETTINGS_PATH, "w") as f:
-        json.dump(settings, f)
-
     data = concatenate_data(args.imdb, args.amazon, args.yelp)
     nltk.download("stopwords", quiet=True)
     X_train, X_test, y_train, y_test = preprocess(data)
@@ -182,17 +179,24 @@ if __name__ == "__main__":
     if args.knn:
         print(f"Training KNN with K={args.k_value}")
         clf = KNeighborsClassifier(n_neighbors=args.k_value)
+        settings["model"] = "knn"
     elif args.naive:
         print("Training Naive Bayes")
         clf = GaussianNB()
         X_train_tfidf = X_train_tfidf.toarray()
         X_test_tfidf = X_test_tfidf.toarray()
+        settings["model"] = "naive"
     elif args.svm:
         print("Training SVM")
         clf = SVC(kernel="linear")
+        settings["model"] = "svm"
     elif args.decisiontree:
         print("Training Decision Tree")
         clf = DecisionTreeClassifier()
+        settings["model"] = "decisiontree"
+
+    with open(SETTINGS_PATH, "w") as f:
+        json.dump(settings, f)
 
     model = cross_validate_and_train(clf, X_train_tfidf, y_train)
     test_model(model, X_test_tfidf, y_test)
