@@ -23,12 +23,12 @@ from sklearn.metrics import (
     confusion_matrix,
     classification_report,
     ConfusionMatrixDisplay,
-    RocCurveDisplay,
 )
 import argparse
 
 MODEL_PATH = "sentiment_model.joblib"
 SETTINGS_PATH = "settings.json"
+K_FOLDS = 5
 
 
 def concatenate_data(imdb, amazon, yelp):
@@ -86,28 +86,27 @@ def cross_validate_and_train(model, X_train_tfidf, y_train):
         "recall": make_scorer(recall_score),
         "f1_score": make_scorer(f1_score),
     }
-    K_folds = 5
     cv_results = cross_validate(
         model,
         X_train_tfidf,
         y_train,
-        cv=K_folds,
+        cv=K_FOLDS,
         scoring=scoring,
         return_estimator=True,
     )
-    for i in range(K_folds):
-        print(f"Fold: {i+1}")
-        print(f"Accuracy: {cv_results['test_accuracy'][i]}")
-        print(f"Precision: {cv_results['test_precision'][i]}")
-        print(f"Recall: {cv_results['test_recall'][i]}")
-        print(f"F1 Score: {cv_results['test_f1_score'][i]}")
-        print("\n")
-    print("Mean Metrics")
+    # for i in range(K_FOLDS):
+    #     print(f"Fold: {i+1}")
+    #     print(f"Accuracy: {cv_results['test_accuracy'][i]}")
+    #     print(f"Precision: {cv_results['test_precision'][i]}")
+    #     print(f"Recall: {cv_results['test_recall'][i]}")
+    #     print(f"F1 Score: {cv_results['test_f1_score'][i]}")
+    #     print("\n")
+    print(f"{K_FOLDS} Fold Cross Validation Mean Metrics")
     print(f"Mean Accuracy: {np.mean(cv_results['test_accuracy'])}")
     print(f"Mean Precision: {np.mean(cv_results['test_precision'])}")
     print(f"Mean Recall: {np.mean(cv_results['test_recall'])}")
     print(f"Mean F1 Score: {np.mean(cv_results['test_f1_score'])}")
-    print("\n")
+    print()
     mean_scores = {
         metric: np.mean(cv_results[f"test_{metric}"]) for metric in scoring.keys()
     }
@@ -119,11 +118,18 @@ def cross_validate_and_train(model, X_train_tfidf, y_train):
 
 
 def test_model(model, X_test_tfidf, y_test):
-    print("Test Metrics")
+    print("Test Set Metrics")
     y_pred = model.predict(X_test_tfidf)
     print(classification_report(y_test, y_pred))
     cm = confusion_matrix(y_test, y_pred)
     ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=model.classes_).plot()
+    cm_df = pd.DataFrame(
+        cm,
+        columns=["Predicted Negative", "Predicted Positive"],
+        index=["Actual Negative", "Actual Positive"],
+    )
+    print(cm_df)
+    print()
     # RocCurveDisplay.from_predictions(y_test, y_pred)
     plt.show()
 
