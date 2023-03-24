@@ -1,13 +1,11 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 from nltk.tokenize import RegexpTokenizer
 import nltk
 from nltk.corpus import stopwords
-import numpy as np
 import os
 import joblib
 import json
-from sklearn.model_selection import train_test_split, cross_validate
+from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
