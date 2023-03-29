@@ -4,6 +4,6 @@ data_wikipedia
 wikipedia.token*
 article_texts
 Web-Stanford.txt
-20_newsgroups
+# 20_newsgroups
 articles_*
 *_n*.joblib
