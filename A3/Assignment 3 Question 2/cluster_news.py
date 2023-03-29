@@ -25,10 +25,13 @@ from sklearn.metrics import (
 )
 from sklearn.preprocessing import MinMaxScaler
 
+# TF-IDF parameters
 MAX_FEATURES = 1000
 N_GRAM_RANGE = (1,2)
 MIN_DF = 10
 MAX_DF = 1000
+
+MODEL_PATH = "models\\"
 
 def concatenate_data():
     data = []
@@ -57,6 +60,7 @@ def preprocess(text_data):
     return text_data
 
 def load_or_create_preprocessed():
+    print("Loading or creating preprocessed data...")
     # use preprocessed data file if it exists, else create it
     if os.path.exists("data/articles_preprocessed.csv"):
         df_articles = pd.read_csv("data/articles_preprocessed.csv")
@@ -67,6 +71,7 @@ def load_or_create_preprocessed():
     return df_articles
 
 def load_or_create_tfidf(df_articles):
+    print("Loading or creating TF-IDF data...")
     # use tfidf data file if it exists, else create it
     if os.path.exists("data/articles_tfidf.csv"):
         df_articles_tfidf = pd.read_csv("data/articles_tfidf.csv")
@@ -75,11 +80,11 @@ def load_or_create_tfidf(df_articles):
         tfidf = TfidfVectorizer(stop_words="english", max_features=MAX_FEATURES, ngram_range=N_GRAM_RANGE, strip_accents="unicode", min_df=MIN_DF, max_df=MAX_DF)
         tfidf_article_array = tfidf.fit_transform(df_articles["text"])
         df_articles_tfidf = pd.DataFrame(tfidf_article_array.toarray(), index=df_articles.index, columns=tfidf.get_feature_names_out())
-        df_articles_tfidf.describe()
         df_articles_tfidf.to_csv("data/articles_tfidf.csv")
     return df_articles_tfidf
 
 def load_or_create_pca(df_articles_tfidf):
+    print("Loading or creating PCA data...")
     # use pca data file if it exists, else create it
     if os.path.exists("data/articles_pca.csv"):
         df_articles_pca = pd.read_csv("data/articles_pca.csv")
@@ -87,13 +92,15 @@ def load_or_create_pca(df_articles_tfidf):
         # using PCA to reduce the dimensionality
         scaler = MinMaxScaler()
         data_rescaled = scaler.fit_transform(df_articles_tfidf)
-        # 99% of variance
-        pca = PCA(n_components = 0.99)
+        # variance explained by 80% of components
+        pca = PCA(n_components = 0.80)
         pca.fit(data_rescaled)
         reduced = pca.transform(data_rescaled)
         df_articles_pca = pd.DataFrame(data=reduced)
-        df_articles_pca.describe()
         df_articles_pca.to_csv("data/articles_pca.csv")
+        # Calculate the variance explained by principle components
+        print('\n Total Variance Explained:', round(sum(list(pca.explained_variance_ratio_))*100, 2))
+        print(' Number of components:', pca.n_components_)
     return df_articles_pca
 
 def print_metrics(df_articles, df_articles_labeled):
@@ -113,7 +120,7 @@ def findOptimalEps(n_neighbors, data):
     distances = np.sort(distances, axis=0)
     distances = distances[:,1]
     plt.plot(distances)
-    plt.show()
+    # plt.show()
 
 def cluster_using_kmeans(df_articles, df_articles_pca, ncluster):
     # using KMeans clustering
@@ -123,6 +130,7 @@ def cluster_using_kmeans(df_articles, df_articles_pca, ncluster):
     df_articles_labeled = df_articles.copy()
     df_articles_labeled["cluster"] = articles_labels
     # TODO: save model
+    joblib.dump(kmeans, MODEL_PATH+'kmeans_n' +str(ncluster)+'.joblib')
     return df_articles_labeled
 
 def cluster_using_whc(df_articles, df_articles_pca, ncluster):
@@ -133,6 +141,7 @@ def cluster_using_whc(df_articles, df_articles_pca, ncluster):
     df_articles_labeled = df_articles.copy()
     df_articles_labeled["cluster"] = articles_labels
     # TODO: save model
+    joblib.dump(whc, MODEL_PATH+'whc_n' +str(ncluster)+'.joblib')
     return df_articles_labeled
 
 def cluster_using_ac(df_articles, df_articles_pca, ncluster):
@@ -143,17 +152,19 @@ def cluster_using_ac(df_articles, df_articles_pca, ncluster):
     df_articles_labeled = df_articles.copy()
     df_articles_labeled["cluster"] = articles_labels
     # TODO: save model
+    joblib.dump(ac, MODEL_PATH+'ac_n' +str(ncluster)+'.joblib')
     return df_articles_labeled
 
 def cluster_using_dbscan(df_articles, df_articles_tfidf, df_articles_pca, ncluster):
     # using DBSCAN clustering
     print(f"Clustering using DBSCAN with {ncluster} clusters")
-    findOptimalEps(2, df_articles_tfidf)
-    dbscan = DBSCAN(eps=0.2, metric="euclidean")
+    # findOptimalEps(2, df_articles_tfidf)
+    dbscan = DBSCAN(eps=1.6, metric="cosine")
     articles_labels = dbscan.fit_predict(df_articles_pca)
     df_articles_labeled = df_articles.copy()
     df_articles_labeled["cluster"] = articles_labels
     # TODO: save model
+    joblib.dump(dbscan, MODEL_PATH+'dbscan_n' +str(ncluster)+'.joblib')
     return df_articles_labeled
 
 if __name__ == "__main__":
