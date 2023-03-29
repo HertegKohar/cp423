@@ -4,3 +4,5 @@ data_wikipedia
 wikipedia.token*
 article_texts
 Web-Stanford.txt
+20_newsgroups
+articles_*
