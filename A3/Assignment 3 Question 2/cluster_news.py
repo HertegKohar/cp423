@@ -11,6 +11,7 @@ from nltk.tokenize import RegexpTokenizer
 import numpy as np
 import os
 import pandas as pd
+from pandas.testing import assert_frame_equal
 import re
 from sklearn.neighbors import NearestNeighbors
 from sklearn.cluster import (
@@ -28,8 +29,8 @@ from sklearn.metrics import (
 from sklearn.preprocessing import MinMaxScaler
 
 # TF-IDF parameters
-MAX_FEATURES = 250
-MIN_DF = 20
+MAX_FEATURES = 500
+MIN_DF = 50
 MAX_DF = 500
 
 MODEL_PATH = "models\\"
@@ -46,8 +47,11 @@ def concatenate_data():
             with open(os.path.join(path, news_group, article), "r") as f:
                 text = f.read()
             data.append([news_group_index, article, -1, text])
-    data = pd.DataFrame(data, columns=columns)
-    return data
+    df = pd.DataFrame(data, columns=columns)
+    df["news_group"] = pd.to_numeric(df["news_group"])
+    df["article_number"] = pd.to_numeric(df["article_number"])
+    df["cluster"] = pd.to_numeric(df["cluster"])
+    return df
 
 def preprocess(text_data):
     nltk.download("stopwords", quiet=True)
@@ -71,39 +75,37 @@ def preprocess(text_data):
 def load_or_create_preprocessed():
     print("Loading or creating preprocessed data...")
     # use preprocessed data file if it exists, else create it
-    if os.path.exists("data/articles_preprocessed.csv"):
-        df_articles_1 = pd.read_csv("data/articles_preprocessed.csv")
-    # else:
-    df_articles = concatenate_data()
-    df_articles["text"] = preprocess(df_articles["text"])
-    df_articles.to_csv("data/articles_preprocessed.csv", index=False)
-
-    print(df_articles)
-    print(df_articles_1)
-    comp = df_articles.compare(df_articles_1, align_axis=0)
-    print(comp)
-    exit(0)
+    if os.path.exists("data/articles_preprocessed.pkl"):
+        df_articles = pd.read_pickle("data/articles_preprocessed.pkl")
+    else:
+        df_articles = concatenate_data()
+        df_articles["text"] = preprocess(df_articles["text"])
+        # drop all rows where "text" is only whitespace or empty
+        df_articles = df_articles[df_articles["text"].str.strip().astype(bool)]
+        df_articles.to_csv("data/articles_preprocessed.csv", index=False, overwrite=True)
+        df_articles.to_pickle("data/articles_preprocessed.pkl")
     return df_articles
 
 def load_or_create_tfidf(df_articles):
     print("Loading or creating TF-IDF data...")
     # use tfidf data file if it exists, else create it
-    # if os.path.exists("data/articles_tfidf.csv"):
-    #     df_articles_tfidf = pd.read_csv("data/articles_tfidf.csv")
-    # else:
-    # creating a new TF-IDF matrix
-    # tfidf = TfidfVectorizer(stop_words="english", strip_accents="unicode", min_df=MIN_DF)
-    tfidf = TfidfVectorizer(max_features=MAX_FEATURES, strip_accents="unicode", min_df=MIN_DF, max_df=MAX_DF)
-    tfidf_article_array = tfidf.fit_transform(df_articles["text"])
-    df_articles_tfidf = pd.DataFrame(tfidf_article_array.toarray(), index=df_articles.index, columns=tfidf.get_feature_names_out())
-    df_articles_tfidf.to_csv("data/articles_tfidf.csv")
+    if os.path.exists("data/articles_tfidf.pkl"):
+        df_articles_tfidf = pd.read_pickle("data/articles_tfidf.pkl")
+    else:
+        # creating a new TF-IDF matrix
+        tfidf = TfidfVectorizer(stop_words="english", strip_accents="unicode", min_df=MIN_DF)
+        tfidf = TfidfVectorizer(max_features=MAX_FEATURES, strip_accents="unicode", min_df=MIN_DF, max_df=MAX_DF)
+        tfidf_article_array = tfidf.fit_transform(df_articles["text"])
+        df_articles_tfidf = pd.DataFrame(tfidf_article_array.toarray(), index=df_articles.index, columns=tfidf.get_feature_names_out())
+        df_articles_tfidf.to_csv("data/articles_tfidf.csv", index=False, overwrite=True)
+        df_articles_tfidf.to_pickle("data/articles_tfidf.pkl")
     return df_articles_tfidf
 
 def load_or_create_pca(df_articles_tfidf):
     print("Loading or creating PCA data...")
     # use pca data file if it exists, else create it
-    if os.path.exists("data/articles_pca.csv"):
-        df_articles_pca = pd.read_csv("data/articles_pca.csv")
+    if os.path.exists("data/articles_pca.pkl"):
+        df_articles_pca = pd.read_pickle("data/articles_pca.pkl")
     else:
         # using PCA to reduce the dimensionality
         scaler = MinMaxScaler()
@@ -113,7 +115,7 @@ def load_or_create_pca(df_articles_tfidf):
         pca.fit(data_rescaled)
         reduced = pca.transform(data_rescaled)
         df_articles_pca = pd.DataFrame(data=reduced)
-        df_articles_pca.to_csv("data/articles_pca.csv")
+        df_articles_pca.to_pickle("data/articles_pca.pkl")
         # Calculate the variance explained by principle components
         print('\n Total Variance Explained:', round(sum(list(pca.explained_variance_ratio_))*100, 2))
         print(' Number of components:', pca.n_components_)
