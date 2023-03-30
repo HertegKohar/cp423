@@ -1,3 +1,5 @@
+from crawler import crawl_all_topics
+
 options = """
 1 - Collect new documents
 2 - Index documents
@@ -10,6 +12,8 @@ options = """
 
 STORY_PATH = "story.txt"
 
+TOPIC_DOCUMENT_LIMIT = 5
+
 if __name__ == "__main__":
     print("Welcome to the search engine!")
     print("Options:")
@@ -17,7 +21,7 @@ if __name__ == "__main__":
     while (user_input := input("Enter option: ")) != "7":
         if user_input == "1":
             print("Collecting new documents...")
-            raise NotImplementedError
+            crawl_all_topics(TOPIC_DOCUMENT_LIMIT)
         elif user_input == "2":
             print("Indexing documents...")
             raise NotImplementedError
