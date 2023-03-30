@@ -7,4 +7,4 @@ Web-Stanford.txt
 # 20_newsgroups
 articles_*
 *_n*.joblib
-!Project/story.txt
+!Project/**/*.txt
