@@ -1,6 +1,8 @@
 from crawler import crawl_all_topics
+from index import update_inverted_index
 
 options = """
+Select an option:
 1 - Collect new documents
 2 - Index documents
 3 - Search for query
@@ -13,6 +15,7 @@ options = """
 STORY_PATH = "story.txt"
 
 TOPIC_DOCUMENT_LIMIT = 5
+TOPICS = ["Astronomy", "Health", "Economy"]
 
 if __name__ == "__main__":
     print("Welcome to the search engine!")
@@ -24,7 +27,7 @@ if __name__ == "__main__":
             crawl_all_topics(TOPIC_DOCUMENT_LIMIT)
         elif user_input == "2":
             print("Indexing documents...")
-            raise NotImplementedError
+            update_inverted_index(TOPICS)
         elif user_input == "3":
             print("Searching for query...")
             raise NotImplementedError
