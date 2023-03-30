@@ -1,1 +1,0 @@
-NASA's image library, images.nasa.gov, consolidates imagery and videos in one searchable location. Users can download content in multiple sizes and resolutions and see the metadata associated with images, including EXIF/camera data on many images.

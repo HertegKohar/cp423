@@ -2,11 +2,15 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 import hashlib
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 import re
 from collections import defaultdict
 from urllib.parse import urlparse, urljoin
 import justext
 from requests_html import HTMLSession
+import os
 
 URL_REGEX = url_regex = re.compile(
     r"^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
@@ -20,7 +24,17 @@ TOPIC_DOCUMENT_LIMIT = 5
 
 COOLDOWN = 429
 
+TOPICS = ["Astronomy", "Health", "Economy"]
+
 FILES = set()
+
+for topic in TOPICS:
+    for file in os.listdir(topic):
+        FILES.add(f"{topic}/{file}")
+
+nltk.download("stopwords", quiet=True)
+
+STOP_WORDS = set(stopwords.words("english"))
 
 
 def log(message):
@@ -35,11 +49,16 @@ def hash_and_save(topic, url, content):
     file_path = f"{topic}/{hex_dig}.txt"
     if file_path in FILES:
         return False
+    content = content.lower()
     paragraphs = justext.justext(content, justext.get_stoplist("English"))
     text_to_write = ""
     for paragraph in paragraphs:
         if not paragraph.is_boilerplate:
-            text_to_write += paragraph.text
+            text = paragraph.text
+            words = word_tokenize(text)
+            words = [word for word in words if word not in STOP_WORDS]
+            text = " ".join(words)
+            text_to_write += text
     if len(text_to_write) == 0:
         return False
     with open(file_path, "w", encoding="utf-8") as f:
