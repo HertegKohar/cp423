@@ -12,8 +12,10 @@ import re
 from collections import defaultdict
 from urllib.parse import urlparse, urljoin
 import justext
-from requests_html import HTMLSession
 import os
+
+# from requests_html import HTMLSession
+
 
 URL_REGEX = url_regex = re.compile(
     r"^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
@@ -128,34 +130,35 @@ def crawl(topic, urls, limit):
     print(f"Finished crawling {topic}")
 
 
-def crawl_session(topic, urls, limit):
-    print(f"Crawling {topic}...")
-    count = 0
-    queue = urls.copy()
-    base_urls = {urlparse(url).netloc for url in urls}
-    visited = set()
-    session = HTMLSession()
-    while count != limit and len(queue) != 0:
-        url = queue.pop(0)
-        r = session.get(url)
-        r.html.render(wait=15)
-        if r.status_code == COOLDOWN:
-            break
-        for link in r.html.links:
-            absolute_url = urljoin(url, link)
-            if (
-                urlparse(absolute_url).netloc in base_urls
-                and absolute_url not in visited
-            ):
-                queue.append(absolute_url)
-        visited.add(url)
-        saved = hash_and_save(topic, url, r.html.html)
-        if saved:
-            count += 1
-        print("Documents collected", count)
-        print(queue)
-    session.close()
-    print(f"Finished crawling {topic}")
+# To try and get to pages that require javascript to load
+# def crawl_session(topic, urls, limit):
+#     print(f"Crawling {topic}...")
+#     count = 0
+#     queue = urls.copy()
+#     base_urls = {urlparse(url).netloc for url in urls}
+#     visited = set()
+#     session = HTMLSession()
+#     while count != limit and len(queue) != 0:
+#         url = queue.pop(0)
+#         r = session.get(url)
+#         r.html.render(wait=15)
+#         if r.status_code == COOLDOWN:
+#             break
+#         for link in r.html.links:
+#             absolute_url = urljoin(url, link)
+#             if (
+#                 urlparse(absolute_url).netloc in base_urls
+#                 and absolute_url not in visited
+#             ):
+#                 queue.append(absolute_url)
+#         visited.add(url)
+#         saved = hash_and_save(topic, url, r.html.html)
+#         if saved:
+#             count += 1
+#         print("Documents collected", count)
+#         print(queue)
+#     session.close()
+#     print(f"Finished crawling {topic}")
 
 
 def crawl_all_topics(limit):
