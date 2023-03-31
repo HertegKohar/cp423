@@ -1,3 +1,6 @@
+"""
+Author: Herteg Kohar
+"""
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
@@ -79,6 +82,22 @@ def create_topics_dict(path):
             url = url.strip()
             topics_and_urls[topic].append(url)
     return topics_and_urls
+
+
+def crawl_new_link(url):
+    r = requests.get(url)
+    if r.status_code == COOLDOWN:
+        return
+    text = ""
+    paragraphs = justext.justext(r.text, justext.get_stoplist("English"))
+    for paragraph in paragraphs:
+        if not paragraph.is_boilerplate:
+            text += paragraph.text
+    if len(text) == 0:
+        return
+    with open("predicted_link_text.txt", "w", encoding="utf-8") as f:
+        f.write(text)
+    return text
 
 
 def crawl(topic, urls, limit):
