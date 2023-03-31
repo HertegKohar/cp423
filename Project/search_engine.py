@@ -1,7 +1,11 @@
-from crawler import crawl_all_topics
+"""
+Author: Herteg Kohar
+"""
+from crawler import crawl_all_topics, crawl_new_link
 from index import update_inverted_index
+from classify import training_pipeline, predict_new_text
 
-options = """
+OPTIONS = """
 Select an option:
 1 - Collect new documents
 2 - Index documents
@@ -14,13 +18,13 @@ Select an option:
 
 STORY_PATH = "story.txt"
 
-TOPIC_DOCUMENT_LIMIT = 5
+TOPIC_DOCUMENT_LIMIT = 10
 TOPICS = ["Astronomy", "Health", "Economy"]
 
 if __name__ == "__main__":
     print("Welcome to the search engine!")
     print("Options:")
-    print(options)
+    print(OPTIONS)
     while (user_input := input("Enter option: ")) != "7":
         if user_input == "1":
             print("Collecting new documents...")
@@ -33,12 +37,18 @@ if __name__ == "__main__":
             raise NotImplementedError
         elif user_input == "4":
             print("Training ML Classifier...")
-            raise NotImplementedError
+            training_pipeline()
         elif user_input == "5":
             print("Predicting a link...")
-            raise NotImplementedError
+            link = input("Enter link: ")
+            text = crawl_new_link(link)
+            if text is None:
+                print("Link is not valid or no text was able to be extracted.")
+            else:
+                predict_new_text(text)
         elif user_input == "6":
             with open(STORY_PATH, "r") as f:
                 print(f.read())
+        print(OPTIONS)
 
     print("Exiting search engine...")

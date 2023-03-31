@@ -1,3 +1,6 @@
+"""
+Herteg Kohar
+"""
 import os
 import json
 from nltk.tokenize import RegexpTokenizer
