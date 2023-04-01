@@ -1,0 +1,778 @@
+
+
+
+
+
+
+(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);
+
+Universe Today - Space and astronomy news
+
+
+
+
+
+
+
+
+
+
+{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://www.universetoday.com/","url":"https://www.universetoday.com/","name":"Universe Today - Space and astronomy news","isPartOf":{"@id":"https://www.universetoday.com/#website"},"description":"Space and astronomy news","breadcrumb":{"@id":"https://www.universetoday.com/#breadcrumb"},"inLanguage":"en-US"},{"@type":"BreadcrumbList","@id":"https://www.universetoday.com/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]},{"@type":"WebSite","@id":"https://www.universetoday.com/#website","url":"https://www.universetoday.com/","name":"Universe Today","description":"Space and astronomy news","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.universetoday.com/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"}]}
+
+
+
+
+
+
+
+
+
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.universetoday.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.1.1"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode,e=(p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0),i.toDataURL());return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(p&&p.fillText)switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([129777,127995,8205,129778,127999],[129777,127995,8203,129778,127999])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(e=t.source||{}).concatemoji?c(e.concatemoji):e.wpemoji&&e.twemoji&&(c(e.twemoji),c(e.wpemoji)))}(window,document,window._wpemojiSettings);
+
+
+			window.advanced_ads_ready=function(e,a){a=a||"complete";var d=function(e){return"interactive"===a?"loading"!==e:"complete"===e};d(document.readyState)?e():document.addEventListener("readystatechange",(function(a){d(a.target.readyState)&&e()}),{once:"interactive"===a})},window.advanced_ads_ready_queue=window.advanced_ads_ready_queue||[];		
+
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+
+
+
+.has-text-align-justify{text-align:justify;}
+
+
+
+
+
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+
+
+
+
+
+
+
+
+
+:root{--wp-gdpr--bar--background-color: #000000;--wp-gdpr--bar--color: #ffffff;--wp-gdpr--button--background-color: #000000;--wp-gdpr--button--background-color--darken: #000000;--wp-gdpr--button--color: #ffffff;}
+
+
+
+
+
+/* <![CDATA[ */
+var advads_options = {"blog_id":"1","privacy":{"enabled":false,"state":"not_needed"}};
+/* ]]> */
+
+
+
+/* <![CDATA[ */
+var advanced_ads_pro_visitor_conditions = {"referrer_cookie_name":"advanced_ads_pro_visitor_referrer","referrer_exdays":"365","page_impr_cookie_name":"advanced_ads_page_impressions","page_impr_exdays":"3650"};
+/* ]]> */
+
+
+
+
+/* <![CDATA[ */
+var wpgdprcFront = {"ajaxUrl":"https:\/\/www.universetoday.com\/wp-admin\/admin-ajax.php","ajaxNonce":"c306834ae0","ajaxArg":"security","pluginPrefix":"wpgdprc","blogId":"1","isMultiSite":"","locale":"en_US","showSignUpModal":"","showFormModal":"","cookieName":"wpgdprc-consent","consentVersion":"","path":"\/","prefix":"wpgdprc"};
+/* ]]> */
+
+
+
+
+
+
+
+img#wpstats{display:none}
+advads_items = { conditions: {}, display_callbacks: {}, display_effect_callbacks: {}, hide_callbacks: {}, backgrounds: {}, effect_durations: {}, close_functions: {}, showed: [] };
+		var advadsCfpQueue = [];
+		var advadsCfpAd = function( adID ){
+			if ( 'undefined' == typeof advadsProCfp ) { advadsCfpQueue.push( adID ) } else { advadsProCfp.addElement( adID ) }
+		};
+		
+
+
+
+
+figcaption {font-size:smaller;}
+#primary {width: 100%!important}
+
+#top-menu {
+	text-transform: capitalize;
+}
+
+@media screen and (min-width: 48em) {
+	#top-menu li:last-child {
+    float: right;
+  }
+}
+
+#search_and_ad_free {padding-bottom: 3em;}
+#search_and_ad_free div {display: inline-block;}
+#search_and_ad_free div:first-child {width: 50%;}
+#search_and_ad_free div:last-child {float:right}
+.site-content {padding-top: 10px}
+
+main > div, div.entry-content > div {
+	margin-bottom: 1.5em;
+}.rll-youtube-player, [data-lazy-src]{display:none !important;}
+
+
+Skip to content
+
+
+
+
+
+
+
+
+Universe Today
+Space and astronomy news
+
+
+
+
+
+
+
+
+    Menu	
+Videos
+Newsletter
+Podcast
+Contact Us
+Support Us
+Log in
+
+
+
+
+
+
+
+
+Posts
+
+
+
+
+
+Posted on March 31, 2023March 31, 2023 by Nancy AtkinsonLow Gravity Simulator Lets You Jump Around in Lunar Gravity 
+
+
+
+ 
+A participant uses the MoLo facility in Milan, Italy which simulates lunar gravity. Credit: ESA. 
+
+
+
+When the Apollo astronauts landed on the Moon, they had to perform tasks in 1/6th of Earth’s gravity. At first, walking and working in this low gravity environment posed some challenges. However, the astronauts soon adapted and figured out that hopping like a bunny made it easier to get around.
+The Artemis astronauts will also need to adapt to life on the Moon, and to that end, ESA has built a unique facility in a 17-meter (55 ft.) refurbished ventilation shaft.  
+Continue reading “Low Gravity Simulator Lets You Jump Around in Lunar Gravity” 
+
+
+
+Posted on March 31, 2023March 30, 2023 by Carolyn Collins PetersenNow We Know How a Solar Storm Took Out a Fleet of Starlinks 
+
+
+
+ 
+A view of an auroral storm from the ISS. Aurorae are one effect of solar storms like the one that took out 39 Starlink satellites in 2022. Credit: NASA/ESA/Tim Peake
+
+
+
+On March 23rd, sky observers marveled at a gorgeous display of northern and southern lights. It was reminder that when our Sun gets active, it can spark a phenomenon called “space weather.” Aurorae are among the most benign effects of this phenomenon. 
+Continue reading “Now We Know How a Solar Storm Took Out a Fleet of Starlinks” 
+
+
+
+
+
+Remove All Ads on Universe Today
+
+
+Join our Patreon for as little as $3!
+
+
+Get the ad-free experience for life
+
+
+
+
+
+	#go-ad-free {
+	  text-align: center;
+	  background: #ff424d;
+	  padding: .5rem;
+	  box-shadow: 0 0 .5rem black inset;
+	}
+
+	#go-ad-free img {
+	  width: 72px;
+	  box-shadow: initial;
+	  vertical-align: super;
+	}
+
+	#go-ad-free div {
+	  display: inline-block;
+	  margin-left: 3rem;
+	  margin-right: 3rem;
+	}
+
+	#go-ad-free div p {
+	  margin-bottom: .5rem;
+	  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+	  letter-spacing: .1rem;
+      line-height: initial;
+	}
+
+	#go-ad-free div p:first-child {
+	  font-size: 2rem;
+	  font-weight: bold;
+	}
+	
+	@media (max-width: 940px) {
+		
+		#go-ad-free img, #go-ad-free div {
+			display: block;
+			margin: 0 auto;
+		}
+		
+		#go-ad-free img:last-child {
+		  display: none;
+		}
+	}
+
+
+
+Posted on March 30, 2023March 30, 2023 by Matt WilliamsGravitational Waves From Colliding Neutron Stars Matched to a Fast Radio Burst 
+
+
+
+ 
+Artist’s impression of a fast radio burst traveling through space and reaching Earth. Credit: ESO/M. Kornmesser
+
+
+
+Fast Radio Bursts (FRBs) were first detected in 2007 (the Lorimer Burst) and have remained one of the most mysterious astronomical phenomena ever since. These bright radio pulses generally last a few milliseconds and are never heard from again (except in the rare case of Repeating FRBs). And then you have Gravitational Waves (GW), a phenomenon predicted by General Relativity that was first detected on September 14th, 2015. Together, these two phenomena have led to a revolution in astronomy where events are detected regularly and provide fresh insight into other cosmic mysteries.
+In a new study led by the Australian Research Council Centre of Excellence for Gravitational Wave Discovery (OzGrav), an Australian-American team of researchers has revealed that FRBs and GWs may be connected. According to their study, which recently appeared in the journal Nature Astronomy, the team noted a potential coincidence between a binary neutron star merger and a bright non-repeating FRB. If confirmed, their results could confirm what astronomers have expected for some time – that FRBs are caused by a variety of astronomical events.
+Continue reading “Gravitational Waves From Colliding Neutron Stars Matched to a Fast Radio Burst” 
+
+
+
+Posted on March 30, 2023March 30, 2023 by Carolyn Collins PetersenPlans are Underway to Build a 30 Cubic Kilometer Neutrino Telescope 
+
+
+
+ 
+Underwater neutrino detectors take advantage of location to track these fast particles. This is an artist's impression of a KM3NeT installation in the Mediterranean. Chinese scientists hope to build a bigger underwater "neutrino telescope" in the next few years. Courtesy Edward Berbee/Nikhef. 
+
+
+
+How do astronomers look for neutrinos? These small, massless particles whiz through the universe at very close to the speed of light. They’ve been studied since the 1950s and detecting them provides work for a range of very interesting observatories.
+Continue reading “Plans are Underway to Build a 30 Cubic Kilometer Neutrino Telescope” 
+
+
+
+Posted on March 29, 2023March 29, 2023 by Matt WilliamsChina Hints at Its Goals for a Lunar Base 
+
+
+
+ 
+Visualization of the ILRS, from the CNSA Guide to Partnership (June 2021). Credit: CNSA
+
+
+
+In June 2021, China announced it was partnering with Russia to launch a lunar exploration program that would rival NASA’s Artemis Program. This program would include robotic landers, orbiters, and crewed missions that would culminate with the creation of an outpost around the Moon’s southern polar region – the International Lunar Research Station (ILRS). While the details are still scant, periodic updates have provided a “big-picture” idea of what this lunar outpost will look like.
+Case in point, at a recent national space conference, a team of scientists from the Chinese Academy of Sciences (CAS) presented a list of objectives for the ILRS. According to China Science Daily, these objectives will include Moon-based astronomy, Earth observation, and lunar in-situ resource utilization (ISRU). In addition, the CAS scientists indicated that China plans to establish a basic model for a lunar research station based on two planned exploration missions by 2028, which will subsequently expand into an international base. 
+Continue reading “China Hints at Its Goals for a Lunar Base” 
+
+
+
+Posted on March 29, 2023March 29, 2023 by Matt WilliamsArtemis II is Literally Coming Together 
+
+
+
+ 
+The core stage of the Artemis II rocket at NASA's MIchoud Assembly Facility. Credit: NASA/Michael DeMocker
+
+
+
+In November 2024, NASA’s Artemis II mission will launch from Cape Canaveral, carrying a crew of four astronauts around the Moon before returning home. This will be the first crewed mission of the program, paving the way for Artemis III and the long-awaited return to the Moon in 2025. These missions will rely on the Orion spacecraft and the Space Launch System (SLS) super-heavy launch vehicle. At NASA’s Michoud Assembly Facility in New Orleans, teams of engineers have just finished integrating all five major structures that make up the core stage of the Artemis II rocket.
+Continue reading “Artemis II is Literally Coming Together” 
+
+
+
+Posted on March 29, 2023March 29, 2023 by Nancy AtkinsonIt's Time For Your Annual Weather Update for the Outer Solar System 
+
+
+
+ 
+Jupiter, as seen by the Hubble Space Telescope in November 2022 and January 2023. Credits: NASA, ESA, STScI, Amy Simon (NASA-GSFC), and Michael H. Wong (UC Berkeley); Image Processing: Joseph DePasquale (STScI).
+
+
+
+A couple times a year, the Hubble Space Telescope turns its powerful gaze on the giant planets in the outer Solar System, studying their cloudtops and weather systems. With the Outer Planet Atmospheres Legacy (OPAL) Program, Hubble provides us with these views and also delivers weather reports on what’s happening. Here’s an updated report and some new images of the stormy surfaces of Jupiter and Uranus.  
+Continue reading “It's Time For Your Annual Weather Update for the Outer Solar System” 
+
+
+
+Posted on March 28, 2023April 1, 2023 by Laurence TognettiEuropa’s Ice Rotates at a Different Speed From its Interior. Now We May Know Why 
+
+
+
+ 
+Image of Europa taken by NASA's Juno spacecraft on Sept 29, 2022. (Credit: NASA/JPL-Caltech/Southwest Research Institute/Malin Space Science Systems)
+
+
+
+Jupiter’s moon, Europa, contains a large ocean of salty water beneath its icy shell, some of which makes it to the surface from time to time, and this vast ocean could host life, as well. Europa was most recently observed by NASA’s Juno spacecraft, but current examinations of the moon’s internal ocean are limited to computer models and simulations produced here on Earth, as no mission is actively exploring this tiny moon orbiting Jupiter. Other than the internal water occasionally breaching the icy shell and making it to the surface, what other effects could the internal ocean have on the icy shell that encloses it?
+Continue reading “Europa’s Ice Rotates at a Different Speed From its Interior. Now We May Know Why” 
+
+
+
+Posted on March 28, 2023March 28, 2023 by Carolyn Collins PetersenAre We Alone? The Answer Might Be in Space Dust That’s All Around Us 
+
+
+
+ 
+When an asteroid hit the Yucatan peninsula 65 million years ago it through Earth debris to space. Could that debris carry evidence of life? And, could such an event at an alien planet carry evidence of its life to us on dust particles generated in the impact? Image courtesy Don Davis.
+
+
+
+When it comes to looking for extraterrestrial life “out there” astronomers scan distant planets. They also look for technosignatures at alien worlds. What if the answer they seek is dust blowing on the interstellar winds?
+Continue reading “Are We Alone? The Answer Might Be in Space Dust That’s All Around Us” 
+
+
+
+Posted on March 28, 2023March 28, 2023 by Matt WilliamsMoons Orbiting Rogue Planets Could be Habitable 
+
+
+
+ 
+An artist's conception of a potentially-habitable exomoon. Credit: NASA
+
+
+
+When looking for signs of life beyond the Solar System, astrobiologists are confined to looking for life as we understand it. For the most part, that means looking for rocky planets that orbit within their star’s circumsolar habitable zone (HZ), the distance at which liquid water can exist on its surface. In the coming years, next-generation telescopes and instruments will allow astronomers to characterize exoplanet atmospheres like never before. When that happens, they will look for the chemical signatures we associate with life, like nitrogen, oxygen, carbon dioxide, methane, and ammonia. 
+However, astrobiologists have theorized that life could exist in the outer Solar System beneath the surfaces of icy moons like Europa, Callisto, Titan, and other “Ocean Worlds.” Because of this, there is no shortage of astrobiologists who think that the search for extraterrestrial life should include exomoons, including those that orbit free-floating planets (FFPs). In a recent study, researchers led by the Max Planck Institute for Extraterrestrial Physics (MPE) determined the necessary properties that allow moons orbiting FFPs to retain enough liquid water to support life. 
+Continue reading “Moons Orbiting Rogue Planets Could be Habitable” 
+
+
+Posts navigation
+Page 1
+Page 2
+…
+Page 2,556
+Next page  
+
+
+
+
+
+
+
+
+Privacy Policy 
+Proudly powered by WordPress	
+
+
+
+
+
+
+
+/* <![CDATA[ */
+var advanced_ads_pro_ajax_object = {"ajax_url":"https:\/\/www.universetoday.com\/wp-admin\/admin-ajax.php","lazy_load_module_enabled":"","lazy_load":{"default_offset":0,"offsets":[]},"moveintohidden":"","wp_timezone_offset":"-14400"};
+/* ]]> */
+
+
+
+/* <![CDATA[ */
+var advanced_ads_layer_settings = {"layer_class":"unive-layer","placements":["body-newsletter-popup-dynamic-and-randomized-values"]};
+/* ]]> */
+
+
+
+/* <![CDATA[ */
+var advanced_ads_responsive = {"reload_on_resize":"0"};
+/* ]]> */
+
+
+
+/* <![CDATA[ */
+var advadsCfpInfo = {"cfpExpHours":"3","cfpClickLimit":"3","cfpBan":"7","cfpPath":"","cfpDomain":"www.universetoday.com"};
+/* ]]> */
+
+
+
+/* <![CDATA[ */
+var twentyseventeenScreenReaderText = {"quote":"<svg class=\"icon icon-quote-right\" aria-hidden=\"true\" role=\"img\"> <use href=\"#icon-quote-right\" xlink:href=\"#icon-quote-right\"><\/use> <\/svg>","expand":"Expand child menu","collapse":"Collapse child menu","icon":"<svg class=\"icon icon-angle-down\" aria-hidden=\"true\" role=\"img\"> <use href=\"#icon-angle-down\" xlink:href=\"#icon-angle-down\"><\/use> <span class=\"svg-fallback icon-angle-down\"><\/span><\/svg>"};
+/* ]]> */
+
+
+
+
+
+
+
+/* <![CDATA[ */
+var advadsTracking = {"impressionActionName":"aatrack-records","clickActionName":"aatrack-click","targetClass":"unive-target","blogId":"1","frontendPrefix":"unive-"};
+/* ]]> */
+
+
+
+window.advads_admin_bar_items = [{"title":"Between Posts","type":"placement"},{"title":"Banner: Go Ad Free","type":"ad"}];window.advads_passive_placements = {"google-analytics_1":{"elementid":[null],"ads":{"139942":{"id":139942,"title":"HEAD: Google Analytics","expiry_date":0,"visitors":[{"type":"capability","operator":"can_not","value":"no_ads"}],"content":"<!-- Global site tag (gtag.js) - Google Analytics -->\r\n<script async src=\"https:\/\/www.googletagmanager.com\/gtag\/js?id=UA-74522-1\"><\/script>\r\n<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'UA-74522-1');\r\n<\/script>","once_per_page":1,"debugmode":false,"blog_id":1,"type":"plain","position":"none","tracking_enabled":true,"privacy":{"ignore":false,"needs_consent":false}}},"type":"ad","id":139942,"placement_info":{"type":"header","name":"Google Analytics","item":"ad_139942","options":[],"id":"google-analytics"},"test_id":null,"ajax_query":{"id":"google-analytics","method":"placement","params":{"previous_method":"placement","previous_id":"google-analytics","post":"r0","wp_the_query":{"is_home":true,"is_singular":false,"is_front_page":true},"url_parameter":"\/","placement_type":"header","output":{"placement_id":"google-analytics"},"cache_busting_elementid":null},"elementid":null,"server_conditions":{"61b31d7439":{"type":"capability","value":"no_ads"}},"blog_id":1},"server_info_duration":2592000,"server_conditions":{"61b31d7439":{"type":"capability","value":"no_ads"}}},"head-google-ad-manager_2":{"elementid":[null],"ads":{"139944":{"id":139944,"title":"HEAD: Google Ad Manager","expiry_date":0,"visitors":[{"type":"capability","operator":"can_not","value":"no_ads"}],"content":"<script async='async' src='https:\/\/www.googletagservices.com\/tag\/js\/gpt.js'><\/script>\r\n<script>\r\n  var googletag = googletag || {};\r\n  googletag.cmd = googletag.cmd || [];\r\n<\/script>\r\n\r\n<script>\r\n  googletag.cmd.push(function() {\r\n    googletag.defineSlot('\/1003350\/2018-sidebar', [[250, 250], [336, 280], [300, 600], [300, 1050], [300, 250]], 'div-gpt-ad-1536190577757-0').addService(googletag.pubads());\r\n    googletag.defineSlot('\/1003350\/2018-content-ad', [336, 280], 'div-gpt-ad-1536199443850-0').addService(googletag.pubads());\r\n    googletag.pubads().enableSingleRequest();\r\n    googletag.enableServices();\r\n  });\r\n<\/script>","once_per_page":0,"debugmode":false,"blog_id":1,"type":"plain","position":"","tracking_enabled":true,"privacy":{"ignore":false,"needs_consent":false}}},"type":"ad","id":139944,"placement_info":{"type":"header","name":"HEAD: Google Ad Manager","item":"ad_139944","options":[],"id":"head-google-ad-manager"},"test_id":null,"ajax_query":{"id":"head-google-ad-manager","method":"placement","params":{"previous_method":"placement","previous_id":"head-google-ad-manager","post":"r0","wp_the_query":{"is_home":true,"is_singular":false,"is_front_page":true},"url_parameter":"\/","placement_type":"header","output":{"placement_id":"head-google-ad-manager"},"cache_busting_elementid":null},"elementid":null,"server_conditions":{"61b31d7439":{"type":"capability","value":"no_ads"}},"blog_id":1},"server_info_duration":2592000,"server_conditions":{"61b31d7439":{"type":"capability","value":"no_ads"}}},"blank-ad-for-testing-in-body_5":{"elementid":["unive-000ec048b366f3d301fd2f2e38291e19"],"ads":{"153874":{"id":153874,"title":"Blank Ad for Testing","expiry_date":0,"visitors":[{"type":"capability","operator":"can_not","value":"no_ads"},{"type":"referrer_url","operator":"contain_not","value":"sendy.universetoday.com"},{"type":"page_impressions","operator":"is_equal","value":"4"}],"content":"<div class=\"unive-blank-ad-for-testing-in-body\" id=\"unive-1021232252\" data-unive-trackid=\"153874\" data-unive-trackbid=\"1\"> <\/div>","once_per_page":0,"debugmode":false,"blog_id":1,"type":"plain","position":"","tracking_enabled":true,"privacy":{"ignore":false,"needs_consent":false}}},"type":"ad","id":153874,"placement_info":{"type":"footer","name":"Blank Ad for Testing in Body","item":"ad_153874","id":"blank-ad-for-testing-in-body"},"test_id":null,"ajax_query":{"id":"blank-ad-for-testing-in-body","method":"placement","params":{"previous_method":"placement","previous_id":"blank-ad-for-testing-in-body","post":"r1","wp_the_query":{"is_home":true,"is_singular":false,"is_front_page":true},"url_parameter":"\/","placement_type":"footer","output":{"class":["unive-blank-ad-for-testing-in-body"],"placement_id":"blank-ad-for-testing-in-body"},"cache_busting_elementid":"unive-000ec048b366f3d301fd2f2e38291e19"},"elementid":"unive-000ec048b366f3d301fd2f2e38291e19","server_conditions":{"61b31d7439":{"type":"capability","value":"no_ads"}},"blog_id":1},"server_info_duration":2592000,"server_conditions":{"61b31d7439":{"type":"capability","value":"no_ads"}},"inject_before":[""]},"above-header_7":{"elementid":["unive-dd94e133c30e2111904dc21c5e05d936"],"ads":{"139910":{"id":139910,"title":"Sidebar 336 x 250","expiry_date":0,"visitors":[{"type":"capability","operator":"can_not","value":"no_ads"}],"content":"<div class=\"unive-above-header unive-target\" id=\"unive-1046785058\" data-unive-trackid=\"139910\" data-unive-trackbid=\"1\"><script async src=\"\/\/pagead2.googlesyndication.com\/pagead\/js\/adsbygoogle.js?client=ca-pub-0569369285898441\" crossorigin=\"anonymous\"><\/script><ins class=\"adsbygoogle\" style=\"display:inline-block;width:336px;height:280px;\" \ndata-ad-client=\"ca-pub-0569369285898441\" \ndata-ad-slot=\"6976973445\"><\/ins> \n<script> \n(adsbygoogle = window.adsbygoogle || []).push({}); \n<\/script>\n<\/div>","once_per_page":0,"debugmode":false,"blog_id":1,"type":"adsense","position":"","tracking_enabled":true,"privacy":{"ignore":false,"needs_consent":false}}},"type":"ad","id":139910,"placement_info":{"type":"post_above_headline","name":"Above Header","item":"ad_139910","options":{"placement_position":""},"id":"above-header"},"test_id":null,"ajax_query":{"id":"above-header","method":"placement","params":{"tag":"custom","xpath":"\/\/h1","position":"before","previous_method":"placement","previous_id":"above-header","post":"r1","wp_the_query":{"is_home":true,"is_singular":false,"is_front_page":true},"url_parameter":"\/","placement_type":"post_above_headline","output":{"class":["unive-above-header"],"placement_id":"above-header"},"cache_busting_elementid":"unive-dd94e133c30e2111904dc21c5e05d936"},"elementid":"unive-dd94e133c30e2111904dc21c5e05d936","server_conditions":{"61b31d7439":{"type":"capability","value":"no_ads"}},"blog_id":1},"server_info_duration":2592000,"server_conditions":{"61b31d7439":{"type":"capability","value":"no_ads"}},"inject_before":[""]},"homepage-between-stories-2_9":{"elementid":["unive-7131d943ec426774f1577f3a6602c03b"],"ads":{"139910":{"id":139910,"title":"Sidebar 336 x 250","expiry_date":0,"visitors":[{"type":"capability","operator":"can_not","value":"no_ads"}],"content":"<div class=\"unive-homepage-between-stories-2 unive-target\" id=\"unive-367668969\" data-unive-trackid=\"139910\" data-unive-trackbid=\"1\"><script async src=\"\/\/pagead2.googlesyndication.com\/pagead\/js\/adsbygoogle.js?client=ca-pub-0569369285898441\" crossorigin=\"anonymous\"><\/script><ins class=\"adsbygoogle\" style=\"display:inline-block;width:336px;height:280px;\" \ndata-ad-client=\"ca-pub-0569369285898441\" \ndata-ad-slot=\"6976973445\"><\/ins> \n<script> \n(adsbygoogle = window.adsbygoogle || []).push({}); \n<\/script>\n<\/div>","once_per_page":0,"debugmode":false,"blog_id":1,"type":"adsense","position":"","tracking_enabled":true,"privacy":{"ignore":false,"needs_consent":false}}},"type":"ad","id":139910,"placement_info":{"type":"custom_position","name":"Homepage: Between Stories 2","item":"ad_139910","options":{"inject_by":"pro_custom_element","pro_custom_element":"div#primary > main#main > article.post.type-post:eq(5)","container_id":"#cf157b1f94d0d99eb5507e43c5d21ad5d","placement_position":""},"id":"homepage-between-stories-2"},"test_id":null,"ajax_query":{"id":"homepage-between-stories-2","method":"placement","params":{"inject_by":"pro_custom_element","pro_custom_element":"div#primary > main#main > article.post.type-post:eq(5)","pro_custom_position":"insertAfter","container_id":"#cf157b1f94d0d99eb5507e43c5d21ad5d","tag":"custom","xpath":"(descendant-or-self::div[@id = 'primary']\/main[@id = 'main']\/article[(@class and contains(concat(' ', normalize-space(@class), ' '), ' post ')) and (@class and contains(concat(' ', normalize-space(@class), ' '), ' type-post '))])[6]","position":"after","previous_method":"placement","previous_id":"homepage-between-stories-2","post":"r1","wp_the_query":{"is_home":true,"is_singular":false,"is_front_page":true},"url_parameter":"\/","placement_type":"custom_position","output":{"class":["unive-homepage-between-stories-2"],"placement_id":"homepage-between-stories-2"},"cache_busting_elementid":"unive-7131d943ec426774f1577f3a6602c03b"},"elementid":"unive-7131d943ec426774f1577f3a6602c03b","server_conditions":{"61b31d7439":{"type":"capability","value":"no_ads"}},"blog_id":1},"server_info_duration":2592000,"server_conditions":{"61b31d7439":{"type":"capability","value":"no_ads"}},"inject_before":[""]}};
+window.advads_ajax_queries = [{"id":"body-newsletter-popup-dynamic-and-randomized-values","method":"placement","params":{"previous_method":"placement","previous_id":"body-newsletter-popup-dynamic-and-randomized-values","post":"r1","wp_the_query":{"is_home":true,"is_singular":false,"is_front_page":true},"url_parameter":"\/","placement_type":"layer","cache-busting":"auto","layer_placement":{"trigger":"","offset":"0","delay_sec":"0","effect":"show","duration":"0","background":"1","background_click_close":"1","auto_close":{"delay":"5"},"close":{"enabled":"1","where":"inside","side":"right","timeout":"0"},"sticky":{"assistant":"center","position":{"width":"0","height":"0"}}},"placement_width":"0","placement_height":"0","output":{"class":["unive-body-newsletter-popup-dynamic-and-randomized-values"],"placement_id":"body-newsletter-popup-dynamic-and-randomized-values"}},"elementid":"unive-11594ef0ba63cf45f62146a77717047f","blog_id":1},{"id":"body-newsletter-bar-dynamic-and-randomized-values","method":"placement","params":{"previous_method":"placement","previous_id":"body-newsletter-bar-dynamic-and-randomized-values","post":"r1","wp_the_query":{"is_home":true,"is_singular":false,"is_front_page":true},"url_parameter":"\/","placement_type":"footer","output":{"class":["unive-body-newsletter-bar-dynamic-and-randomized-values"],"placement_id":"body-newsletter-bar-dynamic-and-randomized-values"}},"elementid":"unive-464d309cdebc18f83ebb20c5e41772a1","blog_id":1}];
+window.advads_has_ads = [["155349","ad","Banner: Go Ad Free","off"]];
+window.advads_ajax_queries_args = {"r0":{"id":160756,"author":"7","post_type":"post"},"r1":{"id":160673,"author":"2373","post_type":"post"}};
+( window.advanced_ads_ready || jQuery( document ).ready ).call( null, function() {if ( !window.advanced_ads_pro ) {console.log("Advanced Ads Pro: cache-busting can not be initialized");} });!function(){window.advanced_ads_ready_queue=window.advanced_ads_ready_queue||[],advanced_ads_ready_queue.push=window.advanced_ads_ready;for(var d=0,a=advanced_ads_ready_queue.length;d<a;d++)advanced_ads_ready(advanced_ads_ready_queue[d])}(); 
+
+		_stq = window._stq || [];
+		_stq.push([ 'view', {v:'ext',blog:'24000880',post:'0',tz:'-4',srv:'www.universetoday.com',j:'1:11.8.4'} ]);
+		_stq.push([ 'clickTrackerInit', '24000880', '0' ]);
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var advads_tracking_ads = {"1":[155349]};var advads_tracking_urls = {"1":"https:\/\/www.universetoday.com\/wp-content\/ajax-handler.php"};var advads_tracking_methods = {"1":"frontend"};var advads_tracking_parallel = {"1":false};var advads_tracking_linkbases = {"1":"https:\/\/www.universetoday.com\/linkout\/"};
+
+

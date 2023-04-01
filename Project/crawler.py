@@ -21,6 +21,9 @@ URL_REGEX = url_regex = re.compile(
     r"^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
 )
 
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+}
 LOGGER_PATH = "crawler.log"
 
 SOURCE_PATH = "source.txt"
@@ -87,7 +90,7 @@ def create_topics_dict(path):
 
 
 def crawl_new_link(url):
-    r = requests.get(url)
+    r = requests.get(url, headers=HEADERS)
     if r.status_code == COOLDOWN:
         return
     text = ""
@@ -110,7 +113,7 @@ def crawl(topic, urls, limit):
     visited = set()
     while count != limit and len(queue) != 0:
         url = queue.pop(0)
-        r = requests.get(url)
+        r = requests.get(url, headers=HEADERS)
         if r.status_code == COOLDOWN:
             break
         soup = BeautifulSoup(r.text, "html.parser")
