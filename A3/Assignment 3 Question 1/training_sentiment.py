@@ -33,6 +33,16 @@ K_FOLDS = 5
 
 
 def concatenate_data(imdb, amazon, yelp):
+    """Concatenate the data chosen by the user
+
+    Args:
+        imdb (bool): Boolean to indicate if the user wants to use the IMDB dataset
+        amazon (bool): Boolean to indicate if the user wants to use the Amazon dataset
+        yelp (bool): Boolean to indicate if the user wants to use the Yelp dataset
+
+    Returns:
+        pd.DataFrame: Dataframe with the data concatenated
+    """
     data = []
     columns = ["sentence", "label"]
     path = "sentiment labelled sentences"
@@ -58,6 +68,17 @@ def concatenate_data(imdb, amazon, yelp):
 
 
 def preprocess(text_data):
+    """Preprocess the data by tokenizing, removing stop words and splitting the data
+
+    Args:
+        text_data (pd.DataFrame): Dataframe with the data to preprocess
+
+    Returns:
+        X_train: Training data
+        X_test: Testing data
+        y_train: Training labels
+        y_test: Testing labels
+    """
     tokenizer = RegexpTokenizer(r"\w+")
     stop_words = set(stopwords.words("english"))
     text_data["sentence"] = text_data["sentence"].apply(
@@ -73,7 +94,16 @@ def preprocess(text_data):
     return X_train, X_test, y_train, y_test
 
 
-def create_bag_of_words(X_train, X_test):
+def vectorize_text(X_train, X_test):
+    """Vectorize the text using TF-IDF
+
+    Args:
+        X_train (pd.DataFrame): Training data
+        X_test (pd.DataFrame): Testing data
+
+    Returns:
+        Sparse Matrix: Sparse matrix with the vectorized data
+    """
     vectorizer = TfidfVectorizer()
     X_train_tfidf = vectorizer.fit_transform(X_train)
     X_test_tfidf = vectorizer.transform(X_test)
@@ -82,6 +112,16 @@ def create_bag_of_words(X_train, X_test):
 
 
 def cross_validate_and_train(model, X_train_tfidf, y_train):
+    """Cross validate the model and train it
+
+    Args:
+        model (sklearn model class): Model to train
+        X_train_tfidf (Sparse matrix): Sparse matrix with the vectorized data
+        y_train (pd.DataFrame): Training labels
+
+    Returns:
+        sklearn model: Trained model
+    """
     scoring = {
         "accuracy": make_scorer(accuracy_score),
         "precision": make_scorer(precision_score),
@@ -120,6 +160,13 @@ def cross_validate_and_train(model, X_train_tfidf, y_train):
 
 
 def test_model(model, X_test_tfidf, y_test):
+    """Tests the model and prints the metrics
+
+    Args:
+        model (sklearn model): Trained model
+        X_test_tfidf (Sparse Matrix): Sparse matrix with the vectorized data
+        y_test (pd.DataFrame): Testing labels
+    """
     print("Test Set Metrics")
     y_pred = model.predict(X_test_tfidf)
     print(classification_report(y_test, y_pred))
@@ -182,7 +229,7 @@ if __name__ == "__main__":
     data = concatenate_data(args.imdb, args.amazon, args.yelp)
     nltk.download("stopwords", quiet=True)
     X_train, X_test, y_train, y_test = preprocess(data)
-    X_train_tfidf, X_test_tfidf = create_bag_of_words(X_train, X_test)
+    X_train_tfidf, X_test_tfidf = vectorize_text(X_train, X_test)
     print("Included data sets:", ", ".join([k for k, v in settings.items() if v]))
     if args.knn:
         print(f"Training KNN with K={args.k_value}")

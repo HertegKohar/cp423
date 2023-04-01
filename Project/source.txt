@@ -1,4 +1,6 @@
 TOPIC,LINK
 Astronomy,https://www.space.com/
-Economy,https://ca.finance.yahoo.com
-Health,https://www.healthline.com
+Economy,https://ca.finance.yahoo.com/
+Health,https://www.healthline.com/
+Health,https://www.cdc.gov/
+Astronomy,https://www.universetoday.com/

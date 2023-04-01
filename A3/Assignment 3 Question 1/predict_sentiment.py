@@ -19,6 +19,16 @@ SETTINGS_PATH = "settings.json"
 
 
 def preprocess_test_data(test_sentence, tfidf_vectorizer, dense):
+    """Preprocess the test data
+
+    Args:
+        test_sentence (str): Sentence to predict sentiment
+        tfidf_vectorizer (TfidVectorizer): Vectorizer used to train the model
+        dense (bool): Boolean to indicate whether matrix is dense or not
+
+    Returns:
+        Matrix: Matrix with the test data
+    """
     test_df = pd.DataFrame({"sentence": [test_sentence]})
     stop_words = set(stopwords.words("english"))
     tokenizer = RegexpTokenizer(r"\w+")
@@ -36,6 +46,17 @@ def preprocess_test_data(test_sentence, tfidf_vectorizer, dense):
 
 
 def predict_sentiment(model, model_name, tfidf_vectorizer, test_sentence):
+    """Predict the sentiment of a sentence
+
+    Args:
+        model (sklearn model): Model used to predict the sentiment
+        model_name (str): Name of the model
+        tfidf_vectorizer (Matrix): Matrix with the test data
+        test_sentence (str): Sentence to predict sentiment
+
+    Returns:
+        int: Prediction (1 for positive, 0 for negative)
+    """
     dense = False
     if model_name == "naive":
         dense = True

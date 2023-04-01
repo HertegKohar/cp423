@@ -1,1 +1,1 @@
-{"imdb": true, "amazon": false, "yelp": false, "model": "knn"}
+{"imdb": true, "amazon": true, "yelp": false, "model": "naive"}
