@@ -27,6 +27,7 @@ from sklearn.metrics import (
 import argparse
 
 MODEL_PATH = "sentiment_model.joblib"
+TFIDF_PATH = "tfidf.joblib"
 SETTINGS_PATH = "settings.json"
 K_FOLDS = 5
 
@@ -76,6 +77,7 @@ def create_bag_of_words(X_train, X_test):
     vectorizer = TfidfVectorizer()
     X_train_tfidf = vectorizer.fit_transform(X_train)
     X_test_tfidf = vectorizer.transform(X_test)
+    joblib.dump(vectorizer, TFIDF_PATH)
     return X_train_tfidf, X_test_tfidf
 
 
@@ -208,4 +210,5 @@ if __name__ == "__main__":
     test_model(model, X_test_tfidf, y_test)
     joblib.dump(model, MODEL_PATH)
     print(f"Model saved to {MODEL_PATH}")
+    print(f"Vectorizer saved to {TFIDF_PATH}")
     print(f"Settings saved to {SETTINGS_PATH}")
