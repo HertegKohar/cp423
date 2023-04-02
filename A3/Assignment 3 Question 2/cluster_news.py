@@ -29,13 +29,18 @@ from sklearn.metrics import (
 from sklearn.preprocessing import MinMaxScaler
 
 # TF-IDF parameters
-MAX_FEATURES = 500
-MIN_DF = 50
+MAX_FEATURES = 2000
+MIN_DF = 25
 MAX_DF = 500
 
 MODEL_PATH = "models\\"
 
 def concatenate_data():
+    """Concatenate all articles in 20_newsgroups into a single dataframe.
+
+    Returns:
+        text_data: dataframe with columns ["news_group", "article_number", "cluster", "text"]
+    """
     data = []
     columns = ["news_group", "article_number", "cluster", "text"]
     path = "20_newsgroups"
@@ -54,6 +59,14 @@ def concatenate_data():
     return df
 
 def preprocess(text_data):
+    """Preprocess text data.
+
+    Args:
+        text_data (pd.DataFrame): dataframe "text" column
+
+    Returns:
+        text_data: "text" column with preprocessed text
+    """
     nltk.download("stopwords", quiet=True)
     tokenizer = RegexpTokenizer(r"\w+")
     stop_words = set(stopwords.words("english"))
@@ -73,6 +86,12 @@ def preprocess(text_data):
     return text_data
 
 def load_or_create_preprocessed():
+    """Load the preprocessed data from a pickle file if it exists, else create it.
+    To create it, call the functions to concatenate the data, preprocess it, and save it.
+
+    Returns:
+        df_article (pd.DataFrame): dataframe with columns ["news_group", "article_number", "cluster", "text"]
+    """
     print("Loading or creating preprocessed data...")
     # use preprocessed data file if it exists, else create it
     if os.path.exists("data/articles_preprocessed.pkl"):
@@ -82,26 +101,40 @@ def load_or_create_preprocessed():
         df_articles["text"] = preprocess(df_articles["text"])
         # drop all rows where "text" is only whitespace or empty
         df_articles = df_articles[df_articles["text"].str.strip().astype(bool)]
-        df_articles.to_csv("data/articles_preprocessed.csv", index=False, overwrite=True)
         df_articles.to_pickle("data/articles_preprocessed.pkl")
     return df_articles
 
 def load_or_create_tfidf(df_articles):
+    """Load the TF-IDF data from a pickle file if it exists, else create it.
+
+    Args:
+        df_articles (pd.DataFrame): dataframe with columns ["news_group", "article_number", "cluster", "text"]
+
+    Returns:
+        df_articles_tfidf: dataframe with TF-IDF values
+    """
     print("Loading or creating TF-IDF data...")
     # use tfidf data file if it exists, else create it
     if os.path.exists("data/articles_tfidf.pkl"):
         df_articles_tfidf = pd.read_pickle("data/articles_tfidf.pkl")
     else:
         # creating a new TF-IDF matrix
-        tfidf = TfidfVectorizer(stop_words="english", strip_accents="unicode", min_df=MIN_DF)
+        # tfidf = TfidfVectorizer(stop_words="english", strip_accents="unicode", min_df=MIN_DF)
         tfidf = TfidfVectorizer(max_features=MAX_FEATURES, strip_accents="unicode", min_df=MIN_DF, max_df=MAX_DF)
         tfidf_article_array = tfidf.fit_transform(df_articles["text"])
         df_articles_tfidf = pd.DataFrame(tfidf_article_array.toarray(), index=df_articles.index, columns=tfidf.get_feature_names_out())
-        df_articles_tfidf.to_csv("data/articles_tfidf.csv", index=False, overwrite=True)
         df_articles_tfidf.to_pickle("data/articles_tfidf.pkl")
     return df_articles_tfidf
 
 def load_or_create_pca(df_articles_tfidf):
+    """Load the PCA data from a pickle file if it exists, else create it.
+
+    Args:
+        df_articles_tfidf (pd.DataFrame): dataframe with TF-IDF values
+
+    Returns:
+        df_articles_pca (pd.DataFrame): dataframe with PCA values
+    """
     print("Loading or creating PCA data...")
     # use pca data file if it exists, else create it
     if os.path.exists("data/articles_pca.pkl"):
@@ -122,6 +155,12 @@ def load_or_create_pca(df_articles_tfidf):
     return df_articles_pca
 
 def print_metrics(df_articles, df_articles_labeled):
+    """Print metrics for the clustering.
+
+    Args:
+        df_articles (pd.DataFrame): dataframe with columns ["news_group", "article_number", "cluster", "text"]
+        df_articles_labeled (pd.DataFrame): dataframe with columns ["news_group", "article_number", "cluster", "text"]
+    """
     # print metrics
     print(f"Adjusted Mutual Information: {adjusted_mutual_info_score(df_articles['news_group'], df_articles_labeled['cluster'])}")
     print(f"Adjusted Rand Score: {adjusted_rand_score(df_articles['news_group'], df_articles_labeled['cluster'])}")
@@ -129,9 +168,13 @@ def print_metrics(df_articles, df_articles_labeled):
     print()
 
 def findOptimalEps(n_neighbors, data):
-    '''
-    function to find optimal eps distance when using DBSCAN; based on this article: https://towardsdatascience.com/machine-learning-clustering-dbscan-determine-the-optimal-value-for-epsilon-eps-python-example-3100091cfbc
-    '''
+    """Find the optimal eps distance when using DBSCAN.
+    Reference: https://towardsdatascience.com/machine-learning-clustering-dbscan-determine-the-optimal-value-for-epsilon-eps-python-example-3100091cfbc
+
+    Args:
+        n_neighbors (int): number of neighbors to use
+        data (pd.DataFrame): dataframe with TF-IDF values
+    """
     neigh = NearestNeighbors(n_neighbors=n_neighbors)
     nbrs = neigh.fit(data)
     distances, indices = nbrs.kneighbors(data)
@@ -141,39 +184,76 @@ def findOptimalEps(n_neighbors, data):
     plt.show()
 
 def cluster_using_kmeans(df_articles, df_for_prediction, ncluster):
+    """Cluster the articles using KMeans.
+
+    Args:
+        df_articles (pd.DataFrame): dataframe with columns ["news_group", "article_number", "cluster", "text"]
+        df_for_prediction (pd.DataFrame): dataframe with TF-IDF values
+        ncluster (int): number of clusters to use
+
+    Returns:
+        df_articles_predicted: dataframe with columns ["news_group", "article_number", "cluster", "text"]
+    """
     # using KMeans clustering
     print(f"Clustering using KMeans with {ncluster} clusters")
     kmeans = KMeans(n_clusters=ncluster, n_init='auto')
     articles_predictions = kmeans.fit_predict(df_for_prediction)
     df_articles_predicted = df_articles.copy()
     df_articles_predicted["cluster"] = articles_predictions
-    # TODO: save model
     joblib.dump(kmeans, MODEL_PATH+'kmeans_n' +str(ncluster)+'.joblib')
     return df_articles_predicted
 
 def cluster_using_whc(df_articles, df_for_prediction, ncluster):
+    """Cluster the articles using Ward Hierarchical Clustering.
+
+    Args:
+        df_articles (pd.DataFrame): dataframe with columns ["news_group", "article_number", "cluster", "text"]
+        df_for_prediction (pd.DataFrame): dataframe with TF-IDF values
+        ncluster (int): number of clusters to use
+
+    Returns:
+        df_articles_predicted: dataframe with columns ["news_group", "article_number", "cluster", "text"]
+    """
     # using Ward Hierarchical Clustering
     print(f"Clustering using Ward Hierarchical Clustering with {ncluster} clusters")
     whc = AgglomerativeClustering(n_clusters=ncluster, linkage="ward")
     articles_predictions = whc.fit_predict(df_for_prediction)
     df_articles_predicted = df_articles.copy()
     df_articles_predicted["cluster"] = articles_predictions
-    # TODO: save model
     joblib.dump(whc, MODEL_PATH+'whc_n' +str(ncluster)+'.joblib')
     return df_articles_predicted
 
 def cluster_using_ac(df_articles, df_for_prediction, ncluster):
+    """Cluster the articles using Agglomerative Clustering.
+
+    Args:
+        df_articles (pd.DataFrame): dataframe with columns ["news_group", "article_number", "cluster", "text"]
+        df_for_prediction (pd.DataFrame): dataframe with TF-IDF values
+        ncluster (int): number of clusters to use
+
+    Returns:
+        df_articles_predicted: dataframe with columns ["news_group", "article_number", "cluster", "text"]
+    """    
     # using Agglomerative Clustering
     print(f"Clustering using Agglomerative Clustering with {ncluster} clusters")
     ac = AgglomerativeClustering(n_clusters=ncluster, linkage="average")
     articles_predictions = ac.fit_predict(df_for_prediction)
     df_articles_predicted = df_articles.copy()
     df_articles_predicted["cluster"] = articles_predictions
-    # TODO: save model
     joblib.dump(ac, MODEL_PATH+'ac_n' +str(ncluster)+'.joblib')
     return df_articles_predicted
 
 def cluster_using_dbscan(df_articles, df_for_prediction, ncluster):
+    """Cluster the articles using DBSCAN.
+
+    Args:
+        df_articles (pd.DataFrame): dataframe with columns ["news_group", "article_number", "cluster", "text"]
+        df_for_prediction (pd.DataFrame): dataframe with TF-IDF values
+        ncluster (int): number of clusters to use
+
+    Returns:
+        df_articles_predicted: dataframe with columns ["news_group", "article_number", "cluster", "text"]
+    """    
     # using DBSCAN clustering
     print(f"Clustering using DBSCAN with {ncluster} clusters")
     # findOptimalEps(2, df_for_prediction)
@@ -181,7 +261,6 @@ def cluster_using_dbscan(df_articles, df_for_prediction, ncluster):
     articles_predictions = dbscan.fit_predict(df_for_prediction)
     df_articles_predicted = df_articles.copy()
     df_articles_predicted["cluster"] = articles_predictions
-    # TODO: save model
     joblib.dump(dbscan, MODEL_PATH+'dbscan_n' +str(ncluster)+'.joblib')
     return df_articles_predicted
 
