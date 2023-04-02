@@ -11,7 +11,6 @@ from nltk.tokenize import RegexpTokenizer
 import numpy as np
 import os
 import pandas as pd
-from pandas.testing import assert_frame_equal
 import re
 from sklearn.neighbors import NearestNeighbors
 from sklearn.cluster import (

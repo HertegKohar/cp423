@@ -1,13 +1,9 @@
-```Bash
-python cluster_news.py --kmeans --whc --ac --dbscan --ncluster 10 20 40
-```
-
-**Program Instructions**
+## **Program Instructions**
 
 
 Sample Command Line Use
 ```Bash
-python cluster_news.py [-h] [--kmeans] [--whc] [--ac] [--dbscan] [--ncluster NCLUSTER [NCLUSTER ...]]
+python cluster_news.py [-h] [--kmeans] [--whc] [--ac] [--dbscan] [--ncluster n1 [n2 ...]]
 ```
 For boolean flags, use --flagname to set to True and exclude flag altogether to set to False:
 ```Bash
