@@ -5,6 +5,10 @@ Install Dependencies
 pip install -r requirements.txt
 ```
 
+**Dataset Download**
+Go to https://www.kaggle.com/datasets/ltcmdrdata/plain-text-wikipedia-202011 and download the dataset.
+Name the directory data_wikipedia and place it in the same directory as the program files.
+
 For boolean flags, use --flagname to set to True and exclude flag altogether to set to False:
 ```Bash
 python program.py --flagname    # "flagname" is true
