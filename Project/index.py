@@ -9,6 +9,7 @@ from collections import Counter
 
 TOPICS = ["Astronomy", "Health", "Economy"]
 
+
 def compute_soundex(term):
     """
     Compute the soundex code for a given term
@@ -40,6 +41,7 @@ def compute_soundex(term):
     soundex = soundex[:4].ljust(4, "0")
     return soundex
 
+
 def update_inverted_index(topics):
     if os.path.exists("inverted_index.json") and os.path.exists("mapping.json"):
         print("Loading existing inverted index...")
@@ -69,9 +71,10 @@ def update_inverted_index(topics):
                     count,
                 ) in counter.items():
                     if token not in inverted_index:
-                        inverted_index[token] = []
+                        inverted_index[token] = {"soundex": compute_soundex(token)}
+                        inverted_index[token]["occurences"] = []
 
-                    inverted_index[token].append((mapping[hash_], count))
+                    inverted_index[token]["occurences"].append((mapping[hash_], count))
 
     with open("inverted_index.json", "w", encoding="utf-8") as f:
         json.dump(inverted_index, f)
