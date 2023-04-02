@@ -1,3 +1,4 @@
+__pycache__
 *.txt
 !requirements.txt
 data_wikipedia
@@ -7,3 +8,4 @@ Web-Stanford.txt
 # 20_newsgroups
 articles_*
 *_n*.joblib
+!Project/**/*.txt

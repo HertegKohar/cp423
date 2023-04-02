@@ -14,56 +14,22 @@ from sklearn.tree import DecisionTreeClassifier
 import argparse
 
 MODEL_PATH = "sentiment_model.joblib"
+TFIDF_PATH = "tfidf.joblib"
 SETTINGS_PATH = "settings.json"
 
 
-def concatenate_data(imdb, amazon, yelp):
-    data = []
-    columns = ["sentence", "label"]
-    path = "sentiment labelled sentences"
-    if imdb:
-        data.append(
-            pd.read_csv(
-                os.path.join(path, "imdb_labelled.txt"), sep="\t", names=columns
-            )
-        )
-    if amazon:
-        data.append(
-            pd.read_csv(
-                os.path.join(path, "amazon_cells_labelled.txt"), sep="\t", names=columns
-            )
-        )
-    if yelp:
-        data.append(
-            pd.read_csv(
-                os.path.join(path, "yelp_labelled.txt"), sep="\t", names=columns
-            )
-        )
-    return pd.concat(data)
+def preprocess_test_data(test_sentence, tfidf_vectorizer, dense):
+    """Preprocess the test data
 
+    Args:
+        test_sentence (str): Sentence to predict sentiment
+        tfidf_vectorizer (TfidVectorizer): Vectorizer used to train the model
+        dense (bool): Boolean to indicate whether matrix is dense or not
 
-def preprocess(text_data):
-    tokenizer = RegexpTokenizer(r"\w+")
-    stop_words = set(stopwords.words("english"))
-    text_data["sentence"] = text_data["sentence"].apply(
-        lambda x: tokenizer.tokenize(x.lower())
-    )
-    text_data["sentence"] = text_data["sentence"].apply(
-        lambda x: [word for word in x if word not in stop_words]
-    )
-    text_data["sentence"] = text_data["sentence"].apply(lambda x: " ".join(x))
-    X_train, X_test, y_train, y_test = train_test_split(
-        text_data["sentence"], text_data["label"], test_size=0.2, random_state=0
-    )
-    return X_train, X_test, y_train, y_test
-
-
-def preprocess_test_data(test_sentence, imdb, amazon, yelp, dense):
+    Returns:
+        Matrix: Matrix with the test data
+    """
     test_df = pd.DataFrame({"sentence": [test_sentence]})
-    data = concatenate_data(imdb, amazon, yelp)
-    X_train, _, _, _ = preprocess(data)
-    vectorizer = TfidfVectorizer()
-    vectorizer.fit(X_train)
     stop_words = set(stopwords.words("english"))
     tokenizer = RegexpTokenizer(r"\w+")
     test_df["sentence"] = test_df["sentence"].apply(
@@ -73,17 +39,28 @@ def preprocess_test_data(test_sentence, imdb, amazon, yelp, dense):
         lambda x: [word for word in x if word not in stop_words]
     )
     test_df["sentence"] = test_df["sentence"].apply(lambda x: " ".join(x))
-    test_df_tfid = vectorizer.transform(test_df["sentence"])
+    test_df_tfid = tfidf_vectorizer.transform(test_df["sentence"])
     if dense:
         test_df_tfid = test_df_tfid.toarray()
     return test_df_tfid
 
 
-def predict_sentiment(model, model_name, test_sentence, imdb, amazon, yelp):
+def predict_sentiment(model, model_name, tfidf_vectorizer, test_sentence):
+    """Predict the sentiment of a sentence
+
+    Args:
+        model (sklearn model): Model used to predict the sentiment
+        model_name (str): Name of the model
+        tfidf_vectorizer (Matrix): Matrix with the test data
+        test_sentence (str): Sentence to predict sentiment
+
+    Returns:
+        int: Prediction (1 for positive, 0 for negative)
+    """
     dense = False
     if model_name == "naive":
         dense = True
-    test_df_tfid = preprocess_test_data(test_sentence, imdb, amazon, yelp, dense)
+    test_df_tfid = preprocess_test_data(test_sentence, tfidf_vectorizer, dense)
     prediction = model.predict(test_df_tfid)
     return prediction
 
@@ -97,9 +74,14 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    if os.path.isfile(MODEL_PATH) and os.path.isfile(SETTINGS_PATH):
+    if (
+        os.path.isfile(MODEL_PATH)
+        and os.path.isfile(SETTINGS_PATH)
+        and os.path.isfile(TFIDF_PATH)
+    ):
         print(f"Sentiment prediction for: {args.text}")
         model = joblib.load(MODEL_PATH)
+        tfidf_vectorizer = joblib.load(TFIDF_PATH)
         with open(SETTINGS_PATH, "r") as f:
             settings = json.load(f)
         nltk.download("stopwords", quiet=True)
@@ -107,10 +89,8 @@ if __name__ == "__main__":
         prediction = predict_sentiment(
             model,
             settings["model"],
+            tfidf_vectorizer,
             args.text,
-            settings["imdb"],
-            settings["amazon"],
-            settings["yelp"],
         )
 
         if prediction == 1:
@@ -118,4 +98,6 @@ if __name__ == "__main__":
         else:
             print("Prediction: Negative")
     else:
-        print("Model or settings not found. Please run train_sentiment.py first.")
+        print(
+            "Model, vectorizer or settings not found. Please run train_sentiment.py first."
+        )
