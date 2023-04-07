@@ -1,5 +1,8 @@
 import os
 import nltk
+import warnings
+
+warnings.filterwarnings("ignore")
 
 nltk.download("punkt", quiet=True)
 nltk.download("stopwords", quiet=True)

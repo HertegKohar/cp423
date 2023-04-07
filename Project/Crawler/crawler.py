@@ -14,7 +14,6 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 import hashlib
-import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from collections import defaultdict
