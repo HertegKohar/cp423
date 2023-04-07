@@ -9,6 +9,7 @@ from dataclasses import dataclass, field
 from colorama import Fore, Style
 import pandas as pd
 import json
+import spell_correct
 
 N_DOCUMENTS = 3
 # Make a class to hold document path and similarity score
@@ -110,6 +111,8 @@ def query_documents(query):
     with open("mapping.json", "r") as f:
         mapping = json.load(f)
     reversed_mapping = {v: k for k, v in mapping.items()}
+
+    query_df[0] = spell_correct_query(query_df[0], inverted_index)
 
     documents = get_docs(query_df, inverted_index)
 
