@@ -1,10 +1,10 @@
 """
 Author: Herteg Kohar
 """
-from crawler import crawl_all_topics, crawl_new_link
-from index import update_inverted_index
-from classify import training_pipeline, predict_new_text
-from query import query_documents
+from Crawler.crawler import crawl_all_topics, crawl_new_link
+from Index.index import update_inverted_index
+from Classify.classify import training_pipeline, predict_new_text
+from Query.query import query_documents
 
 OPTIONS = """
 Select an option:
@@ -18,6 +18,8 @@ Select an option:
 """
 
 STORY_PATH = "story.txt"
+with open(STORY_PATH, "r", encoding="utf-8") as f:
+    STORY_TEXT = f.read()
 
 TOPIC_DOCUMENT_LIMIT = 10
 TOPICS = ["Astronomy", "Health", "Economy"]
@@ -49,8 +51,9 @@ if __name__ == "__main__":
             else:
                 predict_new_text(text)
         elif user_input == "6":
-            with open(STORY_PATH, "r") as f:
-                print(f.read())
+            print(STORY_TEXT)
+        else:
+            print("Invalid option!")
         print(OPTIONS)
 
     print("Exiting search engine...")

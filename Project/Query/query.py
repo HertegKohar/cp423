@@ -1,3 +1,6 @@
+"""
+Author: Herteg Kohar
+"""
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from nltk.corpus import stopwords
@@ -79,7 +82,7 @@ def get_snippet(text, query_words):
         s for s in sentences if any(q.lower() in s.lower() for q in query_words)
     ]
     # Join relevant sentences to form snippet
-    snippet = "\n".join(relevant_sentences)
+    snippet = "\n\n".join(relevant_sentences)
     return snippet
 
 
@@ -94,11 +97,12 @@ def display_highlighted_terms(documents, query):
             highlighted_document = highlighted_document.replace(
                 term, f"{Fore.GREEN}{term}{Style.RESET_ALL}"
             )
-        print(f"Document: {document.hash_}, Path: {document.path}")
+        print(f"Document: {document.hash_}, Path: {document.path}\n")
         print(f"{highlighted_document}\n")
 
 
 def query_documents(query):
+    query = query.lower()
     query_df = preprocess_query(query)
 
     with open("inverted_index.json", "r") as f:
