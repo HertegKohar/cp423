@@ -1,6 +1,13 @@
 """
 Author: Herteg Kohar
 """
+from Constants.constants import (
+    N_DOCUMENTS,
+    EXTENSION,
+    DOCUMENTS_PATH,
+    INVERTED_INDEX_PATH,
+    MAPPING_PATH,
+)
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from nltk.corpus import stopwords
@@ -9,8 +16,11 @@ from dataclasses import dataclass, field
 from colorama import Fore, Style
 import pandas as pd
 import json
+import os
 
-N_DOCUMENTS = 3
+# N_DOCUMENTS = 3
+# EXTENSION = ".txt"
+# DOCUMENTS_PATH = "Documents"
 # Make a class to hold document path and similarity score
 @dataclass
 class Document:
@@ -40,14 +50,16 @@ def get_docs(query_df, inverted_index):
 def initialize_documents(docs, reversed_mapping):
     seen = set()
     documents = []
-    extension = ".txt"
     for doc in docs:
         for occurence in doc["occurences"]:
             if occurence[0] not in seen:
                 document = Document()
-                document.path = (
-                    f"{occurence[2]}/" + reversed_mapping[occurence[0]] + extension
+                path = os.path.join(
+                    DOCUMENTS_PATH,
+                    occurence[2],
+                    reversed_mapping[occurence[0]] + EXTENSION,
                 )
+                document.path = path
                 document.hash_ = occurence[0]
                 documents.append(document)
                 seen.add(occurence[0])
@@ -105,9 +117,9 @@ def query_documents(query):
     query = query.lower()
     query_df = preprocess_query(query)
 
-    with open("inverted_index.json", "r") as f:
+    with open(INVERTED_INDEX_PATH, "r") as f:
         inverted_index = json.load(f)
-    with open("mapping.json", "r") as f:
+    with open(MAPPING_PATH, "r") as f:
         mapping = json.load(f)
     reversed_mapping = {v: k for k, v in mapping.items()}
 

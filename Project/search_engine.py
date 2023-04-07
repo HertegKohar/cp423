@@ -5,24 +5,25 @@ from Crawler.crawler import crawl_all_topics, crawl_new_link
 from Index.index import update_inverted_index
 from Classify.classify import training_pipeline, predict_new_text
 from Query.query import query_documents
+from Constants.constants import TOPICS, TOPIC_DOCUMENT_LIMIT, STORY_TEXT, OPTIONS
 
-OPTIONS = """
-Select an option:
-1 - Collect new documents
-2 - Index documents
-3 - Search for query
-4 - Train ML Classifier
-5 - Predict a link
-6 - Your Story!
-7 - Exit
-"""
+# OPTIONS = """
+# Select an option:
+# 1 - Collect new documents
+# 2 - Index documents
+# 3 - Search for query
+# 4 - Train ML Classifier
+# 5 - Predict a link
+# 6 - Your Story!
+# 7 - Exit
+# """
 
-STORY_PATH = "story.txt"
-with open(STORY_PATH, "r", encoding="utf-8") as f:
-    STORY_TEXT = f.read()
+# STORY_PATH = "story.txt"
+# with open(STORY_PATH, "r", encoding="utf-8") as f:
+#     STORY_TEXT = f.read()
 
-TOPIC_DOCUMENT_LIMIT = 10
-TOPICS = ["Astronomy", "Health", "Economy"]
+# TOPIC_DOCUMENT_LIMIT = 10
+# TOPICS = ["Astronomy", "Health", "Economy"]
 
 if __name__ == "__main__":
     print("Welcome to the search engine!")

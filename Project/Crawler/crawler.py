@@ -8,39 +8,42 @@ import hashlib
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-import re
 from collections import defaultdict
 from urllib.parse import urlparse, urljoin
 import justext
 import os
+from Constants.constants import (
+    HEADERS,
+    LOGGER_PATH,
+    SOURCE_PATH,
+    TOPIC_DOCUMENT_LIMIT,
+    COOLDOWN,
+    DOCUMENTS_PATH,
+    TOPICS,
+)
 
 # from requests_html import HTMLSession
 
+# HEADERS = {
+#     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+# }
+# LOGGER_PATH = "crawler.log"
 
-URL_REGEX = url_regex = re.compile(
-    r"^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
-)
+# SOURCE_PATH = "source.txt"
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
-}
-LOGGER_PATH = "crawler.log"
+# TOPIC_DOCUMENT_LIMIT = 5
 
-SOURCE_PATH = "source.txt"
+# COOLDOWN = 429
 
-TOPIC_DOCUMENT_LIMIT = 5
+# DOCUMENTS_PATH = "Documents"
 
-COOLDOWN = 429
-
-TOPICS = ["Astronomy", "Health", "Economy"]
+# TOPICS = ["Astronomy", "Health", "Economy"]
 
 FILES = set()
 
 for topic in TOPICS:
-    for file in os.listdir(topic):
-        FILES.add(f"{topic}/{file}")
-
-nltk.download("stopwords", quiet=True)
+    for file in os.listdir(os.path.join(DOCUMENTS_PATH, topic)):
+        FILES.add(os.path.join(DOCUMENTS_PATH, topic, file))
 
 STOP_WORDS = set(stopwords.words("english"))
 
@@ -54,7 +57,7 @@ def log(message):
 def hash_and_save(topic, url, content):
     hash_object = hashlib.sha256(url.encode())
     hex_dig = hash_object.hexdigest()
-    file_path = f"{topic}/{hex_dig}.txt"
+    file_path = os.path.join(DOCUMENTS_PATH, topic, f"{hex_dig}.txt")
     if file_path in FILES:
         return False
     content = content.lower()
