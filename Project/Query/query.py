@@ -8,6 +8,7 @@ from Constants.constants import (
     INVERTED_INDEX_PATH,
     MAPPING_PATH,
 )
+from Spell_Correct.spell_correct import spell_correct_query
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from nltk.corpus import stopwords
@@ -124,6 +125,7 @@ def query_documents(query):
     reversed_mapping = {v: k for k, v in mapping.items()}
 
     query_df[0] = spell_correct_query(query_df[0], inverted_index)
+    print('\nSpell corrected query to:', query_df[0], end='\n\n')
 
     documents = get_docs(query_df, inverted_index)
 
@@ -131,4 +133,4 @@ def query_documents(query):
 
     documents = compute_similarity(documents, query_df)
 
-    display_highlighted_terms(documents, query)
+    display_highlighted_terms(documents, query_df[0])

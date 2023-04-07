@@ -4,7 +4,6 @@ Author: Kelvin Kellner
 import nltk
 import re
 import string
-nltk.download("punkt")
 
 
 # TODO: make this a separate package
@@ -84,46 +83,40 @@ def get_closest_match(term, matches, inverted_index):
         closest_match (str): Closest match to 'term' in 'matches'
     """
     # 1. get all edit distance 1 words, if tie then...
-    # 1.1. use the term with the highest document frequency, if tie then...
-    # 1.2. use the term with the highest term frequency, if tie then...
-    # 1.3. ask the user to choose
+    # 1.a. use the term with the highest term frequency TODO: confirm this is best (e.g. not user chooses)
     # 2. get all edit distance 2 words, if tie then...
-    # 2.1. use the term with the highest document frequency, if tie then...
-    # 2.2. use the term with the highest term frequency, if tie then...
-    # 2.3. ask the user to choose
+    # 2.a. use the term with the highest term frequency TODO: confirm this is best (e.g. not user chooses)
     # 3. not using edit distance distance after all...
-    # 3.1. use the term with the highest document frequency, if tie then...
-    # 3.1. use the term with the highest term frequency, if tie then...
-    # 3.2. ask the user to choose
+    # 3.a. use the term with the highest term frequency TODO: confirm this is best (e.g. not user chooses)
 
-    doc_freq = {match: len(inverted_index[match]["occurences"]) for match in matches}
-    highest_doc_freq_match = max(doc_freq, key=doc_freq.get)
-    term_freq = {match: sum(inverted_index[match]["occurences"][1]) for match in matches}
+    term_freq = {match: sum(occ[1] for occ in inverted_index[match]["occurences"]) for match in matches}
     highest_term_freq_match = max(term_freq, key=term_freq.get)
 
     e1 = edit_distance_of_1(term)
     e1_matches = e1.intersection(matches)
     if len(e1_matches) > 0:
         if len(e1_matches) == 1:
-            return e1_matches[0]
-        highest_doc_freq_match = max(e1_matches, key=lambda x: doc_freq[x])
-        print(e1_matches, highest_doc_freq_match)
-        exit(0)
+            return e1_matches.pop()
+        highest_term_freq_match = max(e1_matches, key=lambda x: term_freq[x])
+        return highest_term_freq_match
     e2 = edit_distance_of_2(term)
     e2_matches = e2.intersection(matches)
     if len(e2_matches) > 0:
         if len(e2_matches) == 1:
-            return e2_matches[0]
+            return e2_matches.pop()
+        highest_term_freq_match = max(e2_matches, key=lambda x: term_freq[x])
+        return highest_term_freq_match
+    highest_term_freq_match = max(matches, key=lambda x: term_freq[x])
+    return highest_term_freq_match
 
 
 
 
-def spell_correct_query(query_df, inverted_index):
+def spell_correct_query(query, inverted_index):
     # for each term in query_terms if it is in the inverted index then use it,
     # otherwise look for soundex matches and use closest match function to choose
     # if there are no soundex matches then remove the term from query_df TODO: confirm this is appropriate
-    print(query_df)
-    query_terms = query_df[0].split()
+    query_terms = query.split()
     spell_corrected_terms = []
     for i, term in enumerate(query_terms):
         matches = []
@@ -137,10 +130,8 @@ def spell_correct_query(query_df, inverted_index):
             if len(matches) == 1:
                 spell_corrected_terms.append(matches[0])
             elif len(matches) > 1:
-                print(f"Multiple matches found for {term}: {matches}, using first match")
+                # print(f"Multiple matches found for {term}: {matches}, using first match")
                 best_match = get_closest_match(term, matches, inverted_index)
                 spell_corrected_terms.append(best_match)
-            else:
-                print(f"No spelling correction found for {term}")
-    query_df["text"] = " ".join(spell_corrected_terms)
-    return query_df
+    spell_corrected_query = " ".join(spell_corrected_terms)
+    return spell_corrected_query
