@@ -9,7 +9,6 @@ from Constants.constants import (
 )
 
 import os
-import re
 import json
 from nltk.tokenize import RegexpTokenizer
 from collections import Counter
@@ -23,7 +22,7 @@ def update_inverted_index(topics):
             inverted_index = json.load(f)
         with open(MAPPING_PATH, "r", encoding="utf-8") as f:
             mapping = json.load(f)
-        index = len(mapping) - 1
+        index = len(mapping)
     else:
         print("Creating new inverted index...")
         inverted_index = {}
@@ -58,8 +57,8 @@ def update_inverted_index(topics):
         json.dump(inverted_index, f)
     with open(MAPPING_PATH, "w", encoding="utf-8") as f:
         json.dump(mapping, f)
-    print(f"Inverted index saved to inverted_index.json")
-    print(f"Mapping saved to mapping.json")
+    print(f"Inverted index saved to {INVERTED_INDEX_PATH}")
+    print(f"Mapping saved to {MAPPING_PATH}")
 
 
 # Debugging
