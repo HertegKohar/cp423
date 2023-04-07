@@ -1,17 +1,19 @@
 """
 Herteg Kohar
 """
-import os
-import json
-from nltk.tokenize import RegexpTokenizer
-from collections import Counter
-from Soundex.soundex import compute_soundex
 from Constants.constants import (
     TOPICS,
     DOCUMENTS_PATH,
     INVERTED_INDEX_PATH,
     MAPPING_PATH,
 )
+
+import os
+import re
+import json
+from nltk.tokenize import RegexpTokenizer
+from collections import Counter
+from Soundex.soundex import compute_soundex
 
 
 def update_inverted_index(topics):

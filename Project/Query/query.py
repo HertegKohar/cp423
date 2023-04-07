@@ -21,9 +21,6 @@ import pandas as pd
 import json
 import os
 
-# N_DOCUMENTS = 3
-# EXTENSION = ".txt"
-# DOCUMENTS_PATH = "Documents"
 # Make a class to hold document path and similarity score
 @dataclass
 class Document:
