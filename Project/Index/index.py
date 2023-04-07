@@ -1,17 +1,18 @@
 """
 Herteg Kohar
 """
-import os
-import re
-import json
-from nltk.tokenize import RegexpTokenizer
-from collections import Counter
 from Constants.constants import (
     TOPICS,
     DOCUMENTS_PATH,
     INVERTED_INDEX_PATH,
     MAPPING_PATH,
 )
+
+import os
+import re
+import json
+from nltk.tokenize import RegexpTokenizer
+from collections import Counter
 
 
 def compute_soundex(term):

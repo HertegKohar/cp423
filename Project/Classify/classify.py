@@ -1,6 +1,14 @@
 """
 Author: Herteg Kohar
 """
+from Constants.constants import (
+    TOPICS,
+    TOPICS_MAP,
+    MODEL_PATH,
+    TFID_PATH,
+    DOCUMENTS_PATH,
+    MODELS_PATH,
+)
 import pandas as pd
 import matplotlib.pyplot as plt
 from nltk.tokenize import RegexpTokenizer
@@ -16,20 +24,7 @@ from sklearn.metrics import (
     classification_report,
     ConfusionMatrixDisplay,
 )
-from Constants.constants import (
-    TOPICS,
-    TOPICS_MAP,
-    MODEL_PATH,
-    TFID_PATH,
-    DOCUMENTS_PATH,
-    MODELS_PATH,
-)
 
-# TOPICS = ["Astronomy", "Health", "Economy"]
-# TOPICS_MAP = {"Astronomy": 0, "Health": 1, "Economy": 2}
-
-# MODEL_PATH = "classifier.joblib"
-# TFID_PATH = "tfidf.joblib"
 
 
 def create_dataset(topics):

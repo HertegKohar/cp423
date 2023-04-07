@@ -1,6 +1,15 @@
 """
 Author: Herteg Kohar
 """
+from Constants.constants import (
+    HEADERS,
+    LOGGER_PATH,
+    SOURCE_PATH,
+    TOPIC_DOCUMENT_LIMIT,
+    COOLDOWN,
+    DOCUMENTS_PATH,
+    TOPICS,
+)
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
@@ -12,32 +21,9 @@ from collections import defaultdict
 from urllib.parse import urlparse, urljoin
 import justext
 import os
-from Constants.constants import (
-    HEADERS,
-    LOGGER_PATH,
-    SOURCE_PATH,
-    TOPIC_DOCUMENT_LIMIT,
-    COOLDOWN,
-    DOCUMENTS_PATH,
-    TOPICS,
-)
+
 
 # from requests_html import HTMLSession
-
-# HEADERS = {
-#     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
-# }
-# LOGGER_PATH = "crawler.log"
-
-# SOURCE_PATH = "source.txt"
-
-# TOPIC_DOCUMENT_LIMIT = 5
-
-# COOLDOWN = 429
-
-# DOCUMENTS_PATH = "Documents"
-
-# TOPICS = ["Astronomy", "Health", "Economy"]
 
 FILES = set()
 
