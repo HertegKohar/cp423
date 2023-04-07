@@ -4,6 +4,7 @@ Author: Herteg Kohar
 from crawler import crawl_all_topics, crawl_new_link
 from index import update_inverted_index
 from classify import training_pipeline, predict_new_text
+from query import query_documents
 
 OPTIONS = """
 Select an option:
@@ -33,8 +34,9 @@ if __name__ == "__main__":
             print("Indexing documents...")
             update_inverted_index(TOPICS)
         elif user_input == "3":
-            print("Searching for query...")
-            raise NotImplementedError
+            query = input("Enter query: ")
+            print(f"Searching for query '{query}'...")
+            query_documents(query)
         elif user_input == "4":
             print("Training ML Classifier...")
             training_pipeline()

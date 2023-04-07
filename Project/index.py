@@ -74,7 +74,9 @@ def update_inverted_index(topics):
                         inverted_index[token] = {"soundex": compute_soundex(token)}
                         inverted_index[token]["occurences"] = []
 
-                    inverted_index[token]["occurences"].append((mapping[hash_], count))
+                    inverted_index[token]["occurences"].append(
+                        (mapping[hash_], count, topic)
+                    )
 
     with open("inverted_index.json", "w", encoding="utf-8") as f:
         json.dump(inverted_index, f)
