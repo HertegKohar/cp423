@@ -1,42 +1,8 @@
 """
 Author: Kelvin Kellner
 """
-import nltk
-import re
+from Soundex.soundex import compute_soundex
 import string
-
-
-# TODO: make this a separate package
-def compute_soundex(term):
-    """
-    Compute the soundex code for a given term
-    -----
-    Args:
-        term (str): Term to compute soundex code for
-    Returns:
-        soundex (str): Soundex code for 'term'
-    """
-    soundex = ""
-    soundex += term[0].upper()
-    for char in term[1:].lower():
-        if char in "bfpv":
-            soundex += "1"
-        elif char in "cgjkqsxz":
-            soundex += "2"
-        elif char in "dt":
-            soundex += "3"
-        elif char in "l":
-            soundex += "4"
-        elif char in "mn":
-            soundex += "5"
-        elif char in "r":
-            soundex += "6"
-        else:
-            soundex += "0"
-    soundex = re.sub(r"(.)\1+", r"\1", soundex)
-    soundex = re.sub(r"0", "", soundex)
-    soundex = soundex[:4].ljust(4, "0")
-    return soundex
 
 
 def edit_distance_of_1(word):
@@ -68,7 +34,7 @@ def edit_distance_of_2(word):
         ed2 (list[str]): List of all possible edits that are 2 edit distance away from 'word'
     """
     # compute all combinations of 1 more edit on all edits of 1 distance from 'word'
-    return (ed2 for ed1 in edit_distance_of_1(word) for ed2 in edit_distance_of_1(ed1))
+    return set(ed2 for ed1 in edit_distance_of_1(word) for ed2 in edit_distance_of_1(ed1))
 
 
 def get_closest_match(term, matches, inverted_index):

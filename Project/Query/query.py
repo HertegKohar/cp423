@@ -1,5 +1,7 @@
 """
-Author: Herteg Kohar
+Authors:
+    Herteg Kohar
+    Kelvin Kellner
 """
 from Constants.constants import (
     N_DOCUMENTS,
