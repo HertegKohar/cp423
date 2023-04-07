@@ -16,21 +16,29 @@ from sklearn.metrics import (
     classification_report,
     ConfusionMatrixDisplay,
 )
+from Constants.constants import (
+    TOPICS,
+    TOPICS_MAP,
+    MODEL_PATH,
+    TFID_PATH,
+    DOCUMENTS_PATH,
+    MODELS_PATH,
+)
 
-TOPICS = ["Astronomy", "Health", "Economy"]
-TOPICS_MAP = {"Astronomy": 0, "Health": 1, "Economy": 2}
+# TOPICS = ["Astronomy", "Health", "Economy"]
+# TOPICS_MAP = {"Astronomy": 0, "Health": 1, "Economy": 2}
 
-MODEL_PATH = "classifier.joblib"
-TFID_PATH = "tfidf.joblib"
-
-nltk.download("stopwords", quiet=True)
+# MODEL_PATH = "classifier.joblib"
+# TFID_PATH = "tfidf.joblib"
 
 
 def create_dataset(topics):
     data = {"hash": [], "topic": [], "text": []}
     for topic in topics:
-        for file in os.listdir(topic):
-            with open(f"{topic}/{file}", "r", encoding="utf-8") as f:
+        for file in os.listdir(os.path.join(DOCUMENTS_PATH, topic)):
+            with open(
+                os.path.join(DOCUMENTS_PATH, topic, file), "r", encoding="utf-8"
+            ) as f:
                 text = f.read()
                 data["hash"].append(file)
                 data["topic"].append(topic)
@@ -126,7 +134,7 @@ def test_model(model, X_test_tfidf, y_test, plot=False):
 
 def train_and_test_models(X_train_tfidf, y_train, X_test_tfidf, y_test):
     models = [
-        SVC(),
+        SVC(probability=True),
         KNeighborsClassifier(),
         DecisionTreeClassifier(),
         LogisticRegression(),
