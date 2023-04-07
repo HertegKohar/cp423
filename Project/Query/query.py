@@ -124,7 +124,7 @@ def query_documents(query):
     reversed_mapping = {v: k for k, v in mapping.items()}
 
     query_df[0] = spell_correct_query(query_df[0], inverted_index)
-    print('\nSpell corrected query to:', query_df[0], end='\n\n')
+    print("\nSpell corrected query to:", query_df[0], end="\n\n")
 
     documents = get_docs(query_df, inverted_index)
 
