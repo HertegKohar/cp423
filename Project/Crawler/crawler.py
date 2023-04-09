@@ -11,12 +11,13 @@ from Constants.constants import (
     TOPICS,
 )
 import requests
+from random import shuffle
 from bs4 import BeautifulSoup
 from datetime import datetime
 import hashlib
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-from collections import defaultdict
+from collections import defaultdict, deque
 from urllib.parse import urlparse, urljoin
 import justext
 import os
@@ -93,6 +94,43 @@ def crawl_new_link(url):
     return text
 
 
+def source_switch_crawl(topic, urls, limit):
+    print(f"Crawling {topic}...")
+    count = 0
+    base_urls = defaultdict(list)
+    for url in urls:
+        base_urls[urlparse(url).netloc].append(url)
+    visited = set()
+    base_urls_list = list(base_urls.keys())
+    shuffle(base_urls_list)
+    base_urls_deque = deque(base_urls_list)
+    while count != limit:
+        base_url = base_urls_deque[0]
+        base_urls_deque.rotate(-1)
+        if len(base_urls[base_url]) == 0:
+            print(f"No more urls for {base_url}")
+            continue
+        url = base_urls[base_url].pop(0)
+        r = requests.get(url, headers=HEADERS)
+        if r.status_code == COOLDOWN:
+            break
+        soup = BeautifulSoup(r.text, "html.parser")
+        for link in soup.find_all("a"):
+            href = link.get("href")
+            absolute_url = urljoin(url, href)
+            if (
+                href is not None
+                and urlparse(absolute_url).netloc in base_urls
+                and absolute_url not in visited
+            ):
+                base_urls[urlparse(absolute_url).netloc].append(absolute_url)
+        visited.add(url)
+        saved = hash_and_save(topic, url, r.text)
+        if saved:
+            count += 1
+    print(f"Finished crawling {topic}")
+
+
 def crawl(topic, urls, limit):
     print(f"Crawling {topic}...")
     count = 0
@@ -156,6 +194,7 @@ def crawl_all_topics(limit):
     topics_and_urls = create_topics_dict(SOURCE_PATH)
     for topic, urls in topics_and_urls.items():
         crawl(topic, urls, limit)
+        # source_switch_crawl(topic, urls, limit)
 
 
 # Debugging

@@ -5,3 +5,6 @@ Health,https://www.healthline.com/
 Health,https://www.cdc.gov/
 Astronomy,https://www.universetoday.com/
 Economy,https://www.marketwatch.com/
+Health,https://cmajnews.com/
+Astronomy,https://spaceq.ca/
+Economy,https://www.cdhowe.org/

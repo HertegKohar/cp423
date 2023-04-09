@@ -49,6 +49,7 @@ TOPICS_MAP = {"Astronomy": 0, "Health": 1, "Economy": 2}
 MODELS_PATH = "Models"
 MODEL_PATH = os.path.join(MODELS_PATH, "classifier.joblib")
 TFID_PATH = os.path.join(MODELS_PATH, "tfidf.joblib")
+GAUSSIAN_MODEL = "GaussianNB"
 
 # Indexing
 INDEX_DATA_PATH = "Index Data"
