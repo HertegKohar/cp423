@@ -9,6 +9,7 @@ from Constants.constants import (
     DOCUMENTS_PATH,
     INVERTED_INDEX_PATH,
     MAPPING_PATH,
+    HASH_TO_URL_PATH,
 )
 from Spell_Correct.spell_correct import spell_correct_query
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -27,6 +28,7 @@ class Document:
     path: str = field(default=None)
     score: float = field(default=None)
     hash_: str = field(default=None)
+    url: str = field(default=None)
 
 
 def preprocess_query(query):
@@ -47,7 +49,7 @@ def get_docs(query_df, inverted_index):
     return docs
 
 
-def initialize_documents(docs, reversed_mapping):
+def initialize_documents(docs, reversed_mapping, hash_to_url_dict):
     seen = set()
     documents = []
     for doc in docs:
@@ -61,6 +63,7 @@ def initialize_documents(docs, reversed_mapping):
                 )
                 document.path = path
                 document.hash_ = occurence[0]
+                document.url = hash_to_url_dict[reversed_mapping[occurence[0]]]
                 documents.append(document)
                 seen.add(occurence[0])
     return documents
@@ -109,7 +112,9 @@ def display_highlighted_terms(documents, query):
             highlighted_document = highlighted_document.replace(
                 term, f"{Fore.GREEN}{term}{Style.RESET_ALL}"
             )
-        print(f"Document: {document.hash_}, Path: {document.path}\n")
+        print(
+            f"Document: {document.hash_}, Path: {document.path}, URL: {document.url}\n"
+        )
         print(f"{highlighted_document}\n")
 
 
@@ -119,6 +124,8 @@ def query_documents(query):
 
     with open(INVERTED_INDEX_PATH, "r") as f:
         inverted_index = json.load(f)
+    with open(HASH_TO_URL_PATH, "r") as f:
+        hash_to_url_dict = json.load(f)
     with open(MAPPING_PATH, "r") as f:
         mapping = json.load(f)
     reversed_mapping = {v: k for k, v in mapping.items()}
@@ -128,7 +135,7 @@ def query_documents(query):
 
     documents = get_docs(query_df, inverted_index)
 
-    documents = initialize_documents(documents, reversed_mapping)
+    documents = initialize_documents(documents, reversed_mapping, hash_to_url_dict)
 
     documents = compute_similarity(documents, query_df)
 

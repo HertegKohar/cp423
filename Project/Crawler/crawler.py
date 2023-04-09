@@ -9,6 +9,7 @@ from Constants.constants import (
     COOLDOWN,
     DOCUMENTS_PATH,
     TOPICS,
+    HASH_TO_URL_PATH,
 )
 import requests
 from random import shuffle
@@ -21,6 +22,7 @@ from collections import defaultdict, deque
 from urllib.parse import urlparse, urljoin
 import justext
 import os
+import json
 
 
 # from requests_html import HTMLSession
@@ -40,7 +42,7 @@ def log(message):
         f.write("\n")
 
 
-def hash_and_save(topic, url, content):
+def hash_and_save(topic, url, content, hash_to_url_dict):
     hash_object = hashlib.sha256(url.encode())
     hex_dig = hash_object.hexdigest()
     file_path = os.path.join(DOCUMENTS_PATH, topic, f"{hex_dig}.txt")
@@ -62,6 +64,7 @@ def hash_and_save(topic, url, content):
         f.write(text_to_write)
     log(f"{topic} {url} {hex_dig} {datetime.now()}")
     FILES.add(file_path)
+    hash_to_url_dict[hex_dig] = url
     return True
 
 
@@ -97,6 +100,7 @@ def crawl_new_link(url):
 def source_switch_crawl(topic, urls, limit):
     print(f"Crawling {topic}...")
     count = 0
+    hash_to_url_dict = {}
     base_urls = defaultdict(list)
     for url in urls:
         base_urls[urlparse(url).netloc].append(url)
@@ -110,6 +114,7 @@ def source_switch_crawl(topic, urls, limit):
         if len(base_urls[base_url]) == 0:
             print(f"No more urls for {base_url}")
             continue
+        shuffle(base_urls[base_url])
         url = base_urls[base_url].pop(0)
         r = requests.get(url, headers=HEADERS)
         if r.status_code == COOLDOWN:
@@ -125,15 +130,22 @@ def source_switch_crawl(topic, urls, limit):
             ):
                 base_urls[urlparse(absolute_url).netloc].append(absolute_url)
         visited.add(url)
-        saved = hash_and_save(topic, url, r.text)
+        saved = hash_and_save(topic, url, r.text, hash_to_url_dict)
         if saved:
             count += 1
+    with open(HASH_TO_URL_PATH, "r+", encoding="utf-8") as f:
+        original = json.load(f)
+        original.update(hash_to_url_dict)
+        f.seek(0)
+        f.truncate()
+        json.dump(original, f)
     print(f"Finished crawling {topic}")
 
 
 def crawl(topic, urls, limit):
     print(f"Crawling {topic}...")
     count = 0
+    hash_to_url_dict = {}
     queue = urls.copy()
     base_urls = {urlparse(url).netloc for url in urls}
     visited = set()
@@ -156,6 +168,12 @@ def crawl(topic, urls, limit):
         saved = hash_and_save(topic, url, r.text)
         if saved:
             count += 1
+    with open(HASH_TO_URL_PATH, "r+", encoding="utf-8") as f:
+        original = json.load(f)
+        original.update(hash_to_url_dict)
+        f.seek(0)
+        f.truncate()
+        json.dump(original, f)
     print(f"Finished crawling {topic}")
 
 
@@ -193,8 +211,8 @@ def crawl(topic, urls, limit):
 def crawl_all_topics(limit):
     topics_and_urls = create_topics_dict(SOURCE_PATH)
     for topic, urls in topics_and_urls.items():
-        crawl(topic, urls, limit)
-        # source_switch_crawl(topic, urls, limit)
+        # crawl(topic, urls, limit)
+        source_switch_crawl(topic, urls, limit)
 
 
 # Debugging

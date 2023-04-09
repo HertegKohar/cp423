@@ -55,3 +55,4 @@ GAUSSIAN_MODEL = "GaussianNB"
 INDEX_DATA_PATH = "Index Data"
 INVERTED_INDEX_PATH = os.path.join(INDEX_DATA_PATH, "inverted_index.json")
 MAPPING_PATH = os.path.join(INDEX_DATA_PATH, "mapping.json")
+HASH_TO_URL_PATH = os.path.join(INDEX_DATA_PATH, "hash_to_url.json")
