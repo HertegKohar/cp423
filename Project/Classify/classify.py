@@ -7,7 +7,7 @@ from Constants.constants import (
     MODEL_PATH,
     TFID_PATH,
     DOCUMENTS_PATH,
-    MODELS_PATH,
+    GAUSSIAN_MODEL,
 )
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -19,12 +19,23 @@ import os
 import joblib
 from sklearn.model_selection import train_test_split, cross_validate
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.svm import SVC
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import (
+    make_scorer,
+    accuracy_score,
+    precision_score,
+    recall_score,
+    f1_score,
+)
 from sklearn.metrics import (
     confusion_matrix,
     classification_report,
     ConfusionMatrixDisplay,
 )
-
 
 
 def create_dataset(topics):
@@ -58,20 +69,6 @@ def create_tf_idf(X_train, X_test):
     X_test_tfidf = vectorizer.transform(X_test)
     joblib.dump(vectorizer, TFID_PATH)
     return X_train_tfidf, X_test_tfidf
-
-
-from sklearn.svm import SVC
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import (
-    make_scorer,
-    accuracy_score,
-    precision_score,
-    recall_score,
-    f1_score,
-)
 
 
 def cross_validate_and_train(model, X_train_tfidf, y_train):
@@ -133,10 +130,14 @@ def train_and_test_models(X_train_tfidf, y_train, X_test_tfidf, y_test):
         KNeighborsClassifier(),
         DecisionTreeClassifier(),
         LogisticRegression(),
+        GaussianNB(),
     ]
     reports = {}
     for model in models:
         print(f"Model: {model.__class__.__name__}")
+        if model.__class__.__name__ == GAUSSIAN_MODEL:
+            X_train_tfidf = X_train_tfidf.toarray()
+            X_test_tfidf = X_test_tfidf.toarray()
         best_estimator = cross_validate_and_train(model, X_train_tfidf, y_train)
         report = test_model(best_estimator, X_test_tfidf, y_test, plot=False)
         reports[model.__class__.__name__] = [best_estimator, report]
