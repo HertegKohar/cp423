@@ -98,6 +98,7 @@ def crawl_new_link(url):
 
 
 def source_switch_crawl(topic, urls, limit):
+    # TODO: Look at distribution of urls from hash to url dict and randomize based on the frequencies
     print(f"Crawling {topic}...")
     count = 0
     hash_to_url_dict = {}

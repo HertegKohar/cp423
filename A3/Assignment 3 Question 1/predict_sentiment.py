@@ -1,3 +1,6 @@
+"""
+Author: Herteg Kohar
+"""
 import pandas as pd
 from nltk.tokenize import RegexpTokenizer
 import nltk
