@@ -1,3 +1,6 @@
+"""
+Author: Herteg Kohar
+"""
 import pandas as pd
 import matplotlib.pyplot as plt
 from nltk.tokenize import RegexpTokenizer

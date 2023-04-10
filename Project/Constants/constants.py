@@ -3,10 +3,17 @@ import nltk
 import warnings
 
 warnings.filterwarnings("ignore")
+try:
+    nltk.data.find("tokenizers/punkt")
+except LookupError:
+    print("Downloading punkt")
+    nltk.download("punkt", quiet=True)
 
-nltk.download("punkt", quiet=True)
-nltk.download("stopwords", quiet=True)
-
+try:
+    nltk.data.find("corpora/stopwords")
+except LookupError:
+    print("Downloading stopwords")
+    nltk.download("stopwords", quiet=True)
 OPTIONS = """
 Select an option:
 1 - Collect new documents
