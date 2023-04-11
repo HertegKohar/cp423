@@ -6,6 +6,7 @@ from Constants.constants import (
     DOCUMENTS_PATH,
     INVERTED_INDEX_PATH,
     MAPPING_PATH,
+    INDENT,
 )
 
 import os
@@ -54,9 +55,9 @@ def update_inverted_index(topics):
                     )
 
     with open(INVERTED_INDEX_PATH, "w", encoding="utf-8") as f:
-        json.dump(inverted_index, f)
+        json.dump(inverted_index, f, indent=INDENT)
     with open(MAPPING_PATH, "w", encoding="utf-8") as f:
-        json.dump(mapping, f)
+        json.dump(mapping, f, indent=INDENT)
     print(f"Inverted index saved to {INVERTED_INDEX_PATH}")
     print(f"Mapping saved to {MAPPING_PATH}")
 
