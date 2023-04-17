@@ -2,7 +2,10 @@ import os
 import nltk
 import warnings
 
+# Filtering warnings
 warnings.filterwarnings("ignore")
+
+# Download punkt and stopwords if needed
 try:
     nltk.data.find("tokenizers/punkt")
 except LookupError:
