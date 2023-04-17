@@ -39,6 +39,14 @@ from sklearn.metrics import (
 
 
 def create_dataset(topics):
+    """Creates the dataset for the ML classifier.
+
+    Args:
+        topics (list[str]): List of topics to be used for the classifier.
+
+    Returns:
+        pd.DataFrame: Pandas DataFrame containing the dataset.
+    """
     data = {"hash": [], "topic": [], "text": []}
     for topic in topics:
         for file in os.listdir(os.path.join(DOCUMENTS_PATH, topic)):
@@ -53,6 +61,19 @@ def create_dataset(topics):
 
 
 def preprocess(data, topics_map):
+    """Preprocesses the data for the ML classifier.
+
+    Args:
+        data (pd.DataFrame): Pandas DataFrame containing the dataset.
+        topics_map (dict[str:int]): Dictionary mapping topics to integers.
+
+    Returns:
+        Type: pd.DataFrame
+        X_train: Training data.
+        X_test: Testing data.
+        y_train: Training labels.
+        y_test: Testing labels.
+    """
     tokenizer = RegexpTokenizer(r"\w+")
     data["text"] = data["text"].apply(lambda x: tokenizer.tokenize(x.lower()))
     data["text"] = data["text"].apply(lambda x: " ".join(x))
@@ -64,6 +85,15 @@ def preprocess(data, topics_map):
 
 
 def create_tf_idf(X_train, X_test):
+    """Creates the TF-IDF matrix for the ML classifier.
+
+    Args:
+        X_train (pd.DataFrame): Training data.
+        X_test (pd.DataFrame): Testing data.
+
+    Returns:
+        pd.DataFrame: TF-IDF matrix for the training data.
+    """
     vectorizer = TfidfVectorizer()
     X_train_tfidf = vectorizer.fit_transform(X_train)
     X_test_tfidf = vectorizer.transform(X_test)
@@ -72,6 +102,16 @@ def create_tf_idf(X_train, X_test):
 
 
 def cross_validate_and_train(model, X_train_tfidf, y_train):
+    """Cross validates and trains the model.
+
+    Args:
+        model (sklearn model): Model to be trained.
+        X_train_tfidf (pd.DataFrame): TF-IDF matrix for the training data.
+        y_train (pd.DataFrame): Training labels.
+
+    Returns:
+        sklearn fitted model: Best estimator.
+    """
     scoring = {
         "accuracy": make_scorer(accuracy_score),
         "precision": make_scorer(precision_score, average="macro"),
@@ -111,6 +151,17 @@ def cross_validate_and_train(model, X_train_tfidf, y_train):
 
 
 def test_model(model, X_test_tfidf, y_test, plot=False):
+    """Tests the model.
+
+    Args:
+        model (sklearn model): Model to be tested.
+        X_test_tfidf (pd.DataFrame): TF-IDF matrix for the testing data.
+        y_test (pd.DataFrame): Testing labels.
+        plot (bool, optional): Boolean indicator of whether to plot confusion matrix. Defaults to False.
+
+    Returns:
+        dict: Classification report.
+    """
     print("Test Metrics")
     y_pred = model.predict(X_test_tfidf)
     print(classification_report(y_test, y_pred))
@@ -125,6 +176,17 @@ def test_model(model, X_test_tfidf, y_test, plot=False):
 
 
 def train_and_test_models(X_train_tfidf, y_train, X_test_tfidf, y_test):
+    """Trains and tests the models.
+
+    Args:
+        X_train_tfidf (pd.DataFrame): TF-IDF matrix for the training data.
+        y_train (pd.DataFrame): Training labels.
+        X_test_tfidf (pd.DataFrame): TF-IDF matrix for the testing data.
+        y_test (pd.DataFrame): Testing labels.
+
+    Returns:
+        dict: Dictionary of models and their reports.
+    """
     models = [
         SVC(probability=True),
         KNeighborsClassifier(),
@@ -146,7 +208,15 @@ def train_and_test_models(X_train_tfidf, y_train, X_test_tfidf, y_test):
 
 
 def choose_best_model(reports):
-    # Choose best model based on highest accuracy, precision, recall and f1 score
+    """Chooses the best model based on the weighted average of the metrics.
+
+    Args:
+        reports (dict): Dictionary of models and their reports.
+
+    Returns:
+        str: Name of the best model.
+        sklearn model: Best model.
+    """
     best_model = None
     best_score = 0
     model_name = None
@@ -166,6 +236,7 @@ def choose_best_model(reports):
 
 
 def training_pipeline():
+    """Runs the training pipeline. Trains the models and saves the best model."""
     data = create_dataset(TOPICS)
     X_train, X_test, y_train, y_test = preprocess(data, TOPICS_MAP)
     X_train_tfidf, X_test_tfidf = create_tf_idf(X_train, X_test)
@@ -176,6 +247,7 @@ def training_pipeline():
 
 
 def predict_new_text(text):
+    """Predicts the topic of new text."""
     vectorizer = joblib.load(TFID_PATH)
     model = joblib.load(MODEL_PATH)
     test_df = pd.DataFrame({"text": [text]})
