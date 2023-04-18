@@ -48,13 +48,6 @@ def get_closest_match(term, matches, inverted_index):
     Returns:
         closest_match (str): Closest match to 'term' in 'matches'
     """
-    # 1. get all edit distance 1 words, if tie then...
-    # 1.a. use the term with the highest term frequency TODO: confirm this is best (e.g. not user chooses)
-    # 2. get all edit distance 2 words, if tie then...
-    # 2.a. use the term with the highest term frequency TODO: confirm this is best (e.g. not user chooses)
-    # 3. not using edit distance distance after all...
-    # 3.a. use the term with the highest term frequency TODO: confirm this is best (e.g. not user chooses)
-
     term_freq = {match: sum(occ[1] for occ in inverted_index[match]["occurences"]) for match in matches}
     highest_term_freq_match = max(term_freq, key=term_freq.get)
 
@@ -79,9 +72,18 @@ def get_closest_match(term, matches, inverted_index):
 
 
 def spell_correct_query(query, inverted_index):
+    """
+    Spell correct a query using the soundex similarity from the inverted index
+    -----
+    Args:
+        query (str): Query to spell correct
+        inverted_index (dict): Inverted index to use for spell correction
+    Returns:
+        spell_corrected_query (str): Spell corrected query
+    """
     # for each term in query_terms if it is in the inverted index then use it,
     # otherwise look for soundex matches and use closest match function to choose
-    # if there are no soundex matches then remove the term from query_df TODO: confirm this is appropriate
+    # if there are no soundex matches then remove the term from the query
     query_terms = query.split()
     spell_corrected_terms = []
     for i, term in enumerate(query_terms):
