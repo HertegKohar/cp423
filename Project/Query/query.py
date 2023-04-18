@@ -22,6 +22,9 @@ import pandas as pd
 import json
 import os
 
+FORE_COLORS = [Fore.RED, Fore.GREEN, Fore.YELLOW, Fore.BLUE, Fore.MAGENTA, Fore.CYAN]
+
+
 # Make a class to hold document path and similarity score
 @dataclass
 class Document:
@@ -108,9 +111,9 @@ def display_highlighted_terms(documents, query):
         query_words = query.split()
         text = get_snippet(text, query_words)
         highlighted_document = text
-        for term in query_words:
+        for i, term in enumerate(query_words):
             highlighted_document = highlighted_document.replace(
-                term, f"{Fore.GREEN}{term}{Style.RESET_ALL}"
+                term, f"{FORE_COLORS[i % len(FORE_COLORS)]}{term}{Style.RESET_ALL}"
             )
         print(
             f"Document: {document.hash_}, Path: {document.path}, URL: {document.url}\n"
@@ -131,7 +134,8 @@ def query_documents(query):
     reversed_mapping = {v: k for k, v in mapping.items()}
 
     query_df[0] = spell_correct_query(query_df[0], inverted_index)
-    print("\nSpell corrected query to:", query_df[0], end="\n\n")
+    if query_df[0] != query:
+        print("\nSpell corrected query to:", query_df[0], end="\n\n")
 
     documents = get_docs(query_df, inverted_index)
 
