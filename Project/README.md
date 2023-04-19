@@ -45,8 +45,7 @@ Option menu console output:
 
 ### 1- Collect new documents
 
-The program ... for each of the 3 topics...  
-// TODO: Add description
+The program collects new documents for each of our topics in our search engine. We use the source.txt file to begin crawling the links for new pages on the website as our trusted source. This is done for the `TOPIC_DOCUMENT_LIMIT` constant in `constants.py`. The collected documents are then placed in the `data` directory and then in the subdirectory according to the topic. When a document is collected the url of the document is then hashed and the filename is the hash as the filename as a text file. The hash to url map is also saved for each saved document. The way the crawler works it iterates over all the sources to try and have a nicely distributed documents collected from the trusted sources.
 
 Output:
 
@@ -62,8 +61,8 @@ After the task is complete, the program re-enters the option menu event loop.
 
 ### 2- Index documents
 
-The program ...   
-// TODO: Add description
+
+The program iterates over the `data` directory and all of the topic subdirectories and indexes all of the tokens after tokenizing. The program then saves the hash of the document in a list within a dictionary of the token mapping back in the inverted index. Since the actual hashes are very long a short form is used for each hash which can be found in `mapping.json` located in the `Index Data` directory. The program then saves the inverted index (`inverted_index.json`)and the mapping to the `Index Data` directory. After this the program uses the `crawler.log` to create a mapping of the hashes to the url it came from to display when querying. The outline of the occurences field of the inverted index includes all of the occurences of the token within documents as well as the token's frequency in the document. The token's soundex code is also stored in the inverted index as well for each token to be used for spell correction in the querying portion.
 
 Output:
 
@@ -71,6 +70,7 @@ Output:
     Loading existing inverted index...
     Inverted index saved to Index Data\inverted_index.json
     Mapping saved to Index Data\mapping.json
+    Hash to url mapping saved to Index Data\hash_to_url.json
 After the task is complete, the program re-enters the option menu event loop.
 
 
@@ -87,8 +87,7 @@ After the task is complete, the program re-enters the option menu event loop.
 
 ### 4- Train ML classifier
 
-The program ...   
-// TODO: Add description
+The model to be trained is KNN, we found KNN to perform the best when predicting new links and classifying the link to pertain to a certain topic. We used cross-validation and classification metrics to support this decision as well. The program first collects all the documents and puts them into a pandas dataframe with their text contents. The text contents are then preprocessed by tokenizing and removing stopwords. The data is then split into train and test with 80% for training and 20% for testing. After this the TFIDF vectorizer is then fitted to the training data and both the training and test set are vectorized. The vectorizer is then saved for future use in predictions. The model is then trained using a grid search to identify the best parameters, in this case the neighbourhood size. Once this is done the model is then tested on making prediction with the test set and the metrics are returned.
 
 Output:
 
