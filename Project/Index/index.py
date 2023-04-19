@@ -7,6 +7,8 @@ from Constants.constants import (
     INVERTED_INDEX_PATH,
     MAPPING_PATH,
     INDENT,
+    HASH_TO_URL_PATH,
+    LOGGER_PATH,
 )
 
 import os
@@ -14,6 +16,18 @@ import json
 from nltk.tokenize import RegexpTokenizer
 from collections import Counter
 from Soundex.soundex import compute_soundex
+
+
+def remake_hash_to_url():
+    """Remakes the hash to url mapping file from the crawler log file."""
+    hash_to_url = {}
+    with open(LOGGER_PATH, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.split(" ")
+            hash_to_url[line[2]] = line[1]
+
+    with open(HASH_TO_URL_PATH, "w", encoding="utf-8") as f:
+        json.dump(hash_to_url, f, indent=4)
 
 
 def update_inverted_index(topics):
@@ -63,8 +77,10 @@ def update_inverted_index(topics):
         json.dump(inverted_index, f)
     with open(MAPPING_PATH, "w", encoding="utf-8") as f:
         json.dump(mapping, f, indent=INDENT)
+    remake_hash_to_url()
     print(f"Inverted index saved to {INVERTED_INDEX_PATH}")
     print(f"Mapping saved to {MAPPING_PATH}")
+    print(f"Hash to url mapping saved to {HASH_TO_URL_PATH}")
 
 
 # Debugging
