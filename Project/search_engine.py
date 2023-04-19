@@ -13,7 +13,8 @@ if __name__ == "__main__":
     print(f"Topics: {', '.join(TOPICS)}")
     print("Options:")
     print(OPTIONS)
-    while (user_input := input("Enter option: ")) != "7":
+    user_input = input("Enter option: ")
+    while user_input != "7":
         if user_input == "1":
             print("Collecting new documents...")
             crawl_all_topics(TOPIC_DOCUMENT_LIMIT)
@@ -39,5 +40,6 @@ if __name__ == "__main__":
         else:
             print("Invalid option!")
         print(OPTIONS)
+        user_input = input("Enter option: ")
 
     print("Exiting search engine...")
