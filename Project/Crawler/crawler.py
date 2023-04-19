@@ -11,6 +11,7 @@ from Constants.constants import (
     TOPICS,
     HASH_TO_URL_PATH,
 )
+
 import requests
 from random import shuffle
 from bs4 import BeautifulSoup
@@ -23,9 +24,6 @@ from urllib.parse import urlparse, urljoin
 import justext
 import os
 import json
-
-
-# from requests_html import HTMLSession
 
 FILES = set()
 

@@ -10,6 +10,7 @@ from Constants.constants import (
     GAUSSIAN_MODEL,
     PRODUCTION,
 )
+
 import pandas as pd
 import matplotlib.pyplot as plt
 from nltk.tokenize import RegexpTokenizer
@@ -237,6 +238,7 @@ def choose_best_model(reports):
 
 
 def knn_grid_search(X_train_tfidf, y_train):
+    """Performs grid search on KNN model to find the best hyperparameters."""
     param_grid = {"n_neighbors": [3, 5, 7, 9]}
     knn = KNeighborsClassifier()
     grid_search = GridSearchCV(knn, param_grid, cv=5, scoring="accuracy")

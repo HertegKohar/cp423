@@ -1,5 +1,5 @@
 """
-Herteg Kohar
+Author: Herteg Kohar
 """
 from Constants.constants import (
     TOPICS,
