@@ -74,20 +74,11 @@ Then, the program will return to the option selection menu (event loop).
 
 ### 3- Search for a query
 
-The program will prompt the user to enter a search query. The users query will be spell corrected using soundex similarity, and edit distance and term frequency are used for fallback conditions. The program will then perform the term-at-a-time algorithm and use the inverted index to display the top 3 highest ranked documents (ranked using cosine similarity) that contain any of the spell corrected query terms. A link to the web page is given for each document, as well as a snippet of matching text blocks with query terms highlighted in unique colours.  
-//TODO: Herteg confirm you are happy with this description, edit as you please!
+The program will prompt the user to enter a search query. The users query will be spell corrected using soundex similarity, and edit distance and term frequency are used for fallback conditions. The program will then perform the term-at-a-time algorithm and use the inverted index to display the top 3 highest ranked documents (ranked using cosine similarity) that contain any of the spell corrected query terms. A link to the web page is given for each document, as well as a snippet of matching text blocks with query terms highlighted in unique colours.
 
-Example output (without colour):
+Example output (screenshot):
 
-    Enter query: blck hole discuvery
-    Spell corrected to: black hole discovery
-    Searching for query 'black hole discovery'...
-    
-    Document: H49, Path: Documents\Astronomy\e89f459fa2c4ea561870d583d8c6e467a434b3ec42eaf006112818eddaf4199d.txt, URL: https://www.space.com/runaway-supermassive-black-hole-hubble-telescope
-
-    runaway supermassive black hole ejected galaxy , possibly tussle two black holes , trailed 200,000 light-year-long chain infant stars , new study reports .incredible sight , like nothing astronomers spotted , identified hubble space telescope happy accident .supermassive black hole , mass equivalent 20 million suns , traveling fast would cover distance earth moon 14 minutes .illustration runaway black hole ejected host galaxy followed trail infant stars .
-
-    ...
+![screenshot01](https://user-images.githubusercontent.com/19508210/233170942-b92b08e9-a3ce-44ae-84a1-1b19eed3c47e.png)
 
 Then, the program will return to the option selection menu (event loop).
 
@@ -126,10 +117,7 @@ The program will display a brief message containing general information about th
 
 Output:
 
-    Indexing documents...
-    Loading existing inverted index...
-    Inverted index saved to Index Data\inverted_index.json
-    Mapping saved to Index Data\mapping.json
+// TODO: either add story here, or remove the output block from this section  
 Then, the program will return to the option selection menu (event loop).
 
 
