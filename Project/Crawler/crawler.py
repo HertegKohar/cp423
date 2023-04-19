@@ -37,12 +37,28 @@ STOP_WORDS = set(stopwords.words("english"))
 
 
 def log(message):
+    """Logs a message to the log file.
+
+    Args:
+        message (str): Message to be logged.
+    """
     with open(LOGGER_PATH, "a", encoding="utf-8") as f:
         f.write(message)
         f.write("\n")
 
 
 def hash_and_save(topic, url, content, hash_to_url_dict):
+    """Hashes the url and saves the content to a file.
+
+    Args:
+        topic (str): The topic of the url.
+        url (str): The url to be hashed and saved.
+        content (str): The content of the url.
+        hash_to_url_dict (dict): Dictionary that maps hashes to urls.
+
+    Returns:
+        bool: True if the url was hashed and saved, False otherwise.
+    """
     hash_object = hashlib.sha256(url.encode())
     hex_dig = hash_object.hexdigest()
     file_path = os.path.join(DOCUMENTS_PATH, topic, f"{hex_dig}.txt")
@@ -69,6 +85,14 @@ def hash_and_save(topic, url, content, hash_to_url_dict):
 
 
 def create_topics_dict(path):
+    """Creates a dictionary that maps topics to urls.
+
+    Args:
+        path (str): Path to the csv file.
+
+    Returns:
+        dict: Dictionary that maps topics to urls.
+    """
     topics_and_urls = defaultdict(list)
     with open(path, "r", encoding="utf-8") as f:
         # Skip the header
@@ -82,6 +106,14 @@ def create_topics_dict(path):
 
 
 def crawl_new_link(url):
+    """Crawls a new link and saves the content to a file.
+
+    Args:
+        url (str): The url to be crawled.
+
+    Returns:
+        str: The content of the url.
+    """
     r = requests.get(url, headers=HEADERS)
     if r.status_code == COOLDOWN:
         return
@@ -98,6 +130,13 @@ def crawl_new_link(url):
 
 
 def source_switch_crawl(topic, urls, limit):
+    """Crawls urls and saves the content to files.
+
+    Args:
+        topic (str): The topic of the urls.
+        urls (list[str]): The urls to be crawled.
+        limit (int): The number of urls to be crawled.
+    """
     # TODO: Look at distribution of urls from hash to url dict and randomize based on the frequencies
     print(f"Crawling {topic}...")
     count = 0
@@ -144,6 +183,13 @@ def source_switch_crawl(topic, urls, limit):
 
 
 def crawl(topic, urls, limit):
+    """Crawls urls and saves the content to files.
+
+    Args:
+        topic (str): The topic of the urls.
+        urls (list[str]): The urls to be crawled.
+        limit (int): The number of urls to be crawled.
+    """
     print(f"Crawling {topic}...")
     count = 0
     hash_to_url_dict = {}
@@ -210,6 +256,11 @@ def crawl(topic, urls, limit):
 
 
 def crawl_all_topics(limit):
+    """Crawls all topics and saves the content to files.
+
+    Args:
+        limit (int): The number of urls to be crawled.
+    """    
     topics_and_urls = create_topics_dict(SOURCE_PATH)
     for topic, urls in topics_and_urls.items():
         # crawl(topic, urls, limit)
