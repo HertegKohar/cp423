@@ -78,7 +78,7 @@ The program will prompt the user to enter a search query. The users query will b
 
 Example output (screenshot):
 
-![screenshot01](https://user-images.githubusercontent.com/19508210/233170942-b92b08e9-a3ce-44ae-84a1-1b19eed3c47e.png)
+![search for a query - example output](https://user-images.githubusercontent.com/19508210/233170942-b92b08e9-a3ce-44ae-84a1-1b19eed3c47e.png)
 
 Then, the program will return to the option selection menu (event loop).
 
