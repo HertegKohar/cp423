@@ -10,6 +10,7 @@ from Query.query import query_documents
 
 if __name__ == "__main__":
     print("Welcome to the search engine!")
+    print(f"Topics: {', '.join(TOPICS)}")
     print("Options:")
     print(OPTIONS)
     while (user_input := input("Enter option: ")) != "7":
