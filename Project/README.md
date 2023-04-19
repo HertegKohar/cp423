@@ -91,10 +91,20 @@ The model to be trained is KNN, we found KNN to perform the best when predicting
 
 Output:
 
-    Indexing documents...
-    Loading existing inverted index...
-    Inverted index saved to Index Data\inverted_index.json
-    Mapping saved to Index Data\mapping.json
+    Training ML Classifier...
+    Training KNN Model
+    Best parameters: {'n_neighbors': 7}
+    Best Score: 0.9884472049689441
+    Test Metrics
+                precision    recall  f1-score   support
+
+            0       0.97      1.00      0.98        31
+            1       1.00      0.92      0.96        25
+            2       0.97      1.00      0.98        31
+
+        accuracy                           0.98        87
+    macro avg       0.98      0.97      0.98        87
+    weighted avg       0.98      0.98      0.98        87
 After the task is complete, the program re-enters the option menu event loop.
 
 
