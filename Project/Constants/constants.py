@@ -58,6 +58,7 @@ MODELS_PATH = "Models"
 MODEL_PATH = os.path.join(MODELS_PATH, "classifier.joblib")
 TFID_PATH = os.path.join(MODELS_PATH, "tfidf.joblib")
 GAUSSIAN_MODEL = "GaussianNB"
+PRODUCTION = True
 
 # Indexing
 INDEX_DATA_PATH = "Index Data"

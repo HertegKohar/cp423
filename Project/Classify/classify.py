@@ -8,6 +8,7 @@ from Constants.constants import (
     TFID_PATH,
     DOCUMENTS_PATH,
     GAUSSIAN_MODEL,
+    PRODUCTION,
 )
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -17,7 +18,7 @@ from nltk.corpus import stopwords
 import numpy as np
 import os
 import joblib
-from sklearn.model_selection import train_test_split, cross_validate
+from sklearn.model_selection import train_test_split, cross_validate, GridSearchCV
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
@@ -235,15 +236,32 @@ def choose_best_model(reports):
     return model_name, best_model
 
 
+def knn_grid_search(X_train_tfidf, y_train):
+    param_grid = {"n_neighbors": [3, 5, 7, 9]}
+    knn = KNeighborsClassifier()
+    grid_search = GridSearchCV(knn, param_grid, cv=5, scoring="accuracy")
+    grid_search.fit(X_train_tfidf, y_train)
+    print(f"Best parameters: {grid_search.best_params_}")
+    print(f"Best Score: {grid_search.best_score_}")
+    return grid_search.best_estimator_
+
+
 def training_pipeline():
     """Runs the training pipeline. Trains the models and saves the best model."""
     data = create_dataset(TOPICS)
     X_train, X_test, y_train, y_test = preprocess(data, TOPICS_MAP)
     X_train_tfidf, X_test_tfidf = create_tf_idf(X_train, X_test)
-    reports = train_and_test_models(X_train_tfidf, y_train, X_test_tfidf, y_test)
-    model_name, best_model = choose_best_model(reports)
-    print(f"Best Model: {model_name}")
-    joblib.dump(best_model, MODEL_PATH)
+    if PRODUCTION:
+        print("Training KNN Model")
+        model = knn_grid_search(X_train_tfidf, y_train)
+        test_model(model, X_test_tfidf, y_test, plot=False)
+        joblib.dump(model, MODEL_PATH)
+    else:
+        print("Training Models")
+        reports = train_and_test_models(X_train_tfidf, y_train, X_test_tfidf, y_test)
+        model_name, best_model = choose_best_model(reports)
+        print(f"Best Model: {model_name}")
+        joblib.dump(best_model, MODEL_PATH)
 
 
 def predict_new_text(text):
