@@ -35,6 +35,14 @@ class Document:
 
 
 def preprocess_query(query):
+    """Preprocess the query by removing stop words and tokenizing.
+
+    Args:
+        query (str): The query to preprocess.
+
+    Returns:
+        pd.DataFrame: The preprocessed query.
+    """
     df = pd.DataFrame({"text": [query]})
     tokenizer = RegexpTokenizer(r"\w+")
     stop_words = set(stopwords.words("english"))
@@ -45,6 +53,15 @@ def preprocess_query(query):
 
 
 def get_docs(query_df, inverted_index):
+    """Get the documents that contain the query terms from the inverted index.
+
+    Args:
+        query_df (pd.DataFrame): The preprocessed query.
+        inverted_index (dict): The inverted index.
+
+    Returns:
+        list[dict]: The documents that contain the query terms.
+    """
     docs = []
     for word in query_df[0].split():
         if word in inverted_index:
@@ -53,6 +70,16 @@ def get_docs(query_df, inverted_index):
 
 
 def initialize_documents(docs, reversed_mapping, hash_to_url_dict):
+    """Initialize the documents with their path, hash, and url.
+
+    Args:
+        docs (list[dict]): The documents that contain the query terms.
+        reversed_mapping (dict): The reversed mapping of hashes to file names.
+        hash_to_url_dict (dict): The mapping of hashes to urls.
+
+    Returns:
+        list[Document]: The documents with their path, hash, and url.
+    """
     seen = set()
     documents = []
     for doc in docs:
@@ -73,6 +100,15 @@ def initialize_documents(docs, reversed_mapping, hash_to_url_dict):
 
 
 def compute_similarity(documents, query_df):
+    """Compute the similarity between the documents and the query. Using TF-IDF and cosine similarity.
+
+    Args:
+        documents (list[Document]): The documents with their path, hash, and url.
+        query_df (pd.DataFrame): The preprocessed query.
+
+    Returns:
+        list[Document]: The documents sorted by similarity score. Top 3 documents returned.
+    """
     for document in documents:
         with open(document.path, "r", encoding="utf-8") as f:
             text = f.read()
@@ -93,6 +129,15 @@ def compute_similarity(documents, query_df):
 
 
 def get_snippet(text, query_words):
+    """Get a snippet of the document containing the query words.
+
+    Args:
+        text (str): The text of the document.
+        query_words (list[str]): The query words.
+
+    Returns:
+        str: The snippet of the document containing the query words.
+    """
     # Split text into sentences
     sentences = sent_tokenize(text)
     # Find sentences containing query words
@@ -105,6 +150,12 @@ def get_snippet(text, query_words):
 
 
 def display_highlighted_terms(documents, query):
+    """Display the documents with the query terms highlighted.
+
+    Args:
+        documents (list[Document]): The documents with their path, hash, and url.
+        query (str): The query.
+    """
     for document in documents:
         with open(document.path, "r", encoding="utf-8") as f:
             text = f.read()
@@ -122,6 +173,11 @@ def display_highlighted_terms(documents, query):
 
 
 def query_documents(query):
+    """Query the documents.
+
+    Args:
+        query (str): The query.
+    """    
     query = query.lower()
     query_df = preprocess_query(query)
 

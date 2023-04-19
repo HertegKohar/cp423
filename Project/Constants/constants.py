@@ -39,7 +39,7 @@ TOPIC_DOCUMENT_LIMIT = 10
 
 COOLDOWN = 429
 
-DOCUMENTS_PATH = "Documents"
+DOCUMENTS_PATH = "data"
 
 TOPICS = ["Astronomy", "Health", "Economy"]
 
@@ -52,14 +52,13 @@ N_DOCUMENTS = 3
 
 EXTENSION = ".txt"
 
-DOCUMENTS_PATH = "Documents"
-
 # Classifying
 TOPICS_MAP = {"Astronomy": 0, "Health": 1, "Economy": 2}
 MODELS_PATH = "Models"
 MODEL_PATH = os.path.join(MODELS_PATH, "classifier.joblib")
 TFID_PATH = os.path.join(MODELS_PATH, "tfidf.joblib")
 GAUSSIAN_MODEL = "GaussianNB"
+PRODUCTION = True
 
 # Indexing
 INDEX_DATA_PATH = "Index Data"
