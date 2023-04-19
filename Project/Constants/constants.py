@@ -39,7 +39,7 @@ TOPIC_DOCUMENT_LIMIT = 10
 
 COOLDOWN = 429
 
-DOCUMENTS_PATH = "Documents"
+DOCUMENTS_PATH = "data"
 
 TOPICS = ["Astronomy", "Health", "Economy"]
 
@@ -51,8 +51,6 @@ with open(STORY_PATH, "r", encoding="utf-8") as f:
 N_DOCUMENTS = 3
 
 EXTENSION = ".txt"
-
-DOCUMENTS_PATH = "Documents"
 
 # Classifying
 TOPICS_MAP = {"Astronomy": 0, "Health": 1, "Economy": 2}
