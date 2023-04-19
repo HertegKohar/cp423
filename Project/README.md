@@ -102,9 +102,9 @@ Output:
             1       1.00      0.92      0.96        25
             2       0.97      1.00      0.98        31
 
-        accuracy                           0.98        87
+    accuracy                            0.98        87
     macro avg       0.98      0.97      0.98        87
-    weighted avg       0.98      0.98      0.98        87
+    weighted avg    0.98      0.98      0.98        87
 After the task is complete, the program re-enters the option menu event loop.
 
 
