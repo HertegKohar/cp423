@@ -156,7 +156,10 @@ def source_switch_crawl(topic, urls, limit):
             continue
         shuffle(base_urls[base_url])
         url = base_urls[base_url].pop(0)
-        r = requests.get(url, headers=HEADERS)
+        try:
+            r = requests.get(url, headers=HEADERS)
+        except Exception as e:
+            continue
         if r.status_code == COOLDOWN:
             break
         soup = BeautifulSoup(r.text, "html.parser")
@@ -260,7 +263,7 @@ def crawl_all_topics(limit):
 
     Args:
         limit (int): The number of urls to be crawled.
-    """    
+    """
     topics_and_urls = create_topics_dict(SOURCE_PATH)
     for topic, urls in topics_and_urls.items():
         # crawl(topic, urls, limit)
