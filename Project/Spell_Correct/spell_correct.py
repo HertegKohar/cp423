@@ -77,8 +77,6 @@ def get_closest_match(term, matches, inverted_index):
     return highest_term_freq_match
 
 
-
-
 def spell_correct_query(query, inverted_index):
     """
     Spell correct a query using the soundex similarity from the inverted index
