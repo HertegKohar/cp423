@@ -17,6 +17,11 @@ from Soundex.soundex import compute_soundex
 
 
 def update_inverted_index(topics):
+    """Updates the inverted index and mapping.
+
+    Args:
+        topics (list[str]): List of topics to be used for the inverted index. And directory names.
+    """
     if os.path.exists(INVERTED_INDEX_PATH) and os.path.exists(MAPPING_PATH):
         print("Loading existing inverted index...")
         with open(INVERTED_INDEX_PATH, "r", encoding="utf-8") as f:
@@ -55,7 +60,7 @@ def update_inverted_index(topics):
                     )
 
     with open(INVERTED_INDEX_PATH, "w", encoding="utf-8") as f:
-        json.dump(inverted_index, f, indent=INDENT)
+        json.dump(inverted_index, f)
     with open(MAPPING_PATH, "w", encoding="utf-8") as f:
         json.dump(mapping, f, indent=INDENT)
     print(f"Inverted index saved to {INVERTED_INDEX_PATH}")
