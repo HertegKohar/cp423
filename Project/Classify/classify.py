@@ -14,7 +14,6 @@ from Constants.constants import (
 import pandas as pd
 import matplotlib.pyplot as plt
 from nltk.tokenize import RegexpTokenizer
-import nltk
 from nltk.corpus import stopwords
 import numpy as np
 import os
