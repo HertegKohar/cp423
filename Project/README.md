@@ -29,7 +29,9 @@ pip install -r requirements.txt
 ```Bash
 python search_engine.py
 ```
-Output:
+Running the program displays a brief welcome message. After which, the user enters the option menu event loop, as shown below.
+
+Option menu console output:
 
     Select an option:
     1- Collect new documents.
@@ -43,7 +45,7 @@ Output:
 
 ### 1- Collect new documents
 
-The program will... for each of the 3 topics...  
+The program ... for each of the 3 topics...  
 // TODO: Add description
 
 Output:
@@ -55,12 +57,12 @@ Output:
     Finished crawling Economy
     Crawling Health...
     Finished crawling Health
-Then, the program will return to the option selection menu (event loop).
+After the task is complete, the program re-enters the option menu event loop.
 
 
 ### 2- Index documents
 
-The program will...   
+The program ...   
 // TODO: Add description
 
 Output:
@@ -69,32 +71,23 @@ Output:
     Loading existing inverted index...
     Inverted index saved to Index Data\inverted_index.json
     Mapping saved to Index Data\mapping.json
-Then, the program will return to the option selection menu (event loop).
+After the task is complete, the program re-enters the option menu event loop.
 
 
 ### 3- Search for a query
 
-The program will prompt the user to enter a search query. The users query will be spell corrected using soundex similarity, and edit distance and term frequency are used for fallback conditions. The program will then perform the term-at-a-time algorithm and use the inverted index to display the top 3 highest ranked documents (ranked using cosine similarity) that contain any of the spell corrected query terms. A link to the web page is given for each document, as well as a snippet of matching text blocks with query terms highlighted in unique colours.  
-//TODO: Herteg confirm you are happy with this description, edit as you please!
+The program prompts the user to enter a search query. The users query will be spell corrected using soundex similarity, and edit distance and term frequency are used for fallback conditions. The program will then perform the term-at-a-time algorithm and use the inverted index to display the top 3 highest ranked documents (ranked using cosine similarity) that contain any of the spell corrected query terms. A link to the web page is given for each document, as well as a snippet of matching text blocks with query terms highlighted in unique colours.
 
-Example output (without colour):
+Example output (screenshot):
 
-    Enter query: blck hole discuvery
-    Spell corrected to: black hole discovery
-    Searching for query 'black hole discovery'...
-    
-    Document: H49, Path: Documents\Astronomy\e89f459fa2c4ea561870d583d8c6e467a434b3ec42eaf006112818eddaf4199d.txt, URL: https://www.space.com/runaway-supermassive-black-hole-hubble-telescope
+![search for a query - example output](https://user-images.githubusercontent.com/19508210/233170942-b92b08e9-a3ce-44ae-84a1-1b19eed3c47e.png)
 
-    runaway supermassive black hole ejected galaxy , possibly tussle two black holes , trailed 200,000 light-year-long chain infant stars , new study reports .incredible sight , like nothing astronomers spotted , identified hubble space telescope happy accident .supermassive black hole , mass equivalent 20 million suns , traveling fast would cover distance earth moon 14 minutes .illustration runaway black hole ejected host galaxy followed trail infant stars .
-
-    ...
-
-Then, the program will return to the option selection menu (event loop).
+After the task is complete, the program re-enters the option menu event loop.
 
 
 ### 4- Train ML classifier
 
-The program will...   
+The program ...   
 // TODO: Add description
 
 Output:
@@ -103,34 +96,29 @@ Output:
     Loading existing inverted index...
     Inverted index saved to Index Data\inverted_index.json
     Mapping saved to Index Data\mapping.json
-Then, the program will return to the option selection menu (event loop).
+After the task is complete, the program re-enters the option menu event loop.
 
 
 ### 5- Predict a link
 
-The program will...   
-// TODO: Add description
+The program prompts the user to input a link, which is then crawled to extract its textual content. The content is then vectorized using the same vectorizer that was utilized during classifier training. The program then loads the saved classifier and uses it to make a classification prediction, printing each of the three program topics along with a corresponding probability/confidence score indicating the likelihood of the link belonging to that topic.
 
 Output:
 
-    Indexing documents...
-    Loading existing inverted index...
-    Inverted index saved to Index Data\inverted_index.json
-    Mapping saved to Index Data\mapping.json
-Then, the program will return to the option selection menu (event loop).
+    Predicting a link...
+    Enter link: http://sten.astronomycafe.net/2023/03/
+    Predictions
+    Astronomy: 100.0%
+    Health: 0.0%
+    Economy: 0.0%
+After the task is complete, the program re-enters the option menu event loop.
 
 
 ### 6- Your story!
 
-The program will display a brief message containing general information about the search engine and details about how we have applied our knowledge from the course to build the various components of this system.
+The program displays a brief message containing general information about the search engine and details about how we have applied our knowledge from the course to build the various components of this system.
 
-Output:
-
-    Indexing documents...
-    Loading existing inverted index...
-    Inverted index saved to Index Data\inverted_index.json
-    Mapping saved to Index Data\mapping.json
-Then, the program will return to the option selection menu (event loop).
+After the task is complete, the program re-enters the option menu event loop.
 
 
 ### 7- Exit
