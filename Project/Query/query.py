@@ -135,7 +135,8 @@ def query_documents(query):
 
     query_df[0] = spell_correct_query(query_df[0], inverted_index)
     if query_df[0] != query:
-        print("\nSpell corrected query to:", query_df[0], end="\n\n")
+        print("Spell corrected to:", query_df[0])
+    print(f"Searching for query '{query_df[0]}'...\n")
 
     documents = get_docs(query_df, inverted_index)
 
