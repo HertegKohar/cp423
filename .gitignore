@@ -9,3 +9,4 @@ Web-Stanford.txt
 articles_*
 *_n*.joblib
 !Project/**/*.txt
+.vscode
