@@ -183,9 +183,7 @@ Economy https://www.marketwatch.com/market-data a6ecdcea5031d5bc270034595d479477
 Economy https://www.marketwatch.com/market-data/us 7feb57937c6bf8e74dc9da0248b556afcb01a27b488dc40e7a553718a225be65 2023-04-07 13:20:05.538228
 Economy https://www.marketwatch.com/market-data/cryptocurrency 0b8585552fdb48fcc691f6cc60a143f2de6c1f991b3db4ce4efedc5739d86cdc 2023-04-07 13:20:06.306466
 Economy https://www.marketwatch.com/market-data/europe 280e2317cc0138e7f38aea612402545efab1b0361caec21747abe81d392cd9a1 2023-04-07 13:20:06.914592
-Health https://www.cdc.gov/ /health-topics.html 28caa63c24bcd6b4104912df28073c8d105c62f368c2566fbd9adf21c768206e 2023-04-07 13:21:07.180735
 Health https://www.cdc.gov/outbreaks/index.html 9c799be794761e1305da04190c2181bc3edfb442f0a0b03be30a0ef0424b5078 2023-04-07 13:21:07.577258
-Health https://www.cdc.gov/ /datastatistics/index.html 5ccedcfdedf70bece5c87fdb4e4a55da0103b0a2e15dea5e4aafbe49a1ab03c5 2023-04-07 13:21:08.166889
 Health https://www.cdc.gov/publications/index.html 88d911a735dc51215d6c117beba0962986dd951a337299a4ef3697950344f606 2023-04-07 13:21:08.806867
 Health https://www.cdc.gov/about/ f8287baa9540fb140a0d1911e2e9d13b50d15a0a3bba987d0530137ca0c5510e 2023-04-07 13:21:09.378487
 Health https://www.cdc.gov/#print be958ad5ea2e94e0f2f05d788e5c3c263867c0bf507957022564b5989a4df388 2023-04-07 13:21:10.302208
@@ -432,3 +430,18 @@ Health https://www.healthline.com/health/cortisol-tests?utm_source=ReadNext b3eb
 Health https://www.healthline.com/health/mental-health/lemonaid-health-reviews?utm_source=ReadNext dae83994f8c6373c25c55390d557e6787eeb691d7e07b7346bf8dfb6d0a0b46c 2023-04-19 17:56:14.123357
 Health https://cmajnews.com/2022/09/29/monkeypox-second-doses-1096022/ 4ff13eeca769abe528bd26e0af5422e528cb0f998de227013e99bda616f92bcc 2023-04-19 17:56:15.265931
 Health https://www.cdc.gov/about/leadership/leaders/nceh.html#nav-group-cf563 570dd6b780e81857279e46ee8e1054feac9daa1f021431b266008e125ee90a8e 2023-04-19 17:56:16.310966
+Astronomy https://spaceq.ca/us-national-space-policy-as-a-benchmark-for-canada/ eb1c531425b8c2911ed68cace8015530c97020a2d9712edb1eb08303d921833b 2023-04-20 14:19:43.329834
+Astronomy https://www.space.com/hybrid-solar-eclipse-from-space-satellite-video c402c5c5779f3ef03aa6d1b442f4af6e58cd04df43493ea45b1f13e5ff03c068 2023-04-20 14:19:43.542869
+Astronomy https://www.space.com/advertise-with-us.html de3da53966068646718943463a7741e1c4b26e73fe888609893058a8c27dfbd7 2023-04-20 14:19:44.747327
+Astronomy https://www.universetoday.com/160958/esas-juice-is-on-its-way-to-visit-jupiters-moons/ 137fa312a32cd2dcd7efe910f6b242c989b4e991b00dfda304c98d5512a928f9 2023-04-20 14:19:45.364305
+Astronomy https://www.universetoday.com/134996/black-hole-imaged-first-time-event-horizon-telescope/ 65c8a846bf5e003c5b3bfce486ec22275b67af9d9b36849977adba6f22edb1a6 2023-04-20 14:19:47.277886
+Economy https://www.cdhowe.org/graphic-intelligence/are-interest-rates-now-high 9b6fc7391791e5722ace87b458c1eebbd27b325a5d7d49a413995924b3f385f2 2023-04-20 14:19:49.992563
+Economy https://ca.finance.yahoo.com/video/tesla-stock-egregiously-overvalued-analyst-165501752.html 348b60bc7e53fc4e9c07068d0cf3d35aa5c360898a3306f84593da501fe05574 2023-04-20 14:19:51.235706
+Economy https://www.marketwatch.com/column/cannabis-watch 60b38aef96215eb3f1ee1d7a96660ca6cdb7bc5259c54cea028772391feccda7 2023-04-20 14:19:51.974649
+Economy https://ca.finance.yahoo.com/news/short-positions-canadas-td-bank-172455269.html 4bdb03577093d1f630f293163ca1d62881988232bd08bcf9fb5a6a1000302e5a 2023-04-20 14:19:53.198437
+Economy https://www.cdhowe.org/about-us 4e9799826de0e2c1f6a01851dfab0e318697ee26b3a58e99bba1fda5e2bc0374 2023-04-20 14:19:54.372440
+Health https://cmajnews.com/2023/02/16/health-transfer-update-1096041/ 9a3a2fcdfad3bd7827f49248c6d11073de9b0e94e7d4a5b6d2a0ff4b5521e142 2023-04-20 14:19:56.235832
+Health https://www.cdc.gov/training/index.html 859c7959f2b5dd16a4cb9b852768d746b815e295e247838b3fc2ef1c7131d893 2023-04-20 14:19:57.058089
+Health https://www.cdc.gov/training/whats-new.html bdb3007bbcc66e2671af858c57f67c1c4c38f69cd4156f9637795dcffc9458b5 2023-04-20 14:19:58.787702
+Health https://www.cdc.gov/training/development/standards/index.html#anchor_checklist b0c1a2b29e8ebfc9d41efff0438ccbe600c83307dbd0da15bcf08fd473f38d0a 2023-04-20 14:20:00.665909
+Health https://www.healthline.com/nutrition/9-best-reusable-food-storage-bags a264feef17df9132f8158e9ea8dd95cfac96004bd1ed621c128519cc509b67e3 2023-04-20 14:20:01.227791
