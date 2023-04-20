@@ -1,7 +1,7 @@
 # **CP423 Final Project**
 ### **Search engine program implemented in Python.**
 
-**Overview:** This program is a basic search engine implemented in Python. It includes different fundamental components we talked in class for building Indexing and Query Processing pipelines. The program starts from the command line using `python search_engine.py`. The user is prompted with the following message, and they can type the appropriate number in the console and press enter to select the option they want. The program will then prompt the user for the appropriate input and will perform the selected task. The program will continue to prompt the user for input until they select the option to exit the program.
+**Overview:** This program is a basic search engine implemented in Python. It includes different fundamental components we talked about in class for building Indexing and Query Processing pipelines. The program starts from the command line using `python search_engine.py`. The user is prompted with the following message, and they can type the appropriate number in the console and press enter to select the option they want. The program will then prompt the user for the appropriate input and will perform the selected task. The program will continue to prompt the user for input until they select the option to exit the program.
 
     Select an option:
     1- Collect new documents.
