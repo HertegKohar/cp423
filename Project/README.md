@@ -49,6 +49,7 @@ The program collects new documents for each of our topics in our search engine. 
 
 Output:
 
+    Enter option: 1
     Collecting new documents...
     Crawling Astronomy...
     Finished crawling Astronomy
@@ -66,6 +67,7 @@ The program iterates over the `data` directory and all of the topic subdirectori
 
 Output:
 
+    Enter option: 2
     Indexing documents...
     Loading existing inverted index...
     Inverted index saved to Index Data\inverted_index.json
@@ -91,6 +93,7 @@ We have chosen the KNN model for training as we found it to be the most effectiv
 
 Output:
 
+    Enter option: 4
     Training ML Classifier...
     Training KNN Model
     Best parameters: {'n_neighbors': 7}
@@ -114,6 +117,7 @@ The program prompts the user to input a link, which is then crawled to extract i
 
 Output:
 
+    Enter option: 5
     Predicting a link...
     Enter link: http://sten.astronomycafe.net/2023/03/
     Predictions
@@ -127,7 +131,7 @@ After the task is complete, the program re-enters the option menu event loop.
 
 The program displays a brief message containing general information about the search engine and details about how we have applied our knowledge from the course to build the various components of this system.
 
-<details>
+<details open>
   <summary style="padding-bottom: 0.5em;">Read our story</summary>
 
     This search engine program is designed to provide users with the basic functionality for collecting, indexing, classifying, and searching for documents while leveraging our knowledge of search engine architecture and information retrieval gained from this course. We applied course concepts including web and document crawling, text processing, indexing, query processing, classification and retrieval models to develop its various components.
@@ -151,6 +155,7 @@ The option menu event loop will conclude, exiting the progam.
 
 Output:
 
+    Enter option: 7
     Exiting search engine...
 
 
