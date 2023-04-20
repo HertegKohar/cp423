@@ -62,8 +62,7 @@ After the task is complete, the program re-enters the option menu event loop.
 
 ### 2- Index documents
 
-
-The program iterates over the `data` directory and all of the topic subdirectories, and after tokenizing, indexes all of the tokens. The program saves the hash of the document in a list within a dictionary, which maps back  to the tokens in the inverted index. Since the actual hashes are very long a short form is used for each hash which can be found in `mapping.json` located in the `Index Data` directory. The program then saves the inverted index (`inverted_index.json`) and the mapping to the `Index Data` directory. After this, the program uses `crawler.log` to create a mapping of the hashes to the corresponding URLs (to be saved in `hash_to_url.json`), which are displayed when querying. The outline of the occurrences field in the inverted index includes all occurrences of the token within documents, as well as the frequency of the token in the document. The soundex code for each token is also stored in the inverted index, which can be used for spell correction during the querying process.
+The program iterates over the `data` directory and all of the topic subdirectories, and after tokenizing, indexes all of the tokens. Along with each token, a list of occurrences is stored, which includes the document hash, the frequency of the token in the document, and the topic of the document. Since the actual hashes are very long a short form is used for each hash which can be found in `mapping.json` located in the `Index Data` directory. The program then saves the inverted index (`inverted_index.json`) and the mapping to the `Index Data` directory. After this, the program uses `crawler.log` to create a mapping of the hashes to the corresponding URLs (to be saved in `hash_to_url.json`), which are displayed when querying. The outline of the occurrences field in the inverted index includes all occurrences of the token within documents, as well as the frequency of the token in the document. The soundex code for each token is also stored in the inverted index, which can be used for spell correction during the querying process.
 
 Output:
 
@@ -131,7 +130,7 @@ After the task is complete, the program re-enters the option menu event loop.
 
 The program displays a brief message containing general information about the search engine and details about how we have applied our knowledge from the course to build the various components of this system.
 
-<details open>
+<details>
   <summary style="padding-bottom: 0.5em;">Read our story</summary>
 
     This search engine program is designed to provide users with the basic functionality for collecting, indexing, classifying, and searching for documents while leveraging our knowledge of search engine architecture and information retrieval gained from this course. We applied course concepts including web and document crawling, text processing, indexing, query processing, classification and retrieval models to develop its various components.
