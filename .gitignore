@@ -10,3 +10,4 @@ articles_*
 *_n*.joblib
 !Project/**/*.txt
 .vscode
+testing
