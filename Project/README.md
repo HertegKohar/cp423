@@ -152,3 +152,17 @@ The option menu event loop will conclude, exiting the progam.
 Output:
 
     Exiting search engine...
+
+
+---
+
+## Contributors
+
+- [Herteg Kohar](https://github.com/koha5160)
+- [Kelvin Kellner](https://github.com/kelvinkellner)
+
+
+---
+
+## That concludes our project!
+Thank you for taking the time to read our project report. We hope you enjoyed it!
