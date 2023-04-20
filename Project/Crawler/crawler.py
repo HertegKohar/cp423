@@ -9,7 +9,6 @@ from Constants.constants import (
     COOLDOWN,
     DOCUMENTS_PATH,
     TOPICS,
-    HASH_TO_URL_PATH,
 )
 
 import requests
@@ -45,14 +44,13 @@ def log(message):
         f.write("\n")
 
 
-def hash_and_save(topic, url, content, hash_to_url_dict):
+def hash_and_save(topic, url, content):
     """Hashes the url and saves the content to a file.
 
     Args:
         topic (str): The topic of the url.
         url (str): The url to be hashed and saved.
         content (str): The content of the url.
-        hash_to_url_dict (dict): Dictionary that maps hashes to urls.
 
     Returns:
         bool: True if the url was hashed and saved, False otherwise.
@@ -78,7 +76,6 @@ def hash_and_save(topic, url, content, hash_to_url_dict):
         f.write(text_to_write)
     log(f"{topic} {url} {hex_dig} {datetime.now()}")
     FILES.add(file_path)
-    hash_to_url_dict[hex_dig] = url
     return True
 
 
@@ -112,7 +109,10 @@ def crawl_new_link(url):
     Returns:
         str: The content of the url.
     """
-    r = requests.get(url, headers=HEADERS)
+    try:
+        r = requests.get(url, headers=HEADERS)
+    except Exception as e:
+        return
     if r.status_code == COOLDOWN:
         return
     text = ""
@@ -135,12 +135,11 @@ def source_switch_crawl(topic, urls, limit):
         urls (list[str]): The urls to be crawled.
         limit (int): The number of urls to be crawled.
     """
-    # TODO: Look at distribution of urls from hash to url dict and randomize based on the frequencies
     print(f"Crawling {topic}...")
     count = 0
-    hash_to_url_dict = {}
     base_urls = defaultdict(list)
     for url in urls:
+        url = url.strip()
         base_urls[urlparse(url).netloc].append(url)
     visited = set()
     base_urls_list = list(base_urls.keys())
@@ -163,7 +162,9 @@ def source_switch_crawl(topic, urls, limit):
         soup = BeautifulSoup(r.text, "html.parser")
         for link in soup.find_all("a"):
             href = link.get("href")
+            href = href.strip() if href is not None else None
             absolute_url = urljoin(url, href)
+            absolute_url = absolute_url.strip() if absolute_url is not None else None
             if (
                 href is not None
                 and urlparse(absolute_url).netloc in base_urls
@@ -171,58 +172,45 @@ def source_switch_crawl(topic, urls, limit):
             ):
                 base_urls[urlparse(absolute_url).netloc].append(absolute_url)
         visited.add(url)
-        saved = hash_and_save(topic, url, r.text, hash_to_url_dict)
-        if saved:
-            count += 1
-    with open(HASH_TO_URL_PATH, "r+", encoding="utf-8") as f:
-        original = json.load(f)
-        original.update(hash_to_url_dict)
-        f.seek(0)
-        f.truncate()
-        json.dump(original, f)
-    print(f"Finished crawling {topic}")
-
-
-def crawl(topic, urls, limit):
-    """Crawls urls and saves the content to files.
-
-    Args:
-        topic (str): The topic of the urls.
-        urls (list[str]): The urls to be crawled.
-        limit (int): The number of urls to be crawled.
-    """
-    print(f"Crawling {topic}...")
-    count = 0
-    hash_to_url_dict = {}
-    queue = urls.copy()
-    base_urls = {urlparse(url).netloc for url in urls}
-    visited = set()
-    while count != limit and len(queue) != 0:
-        url = queue.pop(0)
-        r = requests.get(url, headers=HEADERS)
-        if r.status_code == COOLDOWN:
-            break
-        soup = BeautifulSoup(r.text, "html.parser")
-        for link in soup.find_all("a"):
-            href = link.get("href")
-            absolute_url = urljoin(url, href)
-            if (
-                href is not None
-                and urlparse(absolute_url).netloc in base_urls
-                and absolute_url not in visited
-            ):
-                queue.append(absolute_url)
-        visited.add(url)
         saved = hash_and_save(topic, url, r.text)
         if saved:
             count += 1
-    with open(HASH_TO_URL_PATH, "r+", encoding="utf-8") as f:
-        original = json.load(f)
-        original.update(hash_to_url_dict)
-        f.seek(0)
-        f.truncate()
-        json.dump(original, f)
     print(f"Finished crawling {topic}")
+
+
+# def crawl(topic, urls, limit):
+#     """Crawls urls and saves the content to files.
+
+#     Args:
+#         topic (str): The topic of the urls.
+#         urls (list[str]): The urls to be crawled.
+#         limit (int): The number of urls to be crawled.
+#     """
+#     print(f"Crawling {topic}...")
+#     count = 0
+#     queue = urls.copy()
+#     base_urls = {urlparse(url).netloc for url in urls}
+#     visited = set()
+#     while count != limit and len(queue) != 0:
+#         url = queue.pop(0)
+#         r = requests.get(url, headers=HEADERS)
+#         if r.status_code == COOLDOWN:
+#             break
+#         soup = BeautifulSoup(r.text, "html.parser")
+#         for link in soup.find_all("a"):
+#             href = link.get("href")
+#             absolute_url = urljoin(url, href)
+#             if (
+#                 href is not None
+#                 and urlparse(absolute_url).netloc in base_urls
+#                 and absolute_url not in visited
+#             ):
+#                 queue.append(absolute_url)
+#         visited.add(url)
+#         saved = hash_and_save(topic, url, r.text)
+#         if saved:
+#             count += 1
+#     print(f"Finished crawling {topic}")
 
 
 # To try and get to pages that require javascript to load

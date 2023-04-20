@@ -183,9 +183,7 @@ Economy https://www.marketwatch.com/market-data a6ecdcea5031d5bc270034595d479477
 Economy https://www.marketwatch.com/market-data/us 7feb57937c6bf8e74dc9da0248b556afcb01a27b488dc40e7a553718a225be65 2023-04-07 13:20:05.538228
 Economy https://www.marketwatch.com/market-data/cryptocurrency 0b8585552fdb48fcc691f6cc60a143f2de6c1f991b3db4ce4efedc5739d86cdc 2023-04-07 13:20:06.306466
 Economy https://www.marketwatch.com/market-data/europe 280e2317cc0138e7f38aea612402545efab1b0361caec21747abe81d392cd9a1 2023-04-07 13:20:06.914592
-Health https://www.cdc.gov/ /health-topics.html 28caa63c24bcd6b4104912df28073c8d105c62f368c2566fbd9adf21c768206e 2023-04-07 13:21:07.180735
 Health https://www.cdc.gov/outbreaks/index.html 9c799be794761e1305da04190c2181bc3edfb442f0a0b03be30a0ef0424b5078 2023-04-07 13:21:07.577258
-Health https://www.cdc.gov/ /datastatistics/index.html 5ccedcfdedf70bece5c87fdb4e4a55da0103b0a2e15dea5e4aafbe49a1ab03c5 2023-04-07 13:21:08.166889
 Health https://www.cdc.gov/publications/index.html 88d911a735dc51215d6c117beba0962986dd951a337299a4ef3697950344f606 2023-04-07 13:21:08.806867
 Health https://www.cdc.gov/about/ f8287baa9540fb140a0d1911e2e9d13b50d15a0a3bba987d0530137ca0c5510e 2023-04-07 13:21:09.378487
 Health https://www.cdc.gov/#print be958ad5ea2e94e0f2f05d788e5c3c263867c0bf507957022564b5989a4df388 2023-04-07 13:21:10.302208
@@ -432,3 +430,33 @@ Health https://www.healthline.com/health/cortisol-tests?utm_source=ReadNext b3eb
 Health https://www.healthline.com/health/mental-health/lemonaid-health-reviews?utm_source=ReadNext dae83994f8c6373c25c55390d557e6787eeb691d7e07b7346bf8dfb6d0a0b46c 2023-04-19 17:56:14.123357
 Health https://cmajnews.com/2022/09/29/monkeypox-second-doses-1096022/ 4ff13eeca769abe528bd26e0af5422e528cb0f998de227013e99bda616f92bcc 2023-04-19 17:56:15.265931
 Health https://www.cdc.gov/about/leadership/leaders/nceh.html#nav-group-cf563 570dd6b780e81857279e46ee8e1054feac9daa1f021431b266008e125ee90a8e 2023-04-19 17:56:16.310966
+Astronomy https://spaceq.ca/us-national-space-policy-as-a-benchmark-for-canada/ eb1c531425b8c2911ed68cace8015530c97020a2d9712edb1eb08303d921833b 2023-04-20 14:19:43.329834
+Astronomy https://www.space.com/hybrid-solar-eclipse-from-space-satellite-video c402c5c5779f3ef03aa6d1b442f4af6e58cd04df43493ea45b1f13e5ff03c068 2023-04-20 14:19:43.542869
+Astronomy https://www.space.com/advertise-with-us.html de3da53966068646718943463a7741e1c4b26e73fe888609893058a8c27dfbd7 2023-04-20 14:19:44.747327
+Astronomy https://www.universetoday.com/160958/esas-juice-is-on-its-way-to-visit-jupiters-moons/ 137fa312a32cd2dcd7efe910f6b242c989b4e991b00dfda304c98d5512a928f9 2023-04-20 14:19:45.364305
+Astronomy https://www.universetoday.com/134996/black-hole-imaged-first-time-event-horizon-telescope/ 65c8a846bf5e003c5b3bfce486ec22275b67af9d9b36849977adba6f22edb1a6 2023-04-20 14:19:47.277886
+Economy https://www.cdhowe.org/graphic-intelligence/are-interest-rates-now-high 9b6fc7391791e5722ace87b458c1eebbd27b325a5d7d49a413995924b3f385f2 2023-04-20 14:19:49.992563
+Economy https://ca.finance.yahoo.com/video/tesla-stock-egregiously-overvalued-analyst-165501752.html 348b60bc7e53fc4e9c07068d0cf3d35aa5c360898a3306f84593da501fe05574 2023-04-20 14:19:51.235706
+Economy https://www.marketwatch.com/column/cannabis-watch 60b38aef96215eb3f1ee1d7a96660ca6cdb7bc5259c54cea028772391feccda7 2023-04-20 14:19:51.974649
+Economy https://ca.finance.yahoo.com/news/short-positions-canadas-td-bank-172455269.html 4bdb03577093d1f630f293163ca1d62881988232bd08bcf9fb5a6a1000302e5a 2023-04-20 14:19:53.198437
+Economy https://www.cdhowe.org/about-us 4e9799826de0e2c1f6a01851dfab0e318697ee26b3a58e99bba1fda5e2bc0374 2023-04-20 14:19:54.372440
+Health https://cmajnews.com/2023/02/16/health-transfer-update-1096041/ 9a3a2fcdfad3bd7827f49248c6d11073de9b0e94e7d4a5b6d2a0ff4b5521e142 2023-04-20 14:19:56.235832
+Health https://www.cdc.gov/training/index.html 859c7959f2b5dd16a4cb9b852768d746b815e295e247838b3fc2ef1c7131d893 2023-04-20 14:19:57.058089
+Health https://www.cdc.gov/training/whats-new.html bdb3007bbcc66e2671af858c57f67c1c4c38f69cd4156f9637795dcffc9458b5 2023-04-20 14:19:58.787702
+Health https://www.cdc.gov/training/development/standards/index.html#anchor_checklist b0c1a2b29e8ebfc9d41efff0438ccbe600c83307dbd0da15bcf08fd473f38d0a 2023-04-20 14:20:00.665909
+Health https://www.healthline.com/nutrition/9-best-reusable-food-storage-bags a264feef17df9132f8158e9ea8dd95cfac96004bd1ed621c128519cc509b67e3 2023-04-20 14:20:01.227791
+Astronomy https://www.universetoday.com/161009/the-perseverance-rover-has-lost-its-pet-rock/#more-161009 e8533038acdacacddd6267176c5b1d177b42b0d9d16ec31f6487d3830838017f 2023-04-20 14:56:37.387431
+Astronomy https://spaceq.ca/category/policy/ b7ec2b73e3ed47e23f6320748073be95d459ba4908abc3954cf459e5ac1614a6 2023-04-20 14:56:38.830529
+Astronomy https://www.universetoday.com/160966/the-first-light-in-the-universe-helps-build-a-dark-matter-map/ 320f6b97825ac69c516c10da93b877adbd2c529dacdf1f7d2d476baaf2635907 2023-04-20 14:56:39.652227
+Astronomy https://spaceq.ca/category/policy/page/2/ 0e987337a643362a7464db646544042db73b641d8f15054061a3db36ad09bc06 2023-04-20 14:56:40.611590
+Astronomy https://www.universetoday.com/135288/what-is-the-cosmic-microwave-background/ 57257b1a82b4f19107106e57bc99bbffe5d554e3beebc12a0eb8b486e7be64ff 2023-04-20 14:56:41.923825
+Economy https://ca.finance.yahoo.com/news/no-vacancy-average-greater-toronto-rent-tops-3000-a-month-says-report-151220838.html 8ce9dbad6a04e70dd58af2efd8cc80491d486addbf2781bf24f324d8c56464fd 2023-04-20 14:56:44.960253
+Economy https://www.marketwatch.com/column/taxwatch 158eb81f5836e302597312413c8aaa52c0cf810fcfb1d8a562e01837021779ca 2023-04-20 14:56:46.292578
+Economy https://www.cdhowe.org/intelligence-memos/barry-gros-scorecard-grading-ontarios-proposed-framework-target-benefits 8ba16216c618a161dba4d82dba6f67bc950d1e85f113e06a9c46943334846d41 2023-04-20 14:56:47.973113
+Economy https://www.marketwatch.com/story/what-is-the-standard-deduction-for-2022-and-should-you-take-it-777ff373?mod=taxwatch c2d8c0661579705e5f05a6d1710edef7869fef44204811cce1518f53af8b5ef2 2023-04-20 14:56:48.418708
+Economy https://www.marketwatch.com/premium-newsletters/retirement-weekly-archive 2f3a893506eeeb6dff5f20ae0bbd0649a7d0d0dccc597aaab5a9ec3507e690a6 2023-04-20 14:56:50.950799
+Health https://www.cdc.gov/cdctv/ dd53b74157d0ad956a3d3a08e223090849e6693594d6b72ecee666154a1daf85 2023-04-20 14:56:55.531020
+Health https://www.cdc.gov/other/language-assistance.html#Polish 75e267f6c7a00fd132aeb57416de68540a14d9ee002d13003e6ae3b96addc9a9 2023-04-20 14:56:57.231026
+Health https://www.healthline.com/authors/victoria-stokes de3e0b746a17b873f36dfeaa2e145d00c7013092636539c857a0a3502f874a83 2023-04-20 14:56:57.734718
+Health https://cmajnews.com/2022/09/23/covid-eighth-wave-1096021/ f203cc9ae0cba59494217a0c945bfd300483fb0fc1f5d10ffe2587e6739af861 2023-04-20 14:56:58.352962
+Health https://www.cdc.gov/fungal/features/fungal-infections.html 1f45048e5ce61fbad10c5364b23b571a9cc610b91c9b73cb92516667922cbc6a 2023-04-20 14:56:58.725634
