@@ -140,12 +140,15 @@ def get_snippet(text, query_words):
     Returns:
         str: The snippet of the document containing the query words.
     """
+    relevant_sentences = []
     # Split text into sentences
     sentences = sent_tokenize(text)
     # Find sentences containing query words
-    relevant_sentences = [
-        s for s in sentences if any(q.lower() in s.lower() for q in query_words)
-    ]
+    for sentence in sentences:
+        for i, word in enumerate(word_tokenize(sentence)):
+            if word.lower() in query_words:
+                relevant_sentences.append(sentence)
+                break
     # Join relevant sentences to form snippet
     snippet = "\n\n".join(relevant_sentences)
     return snippet
@@ -198,6 +201,9 @@ def query_documents(query):
 
     query_df[0] = spell_correct_query(query_df[0], inverted_index)
     if query_df[0] != query:
+        if query_df[0] == '':
+            print("Query is empty after spell correction and stop word removal.")
+            return
         print("Spell corrected to:", query_df[0])
     print(f"Searching for query '{query_df[0]}'...\n")
 
