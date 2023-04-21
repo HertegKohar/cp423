@@ -8,6 +8,7 @@
 
 
 
+Welcome | Public Health Ontario
 
 
 
@@ -21,32 +22,9 @@
 
 
 
-/* ForeSee Embed Script v2.01
-	// DO NOT MODIFY BELOW THIS LINE *****************************************/
-	;(function (g) {
-		var d = document, am = d.createElement("script"), h = d.head || d.getElementsByTagName("head")[0], fsr = "fsReady",
-			aex = {
-				"src": "https://www.cdc.gov/JScript/foresee/latest/gateway.min.js",
-				"type": "text/javascript",
-				"async": "true",
-				"data-vendor": "fs",
-				"data-mode": "selfhost",
-				"data-environment": "production",
-				"data-hasssl": "true",
-				"data-client": "cdc",
-				"data-codelocation": "https://www.cdc.gov/JScript/foresee/latest/foresee_assets/code/19.14.4-fs/",
-				"data-isselfhosted": "true",
-				"data-product-assets": "https://www.cdc.gov/JScript/foresee/latest/foresee_assets/product_assets/",
-				"data-role": "gateway"
-			};
-		for (var attr in aex){am.setAttribute(attr, aex[attr]);}h.appendChild(am); g[fsr] || (g[fsr] = function () {var aT = "__" + fsr + "_stk__";g[aT] = g[aT] || [];g[aT].push(arguments);});
-	})(window);
-	/* DO NOT MODIFY ABOVE THIS LINE *****************************************/
 
 
 
-Centers for Disease Control and Prevention
-  
 
 
 
@@ -57,161 +35,20 @@ Centers for Disease Control and Prevention
 
 
 
- 
 
 
-
-
-
-
- 
-
-
-
-
-
-
-
- 
-
-	.row.share-row {
-		display:none;
-	}
-	.home-2022 .cdc-home-mobile-title {
-		display: none !important;
-	}
-	.home-2022 .title-bar {
-		display: none;
-	}
-	@media only screen and (max-width: 768px) {
-		html.home-2022 .blue-cards.blue-cards-mobile a {
-			background: transparent !important;
-		}
-	}
-  
-
-
-
-
-Skip directly to site content
-Skip directly to search
-
-
-EspaÃ±ol | 
-Other Languages
-
- 
-
-
-
-
-Centers for Disease Control and Prevention. CDC twenty four seven. Saving Lives, Protecting People
-
-Centers for Disease Control and Prevention. CDC twenty four seven. Saving Lives, Protecting People
-
-
-
-
-
-
-
-
-       
-
-
-
-
-
-
-Search
-
-
-
-
-
-
-
-
-
-Submit
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Missing Topic Title
-
+window.jQuery || document.write('<script src="/Resources/js/jquery-3.3.1.min.js"><\/script>')
 
 
 
 
 
-	/* search TP is over-riding this */
-	@media only screen and (max-width: 991px) {
-		#page_banner .header-wrapper > .container > .row.py-2 {
-		width: 290px;
-		}
-		.home-2022 #mask-search, .home-2022 #mask-nav {
-			top: 0px;
-		}
-		.home-2022 nav .justify-content-end {
-			background: white;
-		}
-		.home-2022 .header-wrapper {
-			padding-bottom: 0 !important;
-			padding-top: 0 !important;
-		}
-		.home-2022.search-open, .home-2022.search-open main {
-			overflow: hidden;
-			height: 100vh;
-		}
-		.home-2022.content-open body {
-			height: 100vh;
-			min-height: 650px;
-			overflow-y: hidden;
-		}
-		.homepage-nav button#mag[aria-expanded=true] {
-			border-radius: 0;
-		}
-		.homepage-nav button#mag[aria-expanded=true] {
-			background-color: #00345e !important;
-		}
-		.homepage-nav button#mag[aria-expanded=true] .cdc-icon-close {
-			display: block !important;
-			color: white;
-		}
-		.homepage-nav button#mag[aria-expanded=true] .dropdown-menu-medium-search-icon {
-			display: none;
-		}
-		.homepage-nav button#mag[aria-expanded=true] .dropdown-menu-medium-close-icon span {
-			margin-top: -3px;
-		}
-		.homepage-nav button#mag[aria-expanded=true] .dropdown-menu-medium-close-icon::before {
-			font-size: 32px;
-			margin-top: 8px;
-		}
-		.homepage-nav button#mag[aria-expanded=true] .cdc-icon-close span {
-			font-size: 12px !important;
-			font-style: normal;
-			display: block;
-		}
-		#navbarSupportedSearch, .homepage-nav .site-title .navbar-nav li.nav-item.bg-blue-d {
-			/*box-shadow: 0 7px 9px 0 rgba(51, 51, 51, 0.4);*/
-			box-shadow: 1px 7px 9px rgba(51, 51, 51, 0.5) !important;
-		}
-	}
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-9Q9HH7C7QS');
+    
 
 
 
@@ -222,7 +59,14 @@ Missing Topic Title
 
 
 
-CLOSE
+
+
+
+
+
+
+
+Skip to Main Content
 
 
 
@@ -232,16 +76,13 @@ CLOSE
 
 
 
-CLOSE
 
 
 
+MyPHO
 
 
 
-
-
-Search
 
 
 
@@ -250,33 +91,10 @@ Search
 Health Topics
 
 
-Travelers' Health
-
-
-Outbreaks
-
-
-Data & Stats
-
-
-Publications
-
-
-About CDC
-
-
-CDC.GOV HOME
 
 
 
 
-
-
-
-
-
-
-Search
 
 
 
@@ -289,305 +107,369 @@ Search
 
 
 
-	window.onpageshow = function(event) {
-		if (event.persisted) {
-			window.location.reload() 
-		}
-	};
-	var overlay1 = document.getElementById('mask-nav');
-	var overlay2 = document.getElementById('mask-search');
-	var search = document.getElementById('headerSearch');
-	const homepageNav = document.getElementsByClassName('homepage-nav')[0];
-	var button = document.getElementsByClassName('search-submit')[0];
-	var mobileSearchInput1 = document.getElementById('headerSearch-1');
-	var mobileSearchInput2 = document.getElementById('headerSearch-2');
-	var mobileSearchButton1 = document.getElementById('search-submit-1');
-	var mobileSearchButton2 = document.getElementById('search-submit-2');
-	// button functions are in localBodyBottom_TP4.html
-	  // search form submit
-	  document.getElementById('search-submit-1').addEventListener('click', function() {
-			window.location.href = 'https://search.cdc.gov/search/?query=' + mobileSearchInput1.value
-	  });
-	  document.getElementById('search-submit-2').addEventListener('click', function() {
-			window.location.href = 'https://search.cdc.gov/search/?query=' + mobileSearchInput2.value
-	});
-	mobileSearchInput1.addEventListener('keyup', function(e) {
-			if ('Enter' === e.key) {
-				window.location.href = 'https://search.cdc.gov/search/?query=' + mobileSearchInput1.value
-			}
-	});
-	mobileSearchInput2.addEventListener('keyup', function(e) {
-			if ('Enter' === e.key) {
-				window.location.href = 'https://search.cdc.gov/search/?query=' + mobileSearchInput2.value
-			}
-	});
-	// adding different button styling when search input is in focus
-	mobileSearchInput1.addEventListener('focus', function() {
-		mobileSearchButton1.classList.add('active');
-	});
-	mobileSearchInput1.addEventListener('focusout', function() {
-		mobileSearchButton1.classList.remove('active');
-	});
-	mobileSearchInput2.addEventListener('focus', function() {
-		mobileSearchButton2.classList.add('active');
-	});
-	mobileSearchInput2.addEventListener('focusout', function() {
-		mobileSearchButton2.classList.remove('active');
-	});
-	search.addEventListener('focus', function() {
-		button.classList.add( 'active' );
-	});
-	search.addEventListener('focusout', function() {
-		button.classList.remove( 'active' );
-	});
-	button.addEventListener('focus', function() {
-		button.classList.add( 'active' );
-	});
-	button.addEventListener('focusout', function() {
-		button.classList.remove( 'active' );
-	});
-	// on window resize body can reduce in size: hiding and reshowing seems to avoid issue
-	function initializeNav() {
-		if ( 993 > window.innerWidth ) {
-			homepageNav.style.display = 'none';
-			//setTimeout(function() {
-				homepageNav.style.display = 'block';
-			//}, 0);
-		}
-	}
-	initializeNav();
-	window.addEventListener('resize', function() {
-		initializeNav();
-	}, true);
-  
-
-				Centers for Disease Control and Prevention			
+									Health Topics
+								
 
 
-
-
-
-
-Section Navigation
-
-
-
-
-
-
-
-
-CDC Home
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-Centers for Disease Control and Prevention 
-Print
-
-
-
-
-
-Minus
-
-
-
-Related Pages
-
-
-
-
-Working 24/7 to save lives–protect people
-FEATUREDFEATURED TOPICProtect Your Health
-Here are 10 questions you can use to understand fungal infections.
-Learn moreCDC 24/7: Saving Lives, Protecting People
-Health Topics A-ZTravelers' HealthEmergency PreparednessInjury, Violence, & SafetyWorkplace Safety & HealthEnvironmental Health
-HEALTH & SAFETY TOPICSHealth Topics A-ZTravelers' HealthInjury, Violence and SafetyEmergency PreparednessWorkplace Safety and HealthEnvironmental Health
-FEATUREDView all FeaturesCOVID-19Learn about updated COVID-19 vaccines.
-Prevent Tickborne DiseasesLearn about ehrlichiosis and anaplasmosis and how to prevent tick bites.
-Spotlight on SeizuresSeizures may not look like you’d expect. Learn how to spot a seizure.
-Flood Safety TipsTake steps to protect yourself, your family, and your home during and after a flood.
-OUTBREAKSView all OutbreaksOutbreak Linked to FlourSalmonella infections
-Unknown Food SourceListeria infections
-Drug-resistant Infections Associated with Artificial TearsPseudomonas aeruginosa infections
-Raw OystersNorovirus infections
-NEWSView all News
-
-
-
-
-
-
-ââAPR
-ââ20
 
 
-								CDCâs Disease Detectives Give First-Hand Accounts from the Front Lines of Public Health							
+									Antimicrobial Stewardship
+								
 
 
 
 
 
-ââAPR
-ââ19
+
+
+
+
+
 
 
-								CDC simplifies COVID-19 vaccine recommendations, allows older adults and immunocompromised adults to get second dose of the updated vaccine							
+													Antimicrobial Stewardship
+												
 
-
-
-
-
-ââAPR
-ââ17
 
 
-								NIOSH Launches the National Firefighter Registry for Cancer to Understand and Reduce Cancer in the Fire Service							
+													Antimicrobial Stewardship in Acute Care
+												
 
-
-
-
-
-ââAPR
-ââ11
 
 
-								U.S. STI Epidemic Showed No Signs of Slowing in 2021 â Cases Continued to Escalate							
+													Antimicrobial Stewardship in Long Term Care
+												
 
 
-
-
-
-CDC IN ACTIONCDC ResponseLearn how CDC is responding to COVID-19 pandemic.Training & EducationLocate quality trainings and continuing education.SDOHCDC’s work addressing social determinants of health (SDOH).STEM at CDCScience, technology, engineering, & math disciplines.CDC ResponseLearn how CDC is responding to COVID-19 pandemic.Training & EducationLocate quality trainings and continuing education.SDOHCDC’s work addressing social determinants of health (SDOH).STEM at CDCScience, technology, engineering, & math disciplines.RESEARCH & SCIENCE
-Advancing the Integrity of CDC Science
-Public Health Image Library
-Morbidity and Mortality Weekly Report
-Emerging Infectious Diseases
-Preventing Chronic Disease
-Vital Signs Report
-Lab Safety
-Data & Stats
-
-
-
-
-
-MORBIDITY AND MORTALITY WEEKLY REPORT (MMWR)
-QuickStats: Percent of Adults Who Were in Families Having Problems Paying Medical Bills During the P...
-
-
-
-
-
-
-
-
-EMERGING INFECTIOUS DISEASES
-Journal promoting the recognition of new and reemerging infections diseases around the world.
-
-
-
-
-
-
-
-
-PREVENTING CHRONIC DISEASE
-Surveillance of the Initiation of, Participation in, and Completion of Cardiac Rehabilitation in Minnesota, 20...
-
-
-
-
-
-View all PublicationsABOUT CDCAbout CDCOrganization & MissionBudget & FundingCareers & JobsFellowships & InternshipsTraining & EducationDiversityCDC MuseumCDC Library
-CDC DIRECTOR
-Rochelle P. Walensky, MD, MPH
-
-
-CDC DIRECTOR
-Rochelle P. Walensky
-MD, MPH
-
-
-
-
-
-
-
-
-
- 
 
-																					Last Updated April 19, 2023														Source: 	Centers for Disease Control and Prevention
+													Antimicrobial Stewardship in Primary Care
+												
+
+
+
+													Antimicrobial Stewardship Strategies
+												
+
+
+
+													Antimicrobial Stewardship Program (ASP) & Antimicrobial Resistance (AMR) Comparison Tool
+												
+
+
+
+													Urinary Tract Infection Program
+												
+
+
+
+
+
+									Emergency Preparedness
+								
+
+
+
+
+									Environmental and Occupational Health
+								
 
 
 
 
 
-Facebook
-Twitter
-LinkedIn
-Syndicate
 
 
 
 
- 
+
+
+
+													Environmental and Occupational Health
+												
+
+
+
+													Air Quality
+												
+
+
+
+													Equipment Loan Program
+												
+
+
+
+													Food Safety
+												
+
+
+
+													Healthy Environments
+												
+
+
+
+													Health Hazards
+												
+
+
+
+													Water Quality
+												
 
 
 
-home
-CDC Home
+
+
+									Health Equity
+								
+
+
+
+
+									Health Promotion
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Health Promotion
+												
+
+
+
+													Alcohol
+												
+
+
+
+													Child and Youth Health
+												
+
+
+
+													Healthy Eating
+												
+
+
+
+													Injuries
+												
+
+
+
+													Maternal and Infant Health
+												
+
+
+
+													Mental Health
+												
+
+
+
+													Oral Health
+												
+
+
+
+													Physical Activity
+												
+
+
+
+													Substance Use
+												
+
+
+
+													Tobacco and E-Cigarettes
+												
+
+
+
+
+
+
+									Immunization
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Immunization
+												
+
+
+
+													Influenza Vaccine Effectiveness Program
+												
+
+
+
+													Immunization Coverage
+												
+
+
+
+													Vaccine Safety
+												
+
+
+
+													Vaccine Preventable Diseases (VPD)
+												
+
+
+
+
+
+
+									Infection Prevention and Control
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Infection Prevention and Control
+												
+
+
+
+													Best Practices in IPAC
+												
+
+
+
+													Clinical Office Practice
+												
+
+
+
+													Construction, Renovation, Maintenance and Design
+												
+
+
+
+													Dermatitis (Occupational)
+												
+
+
+
+													Environmental Cleaning
+												
+
+
+
+													Hand Hygiene
+												
+
+
+
+													Prevention of IPAC Lapses
+												
+
+
+
+													Personal Service Settings
+												
+
+
+
+													Personal Protective Equipment Auditing
+												
+
+
+
+													Reprocessing
+												
+
+
+
+													Routine Practices and Additional Precautions
+												
+
+
+
+
+
+
+									Public Health Practice
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Public Health Practice
+												
+
+
+
+													Health Communications
+												
+
+
+
+													Locally Driven Collaborative Projects (LDCP) Program
+												
+
+
+
+													Library Services
+												
+
+
+
+													Policy Development
+												
+
+
+
+													Program Planning and Evaluation
+												
+
+
+
+
+
+
+
+
 
 
 Diseases & Conditions
-Healthy Living
-Travelersâ Health
-Emergency Preparedness
-Injury, Violence & Safety
-Environmental Health
-Workplace Safety & Health
-Global Health
-State, Tribal, Local & Territorial
-Data & Statistics
-Vital Signs
-Feature Archive
-Tools & Resources
-Disease of the Week
-Publications
-Mobile apps
-CDC â TV
-Jobs
 
 
 
@@ -598,24 +480,6 @@ Jobs
 
 
 
-
-
-
-
-About CDC
-Contact Us
-800-232-4636
-
-
-
-
-Facebook
-Twitter
-Instagram
-LinkedIn
-Youtube
-Pinterest
-Snapchat
 
 
 
@@ -624,33 +488,24 @@ Snapchat
 
 
 
-							CONTACT CDC
-						
+									Diseases & Conditions
+								
+
+
+
+									Index
+								
 
 
 
 
+
+									Chronic Diseases and Conditions
+								
 
 
 
 
-Contact Us
-
-
-
-
-
-
-
-Call 800-232-4636
-
-
-
-
-
-
-
-Email Us
 
 
 
@@ -659,55 +514,46 @@ Email Us
 
 
 
-							ABOUT CDC
-						
+													Chronic Diseases and Conditions
+												
 
 
+
+													Cancer
+												
 
-About CDC
-Jobs
-Funding
+
+
+													Cardiovascular Disease
+												
+
+
+
+													Chronic Respiratory Diseases
+												
+
+
+
+													Diabetes
+												
+
+
+
+													Obesity
+												
 
 
 
 
 
 
-							POLICIES
-						
-
-
-
-Accessibility
-External Links
-Privacy
-Policies
-No Fear Act
-FOIA
-OIG
-Nondiscrimination
-Vulnerability Disclosure Policy
+									Health Care-Associated Infections
+								
 
 
 
 
 
-
-							CONNECT WITH US
-						
-
-
-
-
-Facebook
-Twitter
-Instagram
-LinkedIn
-
-
-Youtube
-Pinterest
-Snapchat
 
 
 
@@ -715,101 +561,100 @@ Snapchat
 
 
 
-							LANGUAGES
-						
+													Health Care-Associated Infections
+												
 
 
+
+													Carbapenemase-Producing Enterobacteriaceae (CPE)
+												
 
-EspaÃ±ol
-ç¹é«ä¸­æ
-Tiáº¿ng Viá»t
-íêµ­ì´
-Tagalog
-Ð ÑÑÑÐºÐ¸Ð¹
-Ø§ÙØ¹Ø±Ø¨ÙØ©
-KreyÃ²l Ayisyen
-FranÃ§ais
-Polski
-PortuguÃªs
-Italiano
-Deutsch
-æ¥æ¬èª
-ÙØ§Ø±Ø³Û
-English
 
+
+													Candida auris
+												
 
 
+
+													Clostridioides difficile Infections (CDI)
+												
 
 
+
+													Methicillin Resistant Staphylococcus aureus (MRSA)
+												
 
 
+
+													Vancomycin resistant enterococci (VRE)
+												
 
 
 
 
 
+
+									Infectious Diseases
+								
 
-EspaÃ±ol
-ç¹é«ä¸­æ
-Tiáº¿ng Viá»t
-íêµ­ì´
-Tagalog
-Ð ÑÑÑÐºÐ¸Ð¹
-Ø§ÙØ¹Ø±Ø¨ÙØ©
-KreyÃ²l Ayisyen
-FranÃ§ais
-Polski
-PortuguÃªs
-Italiano
-Deutsch
-æ¥æ¬èª
-ÙØ§Ø±Ø³Û
-English
 
 
 
 
 
-Accessibility
-External Links
-Privacy
-Policies
 
 
-No Fear Act
-FOIA
-OIG
-USA.gov
 
 
-Nondiscrimination
-Vulnerability Disclosure Policy
-Department of Health & Human Services
 
+
+													Infectious Diseases
+												
 
 
+
+													Blood Borne Infections
+												
 
 
+
+													Enteric Diseases and Food-Borne Diseases
+												
 
 
+
+													Respiratory Diseases
+												
 
 
+
+													Sexually Transmitted Infections (STIs)
+												
 
-U.S. Department of Health & Human Services
 
+
+													Vaccine Preventable Diseases (VPD)
+												
 
 
+
+													Vector-Borne and Zoonotic Diseases
+												
 
-USA.gov
 
 
+
+													Case and Contact Management
+												
 
 
 
 
 
+
+									Injuries
+								
 
-var CDC_POST={"id":"1_21899","type":"cdc_page","tax":[]};
 
 
 
@@ -820,23 +665,47 @@ var CDC_POST={"id":"1_21899","type":"cdc_page","tax":[]};
 
 
 
+
+													Injuries
+												
 
 
+
+													Poisoning
+												
 
 
+
+													Road Safety
+												
 
 
+
+													Violence
+												
 
 
+
+													Falls
+												
 
 
+
+													Concussions
+												
 
 
+
+													Off-road Safety
+												
 
 
 
 
 
+
+									Mental Illness and Substance Use
+								
 
 
 
@@ -848,16 +717,34 @@ var CDC_POST={"id":"1_21899","type":"cdc_page","tax":[]};
 
 
 
+
+													Mental Illness and Substance Use
+												
 
 
+
+													Alcohol
+												
 
 
+
+													Cannabis
+												
 
 
+
+													Depression
+												
 
 
+
+													Opioids
+												
 
 
+
+													Tobacco and E-Cigarettes
+												
 
 
 
@@ -868,165 +755,7 @@ var CDC_POST={"id":"1_21899","type":"cdc_page","tax":[]};
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SAS
-
-
-
-
-stats
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Laboratory Services
 
 
 
@@ -1045,57 +774,30 @@ stats
 
 
 
-			.st0 {
-				fill: #FFFFFF;
-			}
+									Laboratory Services
+								
+
+
 
-			.st1 {
-				fill: none;
-				stroke: #FFFFFF;
-				stroke-width: 2.1206;
-			}
+									Laboratory Services
+								
+
+
 
-			.st2 {
-				fill: #005DA9;
-			}
+									Test Information Index
+								
+
+
+
 
-			.st3 {
-				fill: none;
-				stroke: #FFFFFF;
-				stroke-width: 1.8943;
-			}
+									Kit and Test Ordering Instructions
+								
+
+
+
 
-			.st4 {
-				fill: #607171;
-			}
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+									Public Health Inspectors Guide
+								
 
 
 
@@ -1108,30 +810,1067 @@ stats
 
 
 
-			.st0 {
-				fill: #FFFFFF;
-			}
+													Public Health Inspectors Guide
+												
+
+
 
-			.st1 {
-				fill: none;
-				stroke: #FFFFFF;
-				stroke-width: 2.1206;
-			}
+													Environmental Swabs
+												
+
+
 
-			.st2 {
-				fill: #005DA9;
-			}
+													Food Sample Analysis
+												
+
+
 
-			.st3 {
-				fill: none;
-				stroke: #FFFFFF;
-				stroke-width: 1.8943;
-			}
+													Legionella Investigations
+												
+
+
 
-			.st4 {
-				fill: #607171;
-			}
-		
+													Water Sample Analysis
+												
+
+
+
+
+
+									Test Requisitions
+								
+
+
+
+									Test Results
+								
+
+
+
+									Well Water Testing
+								
+
+
+
+									Laboratory Contact
+								
+
+
+
+
+
+
+
+
+Data & Analysis
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+									Data & Analysis
+								
+
+
+
+
+									Chronic Disease
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Chronic Disease
+												
+
+
+
+													Burden of Chronic Diseases in Ontario
+												
+
+
+
+													Cancer Incidence
+												
+
+
+
+													Cancer Mortality
+												
+
+
+
+													Chronic Disease Hospitalization
+												
+
+
+
+													Chronic Disease Incidence and Prevalence
+												
+
+
+
+													Chronic Disease Mortality
+												
+
+
+
+													Self-Reported Chronic Health Problems
+												
+
+
+
+													Environmental Burden of Cancer
+												
+
+
+
+
+
+
+									Environmental Health
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Environmental Health
+												
+
+
+
+													Environmental Burden of Cancer
+												
+
+
+
+													Raw Water Chemicals Map
+												
+
+
+
+
+
+
+									Health Behaviours
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Health Behaviours
+												
+
+
+
+													Nutrition and Healthy Weights
+												
+
+
+
+													Oral Health
+												
+
+
+
+													Oral Health Emergency Department Visits
+												
+
+
+
+													Physical Activity
+												
+
+
+
+
+
+
+									Health Care-Associated Infections
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Health Care-Associated Infections
+												
+
+
+
+													Health Care-Associated Infection (HAI) Query
+												
+
+
+
+
+
+
+									Health Equity
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Health Equity
+												
+
+
+
+													Alcohol-Attributable Hospitalizations
+												
+
+
+
+													Assault-Related ED Visits
+												
+
+
+
+													Potentially Avoidable Mortality
+												
+
+
+
+													Cardiovascular Disease Hospitalizations
+												
+
+
+
+													COPD Hospitalizations
+												
+
+
+
+													Household Food Insecurity
+												
+
+
+
+													Low Birth Weight
+												
+
+
+
+													Mental Health ED Visits
+												
+
+
+
+													Ontario Marginalization Index (ON-Marg)
+												
+
+
+
+													Oral Health ED Visits
+												
+
+
+
+													Respiratory Disease Hospitalizations
+												
+
+
+
+													Social Determinants of Health
+												
+
+
+
+													Social Determinants of Health Map
+												
+
+
+
+													Youth Self-Harm ED Visits
+												
+
+
+
+
+
+
+									Infectious Disease
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Infectious Disease
+												
+
+
+
+													COVID-19 Data and Surveillance
+												
+
+
+
+													Infectious Diseases Query
+												
+
+
+
+													Infectious Diseases Surveillance Reports
+												
+
+
+
+													Infectious Disease Trends in Ontario
+												
+
+
+
+
+													Ontario Respiratory Pathogen Bulletin
+												
+
+
+
+													Ontario Universal Typing of Tuberculosis (OUT-TB) Web
+												
+
+
+
+													STI Tool
+												
+
+
+
+													Vaccine Safety Surveillance Tool
+												
+
+
+
+													West Nile Virus Surveillance
+												
+
+
+
+
+
+
+									Injuries
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Injuries
+												
+
+
+
+													Injury Emergency Department Visits
+												
+
+
+
+													Injury Hospitalization
+												
+
+
+
+													Injury Mortality
+												
+
+
+
+													Neurotrauma Emergency Department Visits
+												
+
+
+
+													Neurotrauma Hospitalization
+												
+
+
+
+
+
+
+									Mortality and Overall Health
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Mortality and Overall Health
+												
+
+
+
+													All-Cause Mortality
+												
+
+
+
+													Potentially Avoidable Mortality
+												
+
+
+
+													Potential Years of Life Lost
+												
+
+
+
+													Self-Reported Overall Health
+												
+
+
+
+
+
+
+									Reproductive and Child Health Data
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Reproductive and Child Health Data
+												
+
+
+
+													Early Development Instrument
+												
+
+
+
+													Healthy Child Development Risk Factors
+												
+
+
+
+													Maternal Health
+												
+
+
+
+													Reproductive Health
+												
+
+
+
+
+
+
+									Substance Use
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Substance Use
+												
+
+
+
+													Alcohol Harms
+												
+
+
+
+													Alcohol Use
+												
+
+
+
+													Benzodiazepine Harms
+												
+
+
+
+													Cannabis Harms
+												
+
+
+
+													Interactive Opioid Tool
+												
+
+
+
+													Opioids and Opioid Mortality
+												
+
+
+
+													Smoking
+												
+
+
+
+													Stimulant Harms
+												
+
+
+
+
+
+
+
+									Commonly Used Products
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Commonly Used Products
+												
+
+
+
+													HAI Query
+												
+
+
+
+													ID Query
+												
+
+
+
+													Infectious Disease Trends in Ontario
+												
+
+
+
+													Interactive Opioid Tool
+												
+
+
+
+													Maps
+												
+
+
+
+													On-Marg
+												
+
+
+
+													Ontario Respiratory Pathogen Bulletin
+												
+
+
+
+													Snapshots
+												
+
+
+
+													STI Tool
+												
+
+
+
+
+
+
+									Using Data
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Using Data
+												
+
+
+
+													Data Requests
+												
+
+
+
+													Methods, Measures and Data Source Reviews
+												
+
+
+
+													Open Data
+												
+
+
+
+
+
+
+
+
+
+
+Education & Events
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+									Education & Events
+								
+
+
+
+									Events
+								
+
+
+
+									Continuing Medical Education (CME)
+								
+
+
+
+									Presentations
+								
+
+
+
+
+									Online Learning
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Online Learning
+												
+
+
+
+													Health Promotion – Online Learning
+												
+
+
+
+													Infection Prevention and Control – Online Learning
+												
+
+
+
+
+
+									Student Training and Opportunities
+								
+
+
+
+
+									Sheela Basrur Centre
+								
+
+
+
+									TOPHC
+								
+
+
+
+
+
+
+
+
+About
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+									About
+								
+
+
+
+
+									Our Organization
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Our Organization
+												
+
+
+
+													Board of Directors
+												
+
+
+
+													Leadership Team
+												
+
+
+
+													Vision, Mission, Mandate and Values
+												
+
+
+
+
+
+
+									External Advisory Committees
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													External Advisory Committees
+												
+
+
+
+													Antimicrobial Stewardship Advisory Committee (ASAC)
+												
+
+
+
+													Ontario Immunization Advisory Committee (OIAC)
+												
+
+
+
+													Ontario Public Health Emergencies Science Advisory Committee (OPHESAC)
+												
+
+
+
+													Provincial Infectious Diseases Advisory Committee on Infection Prevention and Control (PIDAC-IPC)
+												
+
+
+
+													Conflict of Interest Rules
+												
+
+
+
+
+
+
+									News
+								
+
+
+
+
+									Careers
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Careers
+												
+
+
+
+													Current Job Opportunities
+												
+
+
+
+													Frequently Asked Questions
+												
+
+
+
+
+
+
+									Corporate Reporting
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Corporate Reporting
+												
+
+
+
+													Annual Business Plan
+												
+
+
+
+													Annual Reports
+												
+
+
+
+													Financial Results
+												
+
+
+
+													Mandate Letters
+												
+
+
+
+													Memorandum of Understanding (MOU)
+												
+
+
+
+													Strategic Plan
+												
+
+
+
+													Travel, Meal and Hospitality Expenses
+												
+
+
+
+
+
+									Media Centre
+								
+
+
+
+									Privacy
+								
+
+
+
+
+									Research
+								
+
+
+
+
+
+
+
+
+
+
+
+
+													Research
+												
+
+
+
+													COVID-19 Research and Preprints
+												
+
+
+
+													Our Researchers
+												
+
+
+
+													Ethics
+												
+
+
+
+
+
+
+
+
+
+Contact
+
+
+
+
+
+
+en
+
+
+
+						fr
+					
 
 
 
@@ -1157,129 +1896,476 @@ stats
 
 
 
+Login
 
 
+
+    document.addEventListener("CoveoSearchEndpointInitialized", function() {
+        var searchboxElement = document.getElementById("_185F67BF-1D73-4AEE-9564-FDE5B0EB24D9");
+        searchboxElement.addEventListener("CoveoComponentInitialized", function() {
+            CoveoForSitecore.initSearchboxIfStandalone(searchboxElement, "/en/Search");
+        });
+    })
+ 
 
-
-
-
-
-
-
-
-
-
-
-function cdcInitializeSlickUNIQUE21899643ffc189d35c() {
-            slickInit( '#UNIQUE21899643ffc189d35c', {
-                infinite: false,
-                slidesToShow: 1.25,
-                slidesToScroll: 1,
-                prevArrow: false,
-                nextArrow: false,
-                dots: true,
-                centerMode: false,
-            });
+
+    document.addEventListener("CoveoSearchEndpointInitialized", function() {
+        var componentId = "_185F67BF-1D73-4AEE-9564-FDE5B0EB24D9";
+        var componentElement = document.getElementById(componentId);
+
+        function showError(error) {
+                console.error(error);
         }
-        if ( typeof slickInit === 'function' ) {
-            cdcInitializeSlickUNIQUE21899643ffc189d35c();
+
+        function areCoveoResourcesIncluded() {
+            return typeof (Coveo) !== "undefined";
+        }
+
+        if (areCoveoResourcesIncluded()) {
+            var event = document.createEvent("CustomEvent");
+            event.initEvent("CoveoComponentInitialized", false, true);
+            
+            setTimeout(function() {
+                componentElement.dispatchEvent(event);
+            }, 0);
         } else {
-            window.onCDCTPAppLoaded = function() {
-                ( function( $ ) {
-                    cdcInitializeSlickUNIQUE21899643ffc189d35c();
-                } )( jQuery );
-            };
-        }
+            componentElement.classList.add("invalid");
+            showError("The Coveo Resources component must be included in this page.");
+        }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+We use cookies on this website to enhance your experience. You can find out more about how we use cookies here
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Coronavirus Disease 2019
+Our hub for COVID-19 resources and information.
 
-if ($('html').hasClass('home-2022')) {
-	$('.site-title #ham').on('click keyup', function(e) {
-		if (!$('html').hasClass('search-open')) {
-			$('html').toggleClass('content-open');
-		} else if ($('html').hasClass('search-open')) {
-			$('html').removeClass('search-open');
-			$('html').addClass('content-open');
-			$('#navbarSupportedSearch').removeClass('show');
-			$('#mag').removeClass('collapsed').attr('aria-expanded', 'false');
-		} else {
-			e.stopPropagation();
-			e.preventDefault()
-		}
+                                        Learn More
+                                    
+
+
+
+
+
+
+
+
+
+
+Quick Access
+
+
+
+						COVID-19 – Data and Surveillance
+					
+
+
+
+						Mpox (formerly monkeypox)
+					
+
+
+
+						COVID-19 – PCR Test Information
+					
+
+
+
+						Opioid Data Tool
+					
+
+
+
+						Avian Influenza
+					
+
+
+
+						Sexually Transmitted Infections
+					
+
+
+
+						IPAC – Online Learning
+					
+
+
+
+						Careers @ PHO
+					
+
+
+
+
+
+
+
+
+
+
+
+Summary Report
+
+
+
+							Mpox in Ontario: May 1, 2022 to March 28, 2023
+						
+
+
+This monthly report summarizes key demographic and clinical information on monkeypox cases reported in Ontario to date.
+
+
+
+
+
+1.3 MB
+Updated 31 March 2023
+
+
+
+
+
+
+
+Interactive Report
+
+
+
+							Ontario COVID-19 Data Tool
+						
+
+
+Explore confirmed COVID-19 data in Ontario by: case trends over time including hospitalizations and deaths, age and sex, public health unit, outbreaks, laboratory testing and vaccines.
+
+
+
+
+Webpage
+Updated 21 April 2023
+
+
+Updated
+
+
+
+
+
+Surveillance Report
+
+
+
+							Respiratory Virus Overview in Ontario: March 19, 2023 to April 1, 2023
+						
+
+
+This bi-weekly report provides a high-level assessment of respiratory virus activity in Ontario, including COVID-19, for the most recent surveillance week.
+
+
+
+
+
+2.7 MB
+Updated 10 April 2023
+
+
+Updated
+
+
+
+
+
+Summary Report
+
+
+
+							Invasive Group A Streptococcal (iGAS) Disease in Ontario: October 1, 2022 to March 31, 2023
+						
+
+
+This report provides an epidemiologic summary of iGAS activity in Ontario from October 1, 2022 to February 28, 2023, compared to seasonal activity between October 1, 2014 and February 28, 2019, covering the five seasons prior to the COVID-19 pandemic.
+
+
+
+
+
+1.5 MB
+Updated 20 April 2023
+
+
+Updated
+
+
+
+
+
+Report
+
+
+
+							Burden of Health Conditions Attributable to Smoking and Alcohol by Public Health Unit in Ontario
+						
+
+
+A joint report from PHO and Ontario Health on the burden of disease and injury linked to smoking and alcohol consumption across Ontario.
+
+
+
+
+Webpage
+Updated 6 Feb 2023
+
+
+
+
+
+
+
+Surveillance Report
+
+
+
+							COVID-19 Wastewater Surveillance in Ontario
+						
+
+
+This report provides an overview of COVID-19 wastewater signals in Ontario and sub-regions.
+
+
+
+
+Webpage
+Updated 20 April 2023
+
+
+Updated
+
+
+
+
+
+
+
+
+
+
+
+
+Events
+
+
+				View all
+			
+
+
+
+
+
+							Apr 21
+						
+
+
+
+
+
+
+									PHO Rounds: HPV Vaccination: An Underused Strategy for the Prevention of Cancer
+								
+
+
+
+
+
+
+
+
+
+							Apr 24
+						
+
+
+
+
+
+
+									PHO Webinar: Locally Driven Collaborative Projects (LDCP) 2023/24 Cycle Information Session
+								
+
+
+
+
+
+
+
+
+
+
+
+About PHO
+Public Health Ontario (PHO) keeps Ontarians safe and healthy. With our partners in government, public health and health care, we prevent illness and improve health.
+
+                        Read more
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                News    
+
+
+
+                Contact    
+
+
+
+                Careers    
+
+
+
+                Media Centre    
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+MyPHO
+                    
+
+Register for MyPHO to save commonly accessed resources, select areas of interest to help us recommend content most relevant to you, access online learning, and subscribe to our mailings.
+
+                        Register for MyPHO
+                    
+
+
+
+
+
+
+
+
+
+
+
+© 2023 Ontario Agency for Health Protection and Promotion
+
+Accessibility 
+Privacy 
+Terms of Use 
+Sitemap
+
+
+
+
+
+
+
+
+
+You need a MyPHO Account to save this page.
+
+Log in to MyPHO
+
+            Don’t have a MyPHO account? Register Now
+
+
+
+
+
+
+
+
+
+You have successfully created a MyPHO account!
+
+        Use MyPHO to save content relevant to you, take online courses and register for subscriptions.
+    
+
+
+
+
+
+
+
+You must be logged in and have the correct access level to access this product.
+
+Learn How to Request Access
+
+Login or Register
+
+
+
+
+
+	document.addEventListener('DOMContentLoaded', function () {
+		pho.acctCreated = "False";
+		pho.resourceId = "";
 	});
-	$('.site-title #mag').on('click keyup', function(e) {
-		if (!$('html').hasClass('content-open')) {
-			$('html').toggleClass('search-open');
-			if ('Enter' === e.key) {
-				$('#navbarSupportedSearch input').focus()
-			}
-		} else {
-			e.stopPropagation();
-			e.preventDefault();
-		}
-	});
-	$('#navbarSupportedSearch button#search-submit-2').focusout(function(e) {
-		e.preventDefault();
-		$('html').removeClass('search-open');
-		$('#navbarSupportedSearch').removeClass('show');
-		$('#mag').removeClass('collapsed').attr('aria-expanded', 'false');
-		$('#mag').focus();
-	});
-	$('#navbarSupportedContent li.bg-blue-d').focusout(function(e) {
-		e.preventDefault();
-		$('#navbarSupportedContent').removeClass('show');
-		$('#ham').removeClass('collapsed').attr('aria-expanded', 'false');
-		$('#ham').focus();
-	});
-}
-
-
-	
-	s.pageName=document.title; 
-s.channel="CDC Top Tier"; 
-siteCatalyst.setLevel1("CDC Top Tier"); 
-siteCatalyst.setLevel2("CDC.gov Home Page"); 
-	
-	
-
-
-	window.shortTitle = "Centers for Disease Control and Prevention";
-	window.pageOptions = window.pageOptions || {};
-	window.pageOptions.navigation = window.pageOptions.navigation || { showFourthLevel: true	}; 	
-
-	window.pageOptions.navigation.breadcrumbs = {
-			mode: 'auto',
-			showCurrentPage: false
-		};
-
-	window.CDC.tp4.public.appInit( window.pageOptions );
-
-
-
-
-
-
-Exit Notification / Disclaimer Policy
-
-Close
-
-
-
-
-
-
-Links with this icon  indicate that you are leaving the CDC website.
-
-The Centers for Disease Control and Prevention (CDC) cannot attest to the accuracy of a non-federal website.
-Linking to a non-federal website does not constitute an endorsement by CDC or any of its employees of the sponsors or the information and products presented on the website.
-You will be subject to the destination website's privacy policy when you follow the link.
-CDC is not responsible for Section 508 compliance (accessibility) on other federal or private website.
-
-
-			For more information on CDC's web notification policies, see Website Disclaimers.
-		
-
-
-Cancel
-Continue
 
 
 
@@ -1288,11 +2374,6 @@ Continue
 
 
 
-
-CDC.gov Privacy Settings
-
-
-We take your privacy seriously. You can review and change the way we collect information below.
 
 
 
@@ -1300,99 +2381,39 @@ We take your privacy seriously. You can review and change the way we collect inf
 
 
 
-								Performance Cookies Checkbox
-							
+        var endpointConfiguration = {
+            itemUri: "sitecore://web/{02D0F1C9-EE80-424D-836C-65C6DF7026E9}?lang=en&amp;ver=56",
+            siteName: "website",
+            restEndpointUri: "/coveo/rest"
+        };
+        if (typeof (CoveoForSitecore) !== "undefined") {
+            CoveoForSitecore.SearchEndpoint.configureSitecoreEndpoint(endpointConfiguration);
+            CoveoForSitecore.version = "5.0.858.1";
+            var context = document.getElementById("SearchResourcesProperties_27b6cc03a004411f93337c2c2ebf9447");
+            if (!!context) {
+                CoveoForSitecore.Context.configureContext(context);
+            }
+        }
+    
 
 
-										Performance Cookies
-									
-
-
-
-
-
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-									These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site. They help us to know which pages are the most and least popular and see how visitors move around the site. All information these cookies collect is aggregated and therefore anonymous. If you do not allow these cookies we will not know when you have visited our site, and will not be able to monitor its performance.
-								
-
-
-
-
-
+	ga('create', 'UA-4699949-5', 'auto');
+	ga('send', 'pageview');
+        
 
-								Functional Cookies Checkbox
-							
-
+		
 
-										Functional Cookies
-									
+	var pho = pho || {};
+	pho.dictionary = pho.dictionary || {};
+	pho.dictionary['See More'] = 'View More';
+    
 
 
-
-
-
-
-									Cookies used to make website functionality more relevant to you. These cookies perform functions like remembering presentation options or choices and, in some cases, delivery of web content that based on self-identified area of interests.
-								
-
-
-
-
-
-
-								Campaign Cookies Checkbox
-							
-
-
-										Campaign Cookies
-									
-
-
-
-
-
-
-									Cookies used to track the effectiveness of CDC public health campaigns through clickthrough data.
-								
-
-
-
-
-
-
-								Social Media Cookies Checkbox
-							
-
-
-									Social Media Cookies
-								
-
-
-
-
-
-
-									Cookies used to enable you to share pages and content that you find interesting on CDC.gov through third party social networking and other websites. These cookies may also be used for advertising purposes by these third parties.
-								
-
-
-
-
-
-
-
-Remove all
-
-
-Confirm Choices
-
-
-
-
-
-Confirmed!
-Thank you for taking the time to confirm your preferences. If you need to go back and make any changes, you can always do so by going to our Privacy Policy page.
-Close
 
 
 
