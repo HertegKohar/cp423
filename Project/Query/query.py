@@ -16,12 +16,13 @@ from Spell_Correct.spell_correct import spell_correct_query
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from nltk.corpus import stopwords
-from nltk.tokenize import RegexpTokenizer, sent_tokenize
+from nltk.tokenize import RegexpTokenizer, sent_tokenize, word_tokenize
 from dataclasses import dataclass, field
 from colorama import Fore, Style
 import pandas as pd
 import json
 import os
+import re
 
 FORE_COLORS = [Fore.RED, Fore.GREEN, Fore.YELLOW, Fore.BLUE, Fore.MAGENTA, Fore.CYAN]
 
@@ -164,8 +165,13 @@ def display_highlighted_terms(documents, query):
         text = get_snippet(text, query_words)
         highlighted_document = text
         for i, term in enumerate(query_words):
-            highlighted_document = highlighted_document.replace(
-                term, f"{FORE_COLORS[i % len(FORE_COLORS)]}{term}{Style.RESET_ALL}"
+            pattern = re.compile(r"\b{}\b".format(term), re.IGNORECASE)
+            # highlighted_document = highlighted_document.replace(
+            #     term, f"{FORE_COLORS[i % len(FORE_COLORS)]}{term}{Style.RESET_ALL}"
+            # )
+            highlighted_document = pattern.sub(
+                FORE_COLORS[i % len(FORE_COLORS)] + r"\g<0>" + Style.RESET_ALL,
+                highlighted_document,
             )
         print(
             f"Document: {document.hash_}, Path: {document.path}, URL: {document.url}\n"
@@ -178,7 +184,7 @@ def query_documents(query):
 
     Args:
         query (str): The query.
-    """    
+    """
     query = query.lower()
     query_df = preprocess_query(query)
 
