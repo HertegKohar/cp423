@@ -25,6 +25,13 @@ def remake_hash_to_url():
         for line in f:
             line = line.split(" ")
             hash_to_url[line[2]] = line[1]
+    with open(MAPPING_PATH, "r", encoding="utf-8") as f:
+        mapping = json.load(f)
+
+    # Make sure that all hashes are in the mapping
+    for hash_ in hash_to_url:
+        if hash_ not in mapping:
+            hash_to_url.pop(hash_)
 
     with open(HASH_TO_URL_PATH, "w", encoding="utf-8") as f:
         json.dump(hash_to_url, f, indent=4)
