@@ -8,7 +8,6 @@ from Constants.constants import (
     MAPPING_PATH,
     INDENT,
     HASH_TO_URL_PATH,
-    LOGGER_PATH,
 )
 
 import os
@@ -18,13 +17,10 @@ from collections import Counter
 from Soundex.soundex import compute_soundex
 
 
-def remake_hash_to_url():
-    """Remakes the hash to url mapping file from the crawler log file."""
-    hash_to_url = {}
-    with open(LOGGER_PATH, "r", encoding="utf-8") as f:
-        for line in f:
-            line = line.split(" ")
-            hash_to_url[line[2]] = line[1]
+def check_hash_to_url():
+    """Checks the hash to url mapping file to make sure all the hashes are in the filesystem."""
+    with open(HASH_TO_URL_PATH, "r", encoding="utf-8") as f:
+        hash_to_url = json.load(f)
     with open(MAPPING_PATH, "r", encoding="utf-8") as f:
         mapping = json.load(f)
 
@@ -58,12 +54,12 @@ def update_inverted_index(topics):
     tokenizer = RegexpTokenizer(r"\w+")
     for topic in topics:
         for file in os.listdir(os.path.join(DOCUMENTS_PATH, topic)):
-            with open(
-                os.path.join(DOCUMENTS_PATH, topic, file), "r", encoding="utf-8"
-            ) as f:
-                text = f.read()
             hash_ = file.split(".")[0]
             if hash_ not in mapping:
+                with open(
+                    os.path.join(DOCUMENTS_PATH, topic, file), "r", encoding="utf-8"
+                ) as f:
+                    text = f.read()
                 mapping[hash_] = f"H{index}"
                 index += 1
                 tokens = tokenizer.tokenize(text)
@@ -84,7 +80,7 @@ def update_inverted_index(topics):
         json.dump(inverted_index, f)
     with open(MAPPING_PATH, "w", encoding="utf-8") as f:
         json.dump(mapping, f, indent=INDENT)
-    remake_hash_to_url()
+    check_hash_to_url()
     print(f"Inverted index saved to {INVERTED_INDEX_PATH}")
     print(f"Mapping saved to {MAPPING_PATH}")
     print(f"Hash to url mapping saved to {HASH_TO_URL_PATH}")
