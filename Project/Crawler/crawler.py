@@ -9,6 +9,8 @@ from Constants.constants import (
     COOLDOWN,
     DOCUMENTS_PATH,
     TOPICS,
+    HASH_TO_URL_PATH,
+    INDENT
 )
 
 import requests
@@ -53,7 +55,7 @@ def hash_and_save(topic, url, content):
         content (str): The content of the url.
 
     Returns:
-        bool: True if the url was hashed and saved, False otherwise.
+        str|bool: The hash of the url if the url was hashed and saved, False otherwise.
     """
     hash_object = hashlib.sha256(url.encode())
     hex_dig = hash_object.hexdigest()
@@ -76,7 +78,7 @@ def hash_and_save(topic, url, content):
         f.write(text_to_write)
     log(f"{topic} {url} {hex_dig} {datetime.now()}")
     FILES.add(file_path)
-    return True
+    return hex_dig
 
 
 def create_topics_dict(path):
@@ -136,6 +138,8 @@ def source_switch_crawl(topic, urls, limit):
         limit (int): The number of urls to be crawled.
     """
     print(f"Crawling {topic}...")
+    with open(HASH_TO_URL_PATH, "r", encoding="utf-8") as f:
+        hash_to_url = json.load(f)
     count = 0
     base_urls = defaultdict(list)
     for url in urls:
@@ -172,9 +176,12 @@ def source_switch_crawl(topic, urls, limit):
             ):
                 base_urls[urlparse(absolute_url).netloc].append(absolute_url)
         visited.add(url)
-        saved = hash_and_save(topic, url, r.text)
-        if saved:
+        hash_ = hash_and_save(topic, url, r.text)
+        if hash_:
             count += 1
+            hash_to_url[hash_] = url
+    with open(HASH_TO_URL_PATH, "w", encoding="utf-8") as f:
+        json.dump(hash_to_url, f, indent=INDENT)
     print(f"Finished crawling {topic}")
 
 

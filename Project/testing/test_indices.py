@@ -23,6 +23,7 @@ class TestFiles(unittest.TestCase):
         with open(MAPPING_PATH, "r", encoding="utf-8") as f:
             mapping = json.load(f)
         # Check to see all files in mapping
+        print("Number of documents", len(files))
         for file in files:
             hash_ = file.split(".")[0].strip()
             self.assertTrue(hash_ in mapping, msg=f"{hash_} not in mapping")
@@ -55,7 +56,7 @@ class TestMappings(unittest.TestCase):
             mapping = json.load(f)
         with open(HASH_TO_URL_PATH, "r", encoding="utf-8") as f:
             hash_to_url = json.load(f)
-
+        print("Mapping lengths:", len(mapping), len(hash_to_url))
         # self.assertEqual(len(mapping), len(hash_to_url), msg="Lengths not equal")
         for key in mapping:
             self.assertTrue(key in hash_to_url, msg=f"{key} not in hash_to_url")
