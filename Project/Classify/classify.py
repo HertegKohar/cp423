@@ -240,7 +240,7 @@ def knn_grid_search(X_train_tfidf, y_train):
     """Performs grid search on KNN model to find the best hyperparameters."""
     param_grid = {"n_neighbors": [3, 5, 7, 9]}
     knn = KNeighborsClassifier()
-    grid_search = GridSearchCV(knn, param_grid, cv=5, scoring="accuracy")
+    grid_search = GridSearchCV(knn, param_grid, cv=5, scoring="accuracy", n_jobs=-1)
     grid_search.fit(X_train_tfidf, y_train)
     print(f"Best parameters: {grid_search.best_params_}")
     print(f"Best Score: {grid_search.best_score_}")

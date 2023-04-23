@@ -56,7 +56,7 @@ EXTENSION = ".txt"
 # Classifying
 TOPICS_MAP = {"Astronomy": 0, "Health": 1, "Economy": 2}
 MODELS_PATH = "Models"
-MODEL_PATH = os.path.join(MODELS_PATH, "classifier.joblib")
+MODEL_PATH = os.path.join(MODELS_PATH, "classifier.model")
 TFID_PATH = os.path.join(MODELS_PATH, "tfidf.joblib")
 GAUSSIAN_MODEL = "GaussianNB"
 PRODUCTION = True
