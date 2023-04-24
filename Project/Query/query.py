@@ -161,7 +161,7 @@ def display_highlighted_terms(documents, query):
         documents (list[Document]): The documents with their path, hash, and url.
         query (str): The query.
     """
-    for document in documents:
+    for d, document in enumerate(documents):
         with open(document.path, "r", encoding="utf-8") as f:
             text = f.read()
         query_words = query.split()
@@ -169,17 +169,13 @@ def display_highlighted_terms(documents, query):
         highlighted_document = text
         for i, term in enumerate(query_words):
             pattern = re.compile(r"\b{}\b".format(term), re.IGNORECASE)
-            # highlighted_document = highlighted_document.replace(
-            #     term, f"{FORE_COLORS[i % len(FORE_COLORS)]}{term}{Style.RESET_ALL}"
-            # )
             highlighted_document = pattern.sub(
                 FORE_COLORS[i % len(FORE_COLORS)] + r"\g<0>" + Style.RESET_ALL,
                 highlighted_document,
             )
-        print(
-            f"Document: {document.hash_}, Path: {document.path}, URL: {document.url}\n"
-        )
-        print(f"{highlighted_document}\n")
+        print(f"\nDOCUMENT: {(d+1)} OF {len(documents)}\n")
+        print(f"URL: {document.url}, Path: {document.path}\n")
+        print(f"{highlighted_document}\n\n")
 
 
 def query_documents(query):
