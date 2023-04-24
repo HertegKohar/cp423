@@ -10,7 +10,8 @@ from Constants.constants import (
     DOCUMENTS_PATH,
     TOPICS,
     HASH_TO_URL_PATH,
-    INDENT
+    INDENT,
+    PRODUCTION
 )
 
 import requests
@@ -124,8 +125,9 @@ def crawl_new_link(url):
             text += paragraph.text
     if len(text) == 0:
         return
-    with open("predicted_link_text.txt", "w", encoding="utf-8") as f:
-        f.write(text)
+    if not PRODUCTION:
+        with open("predicted_link_text.txt", "w", encoding="utf-8") as f:
+            f.write(text)
     return text
 
 
