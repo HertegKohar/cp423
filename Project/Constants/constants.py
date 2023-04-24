@@ -32,9 +32,9 @@ Select an option:
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
 }
-LOGGER_PATH = "crawler.log"
+LOGGER_PATH = "crawl.log"
 
-SOURCE_PATH = "source.txt"
+SOURCE_PATH = "sources.txt"
 
 TOPIC_DOCUMENT_LIMIT = 5
 

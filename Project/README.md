@@ -1,7 +1,7 @@
 # **CP423 Final Project**
 ### **Search engine program implemented in Python.**
 
-**Overview:** This program is a basic search engine implemented in Python. It includes different fundamental components we talked about in class for building Indexing and Query Processing pipelines. The program starts from the command line using `python search_engine.py`. The user is prompted with the following message, and they can type the appropriate number in the console and press enter to select the option they want. The program will then prompt the user for the appropriate input and will perform the selected task. The program will continue to prompt the user for input until they select the option to exit the program.
+**Overview:** This program is a basic search engine implemented in Python. It includes different fundamental components we talked about in class for building Indexing and Query Processing pipelines. The program starts from the command line using `python searchengine.py`. The user is prompted with the following message, and they can type the appropriate number in the console and press enter to select the option they want. The program will then prompt the user for the appropriate input and will perform the selected task. The program will continue to prompt the user for input until they select the option to exit the program.
 
     Select an option:
     1- Collect new documents.
@@ -13,7 +13,7 @@
     7- Exit
 
 
-The program collects documents from websites under all of the three program topics of Astronomy, Economy, and Health. The list of source websites can be modified in `source.txt`.
+The program collects documents from websites under all of the three program topics of Astronomy, Economy, and Health. The list of source websites can be modified in `sources.txt`.
 
 ---
 
@@ -27,11 +27,11 @@ pip install -r requirements.txt
 
 ### Run Program
 ```Bash
-python search_engine.py
+python searchengine.py
 ```
 Running the program displays a brief welcome message. After which, the user enters the option menu event loop, as shown below.
 
-<details style="padding-bottom: 1.5em;" open>
+<details style="padding-bottom: 1.5em;">
   <summary style="padding-bottom: 0.5em;">Option menu console output</summary>
 
     Select an option:
@@ -47,9 +47,9 @@ Running the program displays a brief welcome message. After which, the user ente
 
 ### 1- Collect new documents
 
-The program collects new documents for each of our topics in our search engine. We use the `source.txt` file to begin crawling the links for new pages on the website as our trusted source. This is done for the `TOPIC_DOCUMENT_LIMIT` constant in `constants.py`. The collected documents are then placed in the data directory in the appropriate subdirectory according to the topic. When a document is collected, we use its URL to generate a hash, which is then used as the filename for the text file containing the document. The hash is then put into another file (`hash_to_url.json`) which maps the hashes to the URL to be displayed to the user while querying. The crawler works by iterating over all the sources to collect documents from each of the trusted sources, with the aim of achieving a nicely distributed collection of documents. 
+The program collects new documents for each of our topics in our search engine. We use the `sources.txt` file to begin crawling the links for new pages on the website as our trusted source. This is done for the `TOPIC_DOCUMENT_LIMIT` constant in `constants.py`. The collected documents are then placed in the data directory in the appropriate subdirectory according to the topic. When a document is collected, we use its URL to generate a hash, which is then used as the filename for the text file containing the document. The hash is then put into another file (`hash_to_url.json`) which maps the hashes to the URL to be displayed to the user while querying. The crawler works by iterating over all the sources to collect documents from each of the trusted sources, with the aim of achieving a nicely distributed collection of documents. 
 
-<details open>
+<details>
   <summary style="padding-bottom: 0.5em;">Output</summary>
 
     Enter option: 1
@@ -70,7 +70,7 @@ After the task is complete, the program re-enters the option menu event loop.
 
 The program iterates over the `data` directory and all the topic subdirectories, and after tokenizing, indexes all of the tokens. Along with each token, a list of occurrences is stored, which includes the document hash, the frequency of the token in the document, and the topic of the document. Since the actual hashes are very long a short form is used for each hash which can be found in `mapping.json` located in the `Index Data` directory. The program then saves the inverted index (`inverted_index.json`) and the mapping to the `Index Data` directory. The outline of the occurrences field in the inverted index includes all occurrences of the token within documents, as well as the frequency of the token in the document. The soundex code for each token is also stored in the inverted index, which can be used for spell correction during the querying process. The `hash_to_url.json` file is then checked to see if all the hashes are in the mapping to ensure all files have a corresponding link as well.
 
-<details open>
+<details>
   <summary style="padding-bottom: 0.5em;">Output</summary>
 
     Enter option: 2
@@ -89,7 +89,7 @@ After the task is complete, the program re-enters the option menu event loop.
 
 The program prompts the user to enter a search query. The users query will be spell corrected using soundex similarity, edit distance and term frequency are used for fallback conditions. The program will then perform the term-at-a-time algorithm and use the inverted index to display the top 3 highest ranked documents (ranked using cosine similarity) that contain any of the spell corrected query terms. A link to the web page is given for each document, as well as a snippet of matching text blocks with query terms highlighted in unique colours.
 
-<details open>
+<details>
   <summary style="padding-bottom: 0.5em;">Example output (screenshot)</summary>
 
 ![search for a query - example output](https://user-images.githubusercontent.com/19508210/233507686-67e1b4de-1e71-46d2-a734-0a2624a584be.png)
@@ -103,7 +103,7 @@ After the task is complete, the program re-enters the option menu event loop.
 
 We have chosen the KNN model for training as we found it to be the most effective in predicting and classifying new links into their respective topics. We based this decision on our evaluation metrics, including cross-validation and classification metrics. The program begins by collecting all the documents and placing them into a Pandas dataframe, which includes their text content. The text content is then preprocessed through tokenization and removal of stopwords. Afterward, the data is split into training and testing sets, with 80% used for training and 20% for testing. Next, the TFIDF vectorizer is fitted to the training data and used to vectorize both the training and test sets. The vectorizer is saved for future use in predictions. The KNN model is trained using a grid search to identify the best parameters, in this case the neighborhood size. Once this is done, the model is tested on the test set to make predictions and calculate the relevant metrics.
 
-<details open>
+<details>
   <summary style="padding-bottom: 0.5em;">Example output</summary>
 
     Enter option: 4
@@ -131,7 +131,7 @@ After the task is complete, the program re-enters the option menu event loop.
 
 The program prompts the user to input a link, which is then crawled to extract its textual content. The content is then vectorized using the same vectorizer that was utilized during classifier training. The program then loads the saved classifier and uses it to make a classification prediction, printing each of the three program topics along with a corresponding probability/confidence score indicating the likelihood of the link belonging to that topic.
 
-<details open>
+<details>
   <summary style="padding-bottom: 0.5em;">Example output</summary>
 
     Enter option: 5
@@ -151,7 +151,7 @@ After the task is complete, the program re-enters the option menu event loop.
 
 The program displays a brief message containing general information about the search engine and details about how we have applied our knowledge from the course to build the various components of this system.
 
-<details open>
+<details>
   <summary style="padding-bottom: 0.5em;">Output</summary>
 
     Enter option: 6
@@ -176,7 +176,7 @@ After the task is complete, the program re-enters the option menu event loop.
 
 The option menu event loop will conclude, exiting the progam.
 
-<details style="padding-bottom: 0.5em;" open>
+<details style="padding-bottom: 0.5em;">
   <summary style="padding-bottom: 0.5em;">Output</summary>
 
     Enter option: 7
