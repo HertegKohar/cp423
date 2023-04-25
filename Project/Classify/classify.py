@@ -167,11 +167,12 @@ def test_model(model, X_test_tfidf, y_test, plot=False):
     y_pred = model.predict(X_test_tfidf)
     print(classification_report(y_test, y_pred))
     report = classification_report(y_test, y_pred, output_dict=True)
+    cm = confusion_matrix(y_test, y_pred)
+    df_cm = pd.DataFrame(cm, index=TOPICS, columns=TOPICS)
+    print("Confusion Matrix")
+    print(df_cm)
     if plot:
-        cm = confusion_matrix(y_test, y_pred)
-        ConfusionMatrixDisplay(
-            confusion_matrix=cm, display_labels=model.classes_
-        ).plot()
+        ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=TOPICS).plot()
         plt.show()
     return report
 
@@ -255,7 +256,7 @@ def training_pipeline():
     if PRODUCTION:
         print("Training KNN Model")
         model = knn_grid_search(X_train_tfidf, y_train)
-        test_model(model, X_test_tfidf, y_test, plot=False)
+        test_model(model, X_test_tfidf, y_test, plot=True)
         joblib.dump(model, MODEL_PATH)
     else:
         print("Training Models")
