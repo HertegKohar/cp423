@@ -105,22 +105,32 @@ We have chosen the KNN model for training as we found it to be the most effectiv
 
 <details>
   <summary style="padding-bottom: 0.5em;">Example output</summary>
-
+  
     Enter option: 4
     Training ML Classifier...
     Training KNN Model
     Best parameters: {'n_neighbors': 7}
-    Best Score: 0.9884472049689441
+    Best Score: 0.9863636363636363
     Test Metrics
-                precision    recall  f1-score   support
+                  precision    recall  f1-score   support
 
-            0       0.97      1.00      0.98        31
-            1       1.00      0.92      0.96        25
-            2       0.97      1.00      0.98        31
+              0        0.97      1.00      0.99        35
+              1        0.97      0.97      0.97        32
+              2        1.00      0.98      0.99        43
 
-    accuracy                            0.98        87
-    macro avg       0.98      0.97      0.98        87
-    weighted avg    0.98      0.98      0.98        87
+        accuracy                           0.98       110
+      macro avg        0.98      0.98      0.98       110
+    weighted avg       0.98      0.98      0.98       110
+
+    Confusion Matrix
+               Astronomy  Health  Economy
+    Astronomy         35       0        0
+    Health             1      31        0
+    Economy            0       1       42
+
+  Confusion Matrix Plot (opens in new window):
+
+  ![Confusion Matrix Plot](https://user-images.githubusercontent.com/19508210/234603028-b5f9ebd6-6107-4533-8681-801e22aea668.svg)
 </details>
 After the task is complete, the program re-enters the option menu event loop.
 
@@ -161,7 +171,7 @@ The program displays a brief message containing general information about the se
 
     We applied our knowledge of supervised machine learning methods to train a classifier model capable of classifying documents into one of the three program topics. To train the model, we utilized a K-Nearest Neighbors (KNN) classifier based on the text content of both labeled source pages and internal links found within them. This classifier model is used for the link prediction feature to predict which of the three topics a given link belongs to. 
 
-    Overall, this simple program is the culmination of our in-depth understanding of search engine architecture and information retrieval techniques that we gained throughout this course. Our ability to effectively implement various algorithms and processes is reflected in the program's performance and utility. 
+    Overall, this search engine program is the culmination of our in-depth understanding of search engine architecture and information retrieval techniques that we gained throughout this course. Our ability to effectively implement various algorithms and processes is reflected in the program's performance and utility. 
 
     Thank you for taking the time to explore our program, 
 
