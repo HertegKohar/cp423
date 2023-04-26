@@ -173,7 +173,7 @@ def test_model(model, X_test_tfidf, y_test, plot=False):
     print(df_cm)
     if plot:
         ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=TOPICS).plot()
-        plt.show()
+        plt.show(block=False)
     return report
 
 
