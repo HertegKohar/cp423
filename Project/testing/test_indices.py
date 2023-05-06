@@ -58,5 +58,15 @@ class TestMappings(unittest.TestCase):
             hash_to_url = json.load(f)
         print("Mapping lengths:", len(mapping), len(hash_to_url))
         # self.assertEqual(len(mapping), len(hash_to_url), msg="Lengths not equal")
+        failed = False
+        not_included = []
         for key in mapping:
-            self.assertTrue(key in hash_to_url, msg=f"{key} not in hash_to_url")
+            if key not in hash_to_url:
+                failed = True
+                not_included.append(key)
+        if failed:
+            with open("missing.txt", "w") as f:
+                f.write("\n".join(not_included))
+        if failed:
+            self.fail("keys not in hash_to_url, see missing.txt, run remove_missing.py")
+        # self.assertTrue(key in hash_to_url, msg=f"{key} not in hash_to_url")
