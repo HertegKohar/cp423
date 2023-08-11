@@ -6,7 +6,7 @@ on:
     - cron: "0 0 * * *"
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -39,7 +39,7 @@ jobs:
           git add -A
           git diff-index --quiet HEAD || (git commit -a -m "Automated Data Collection and Training" --allow-empty)
 
-      - name: push changes
+      - name: Push Changes
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
