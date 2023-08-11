@@ -1,6 +1,7 @@
 name: Automate Engine
 
 on:
+  workflow_dispatch: {}
   schedule:
     - cron: "0 0 * * *"
 
