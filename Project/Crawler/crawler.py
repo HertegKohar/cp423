@@ -11,7 +11,7 @@ from Constants.constants import (
     TOPICS,
     HASH_TO_URL_PATH,
     INDENT,
-    PRODUCTION
+    PRODUCTION,
 )
 
 import requests
@@ -178,10 +178,14 @@ def source_switch_crawl(topic, urls, limit):
             ):
                 base_urls[urlparse(absolute_url).netloc].append(absolute_url)
         visited.add(url)
-        hash_ = hash_and_save(topic, url, r.text)
-        if hash_:
-            count += 1
-            hash_to_url[hash_] = url
+        try:
+            hash_ = hash_and_save(topic, url, r.text)
+            if hash_:
+                count += 1
+                hash_to_url[hash_] = url
+        except Exception as e:
+            print(e)
+            continue
     with open(HASH_TO_URL_PATH, "w", encoding="utf-8") as f:
         json.dump(hash_to_url, f, indent=INDENT)
     print(f"Finished crawling {topic}")
