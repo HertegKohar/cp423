@@ -197,7 +197,7 @@ The option menu event loop will conclude, exiting the progam.
 
 ## Contributors
 
-- [Herteg Kohar](https://github.com/koha5160)
+- [Herteg Kohar](https://github.com/HertegKohar)
 - [Kelvin Kellner](https://github.com/kelvinkellner)
 
 
