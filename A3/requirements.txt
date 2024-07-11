@@ -1,6 +1,6 @@
 pandas
 nltk
-scikit-learn==1.2.0
+scikit-learn==1.5.0
 matplotlib
 numpy
 joblib
